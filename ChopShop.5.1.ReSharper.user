@@ -3,6 +3,7 @@
     <string />
     <integer />
     <boolean>
+      <setting name="livetemplates.csharp.usevar">True</setting>
       <setting name="SolutionAnalysisEnabled">False</setting>
     </boolean>
   </SettingsComponent>
@@ -10,8 +11,27 @@
     <RecentFiles>
       <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Controllers/f:AccountController.cs" caret="0" fromTop="0" />
       <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Views/d:Account/f:LogOn.cshtml" caret="601" fromTop="18" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Views/d:Shared/f:_Layout.cshtml" caret="400" fromTop="13" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Views/f:_ViewStart.cshtml" caret="0" fromTop="0" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="1104" fromTop="32" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Global.asax.cs" caret="0" fromTop="0" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorFilterAttributeProvider.cs" caret="262" fromTop="8" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="239" fromTop="8" />
     </RecentFiles>
-    <RecentEdits />
+    <RecentEdits>
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="929" fromTop="32" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="1074" fromTop="32" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="13" fromTop="0" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="1113" fromTop="32" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="521" fromTop="13" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="13" fromTop="0" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="846" fromTop="21" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorFilterAttributeProvider.cs" caret="1455" fromTop="36" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorFilterAttributeProvider.cs" caret="0" fromTop="0" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorFilterAttributeProvider.cs" caret="242" fromTop="7" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="239" fromTop="8" />
+    </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
     <NAntPath value="" />
@@ -20,8 +40,82 @@
     <Providers />
   </UnitTestRunner>
   <UnitTestRunnerNUnit>
-    <NUnitInstallDir IsNull="False">
-    </NUnitInstallDir>
+    <NUnitInstallDir>C:\Program Files (x86)\NUnit 2.5.5\bin\net-2.0\</NUnitInstallDir>
     <UseAddins>Never</UseAddins>
   </UnitTestRunnerNUnit>
+  <CompletionStatisticsManager>
+    <ItemStatistics item="Default">
+      <Item value="private" priority="1" />
+      <Item value="readonly" priority="1" />
+      <Item value="public" priority="4" />
+      <Item value="WindsorControllerFactory`0" priority="0" />
+      <Item value="IKernel`0" priority="0" />
+      <Item value="override" priority="3" />
+      <Item value="kernel" priority="1" />
+      <Item value="var" priority="5" />
+      <Item value="string" priority="1" />
+      <Item value="controllerName" priority="1" />
+      <Item value="try" priority="0" />
+      <Item value="return" priority="2" />
+      <Item value="IController`0" priority="0" />
+      <Item value="controllerComponentName" priority="0" />
+      <Item value="ComponentNotFoundException`0" priority="0" />
+      <Item value="componentNotFoundException" priority="1" />
+      <Item value="new" priority="0" />
+      <Item value="ApplicationException" priority="0" />
+      <Item value="static" priority="0" />
+      <Item value="void" priority="0" />
+      <Item value="this" priority="0" />
+      <Item value="Type`0" priority="0" />
+      <Item value="object" priority="0" />
+      <Item value="type" priority="0" />
+      <Item value="Where`1" priority="0" />
+      <Item value="foreach" priority="2" />
+      <Item value="in" priority="1" />
+      <Item value="properties" priority="0" />
+      <Item value="if" priority="0" />
+      <Item value="container" priority="4" />
+      <Item value="propertyInfo" priority="2" />
+      <Item value="instance" priority="0" />
+      <Item value="WindsorFilterAttributeProvider`0" priority="0" />
+      <Item value="IWindsorContainer`0" priority="0" />
+      <Item value="protected" priority="1" />
+      <Item value="base" priority="1" />
+      <Item value="Controller`0" priority="0" />
+      <Item value="Action`0" priority="0" />
+      <Item value="controllerContext" priority="1" />
+      <Item value="actionDescriptor" priority="1" />
+      <Item value="attributes" priority="2" />
+      <Item value="attribute" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.MicroKernel.IKernel">
+      <Item value="ReleaseComponent`0" priority="0" />
+      <Item value="Resolve`0" priority="0" />
+      <Item value="HasComponent`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.String">
+      <Item value="Format`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Type">
+      <Item value="GetProperties`0" priority="0" />
+      <Item value="IsPublic" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Reflection.PropertyInfo">
+      <Item value="CanWrite" priority="0" />
+      <Item value="PropertyType" priority="2" />
+      <Item value="SetValue`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.Windsor.IWindsorContainer">
+      <Item value="Kernel" priority="0" />
+      <Item value="Resolve`0" priority="0" />
+      <Item value="InjectAttribute`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.Mvc.FilterAttributeFilterProvider">
+      <Item value="GetControllerAttributes`0" priority="0" />
+      <Item value="GetActionAttributes`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.Mvc.FilterAttribute">
+      <Item value="GetType`0" priority="1" />
+    </ItemStatistics>
+  </CompletionStatisticsManager>
 </Configuration>

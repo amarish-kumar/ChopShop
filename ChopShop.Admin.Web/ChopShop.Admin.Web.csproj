@@ -63,6 +63,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configuration\ControllersInstaller.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -129,6 +130,10 @@
     <ProjectReference Include="..\ChopShop.Admin.Services\ChopShop.Admin.Services.csproj">
       <Project>{03F6FA8C-C4FC-47A9-B20E-1D0D04CBEDF9}</Project>
       <Name>ChopShop.Admin.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChopShop.Configuration\ChopShop.Configuration.csproj">
+      <Project>{A14C356B-1236-4BF1-8563-E9E956BC69DA}</Project>
+      <Name>ChopShop.Configuration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
