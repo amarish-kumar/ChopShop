@@ -14,7 +14,7 @@ namespace ChopShop.Configuration.Shop
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
             container.Register(Component.For<IWindsorContainer>().Instance(container)); // return itself when a request comes in to resolve the container
-            container.Register(AllTypes.FromAssembly(Assembly.LoadFrom("ChopShop.Admin.Services"))
+            container.Register(AllTypes.FromAssemblyNamed("ChopShop.Shop.Services")
                                    .Pick()
                                    .Configure(x => x.LifeStyle.PerWebRequest)
                                    .WithService.FirstInterface());
