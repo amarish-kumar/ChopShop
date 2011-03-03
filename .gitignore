@@ -17,4 +17,7 @@ _ReSharper.*
 Tmp/
 Log/
 Uploads/
+.dropbox
+.DS_Store
+*.user
 ~$*
