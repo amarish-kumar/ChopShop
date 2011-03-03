@@ -10,27 +10,58 @@
   <RecentFiles>
     <RecentFiles>
       <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Controllers/f:AccountController.cs" caret="0" fromTop="0" />
-      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
       <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Views/d:Account/f:LogOn.cshtml" caret="601" fromTop="18" />
       <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Views/d:Shared/f:_Layout.cshtml" caret="400" fromTop="13" />
       <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Views/f:_ViewStart.cshtml" caret="0" fromTop="0" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="1104" fromTop="32" />
-      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Global.asax.cs" caret="0" fromTop="0" />
       <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorFilterAttributeProvider.cs" caret="262" fromTop="8" />
       <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="239" fromTop="8" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Configuration/f:ControllersInstaller.cs" caret="0" fromTop="0" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="0" fromTop="0" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Global.asax.cs" caret="1479" fromTop="48" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Views/d:Home/f:Index.cshtml" caret="0" fromTop="0" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Controllers/f:HomeController.cs" caret="317" fromTop="12" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/d:Controllers/f:HomeController.cs" caret="343" fromTop="14" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/d:Configuration/f:ControllersInstaller.cs" caret="1000" fromTop="25" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:UtcDateTimeInterceptor.cs" caret="12318" fromTop="295" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:SessionManager.cs" caret="1303" fromTop="37" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:NHibernateDataHttpModule.cs" caret="1259" fromTop="34" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Web.config" caret="5281" fromTop="60" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Web.config" caret="3569" fromTop="26" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Global.asax.cs" caret="1030" fromTop="19" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="934" fromTop="20" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Shop/f:ShopServicesInstaller.cs" caret="1053" fromTop="22" />
     </RecentFiles>
     <RecentEdits>
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="929" fromTop="32" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="1074" fromTop="32" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="13" fromTop="0" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="1113" fromTop="32" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="521" fromTop="13" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="13" fromTop="0" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="846" fromTop="21" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorFilterAttributeProvider.cs" caret="1455" fromTop="36" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorFilterAttributeProvider.cs" caret="0" fromTop="0" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorFilterAttributeProvider.cs" caret="242" fromTop="7" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorExtension.cs" caret="239" fromTop="8" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="307" fromTop="11" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="1096" fromTop="41" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Global.asax.cs" caret="2177" fromTop="59" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="1087" fromTop="26" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="1077" fromTop="24" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Global.asax.cs" caret="1992" fromTop="49" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Global.asax.cs" caret="2177" fromTop="46" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Global.asax.cs" caret="91" fromTop="3" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Global.asax.cs" caret="1479" fromTop="36" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Global.asax.cs" caret="2177" fromTop="34" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Shop/f:ShopServicesInstaller.cs" caret="1053" fromTop="22" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Controllers/f:HomeController.cs" caret="317" fromTop="12" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/d:Controllers/f:HomeController.cs" caret="310" fromTop="12" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/d:Configuration/f:ControllersInstaller.cs" caret="937" fromTop="21" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/d:Configuration/f:ControllersInstaller.cs" caret="136" fromTop="3" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/d:Configuration/f:ControllersInstaller.cs" caret="1009" fromTop="25" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:NHibernateDataHttpModule.cs" caret="1672" fromTop="47" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:NHibernateDataHttpModule.cs" caret="1310" fromTop="35" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:SessionManager.cs" caret="1496" fromTop="47" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:UtcDateTimeInterceptor.cs" caret="12318" fromTop="295" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:SessionManager.cs" caret="1303" fromTop="37" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Web.config" caret="311" fromTop="8" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Web.config" caret="5261" fromTop="52" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Web.config" caret="1088" fromTop="23" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Web.config" caret="3862" fromTop="41" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Web.config" caret="4842" fromTop="28" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Web.config" caret="703" fromTop="14" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Web.config" caret="5279" fromTop="60" />
+      <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Global.asax.cs" caret="2177" fromTop="65" />
+      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Shop/f:ShopServicesInstaller.cs" caret="830" fromTop="16" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -45,15 +76,15 @@
   </UnitTestRunnerNUnit>
   <CompletionStatisticsManager>
     <ItemStatistics item="Default">
-      <Item value="private" priority="1" />
+      <Item value="private" priority="5" />
       <Item value="readonly" priority="1" />
       <Item value="public" priority="4" />
       <Item value="WindsorControllerFactory`0" priority="0" />
       <Item value="IKernel`0" priority="0" />
       <Item value="override" priority="3" />
       <Item value="kernel" priority="1" />
-      <Item value="var" priority="5" />
-      <Item value="string" priority="1" />
+      <Item value="var" priority="8" />
+      <Item value="string" priority="2" />
       <Item value="controllerName" priority="1" />
       <Item value="try" priority="0" />
       <Item value="return" priority="2" />
@@ -61,10 +92,10 @@
       <Item value="controllerComponentName" priority="0" />
       <Item value="ComponentNotFoundException`0" priority="0" />
       <Item value="componentNotFoundException" priority="1" />
-      <Item value="new" priority="0" />
+      <Item value="new" priority="6" />
       <Item value="ApplicationException" priority="0" />
-      <Item value="static" priority="0" />
-      <Item value="void" priority="0" />
+      <Item value="static" priority="2" />
+      <Item value="void" priority="3" />
       <Item value="this" priority="0" />
       <Item value="Type`0" priority="0" />
       <Item value="object" priority="0" />
@@ -74,12 +105,12 @@
       <Item value="in" priority="1" />
       <Item value="properties" priority="0" />
       <Item value="if" priority="0" />
-      <Item value="container" priority="4" />
+      <Item value="container" priority="10" />
       <Item value="propertyInfo" priority="2" />
       <Item value="instance" priority="0" />
-      <Item value="WindsorFilterAttributeProvider`0" priority="0" />
-      <Item value="IWindsorContainer`0" priority="0" />
-      <Item value="protected" priority="1" />
+      <Item value="WindsorFilterAttributeProvider`0" priority="1" />
+      <Item value="IWindsorContainer`0" priority="1" />
+      <Item value="protected" priority="2" />
       <Item value="base" priority="1" />
       <Item value="Controller`0" priority="0" />
       <Item value="Action`0" priority="0" />
@@ -87,6 +118,29 @@
       <Item value="actionDescriptor" priority="1" />
       <Item value="attributes" priority="2" />
       <Item value="attribute" priority="3" />
+      <Item value="WindsorContainer" priority="0" />
+      <Item value="from" priority="0" />
+      <Item value="FromAssembly`0" priority="1" />
+      <Item value="ControllerBuilder`0" priority="0" />
+      <Item value="controllerFactory" priority="0" />
+      <Item value="FilterProviders`0" priority="2" />
+      <Item value="x" priority="0" />
+      <Item value="is" priority="0" />
+      <Item value="FilterAttributeFilterProvider`0" priority="0" />
+      <Item value="oldProvider" priority="0" />
+      <Item value="newProvider" priority="0" />
+      <Item value="RegisterContainer`0" priority="0" />
+      <Item value="RegisterFilterProviders`0" priority="0" />
+      <Item value="Component`0" priority="0" />
+      <Item value="AllTypes`0" priority="1" />
+      <Item value="HomeController`0" priority="0" />
+      <Item value="t" priority="0" />
+      <Item value="ConfigureDelegate`0" priority="0" />
+      <Item value="c" priority="1" />
+      <Item value="ControllersInstaller`0" priority="0" />
+      <Item value="PerWebRequestLifestyleManager`0" priority="0" />
+      <Item value="NHibernate" priority="0" />
+      <Item value="NHibernateDataHttpModule`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Castle.MicroKernel.IKernel">
       <Item value="ReleaseComponent`0" priority="0" />
@@ -99,6 +153,7 @@
     <ItemStatistics item="Qualified:System.Type">
       <Item value="GetProperties`0" priority="0" />
       <Item value="IsPublic" priority="0" />
+      <Item value="Name" priority="1" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Reflection.PropertyInfo">
       <Item value="CanWrite" priority="0" />
@@ -106,9 +161,11 @@
       <Item value="SetValue`0" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Castle.Windsor.IWindsorContainer">
-      <Item value="Kernel" priority="0" />
+      <Item value="Kernel" priority="1" />
       <Item value="Resolve`0" priority="0" />
       <Item value="InjectAttribute`0" priority="1" />
+      <Item value="Dispose`0" priority="0" />
+      <Item value="Register`0" priority="2" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Web.Mvc.FilterAttributeFilterProvider">
       <Item value="GetControllerAttributes`0" priority="0" />
@@ -116,6 +173,70 @@
     </ItemStatistics>
     <ItemStatistics item="Qualified:System.Web.Mvc.FilterAttribute">
       <Item value="GetType`0" priority="1" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.Windsor.WindsorContainer">
+      <Item value="Install`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Castle.Windsor.Installer.FromAssembly">
+      <Item value="Named`0" priority="3" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.MicroKernel.Registration.IWindsorInstaller">
+      <Item value="Install`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.Mvc.ControllerBuilder">
+      <Item value="Current" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.Mvc.ControllerBuilder">
+      <Item value="SetControllerFactory`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Web.Mvc.FilterProviders">
+      <Item value="Providers" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.Web.Mvc.FilterProviderCollection">
+      <Item value="Single`1" priority="0" />
+      <Item value="Remove`0" priority="0" />
+      <Item value="Add`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Castle.MicroKernel.Registration.Component">
+      <Item value="For`5" priority="0" />
+      <Item value="IsInSameNamespaceAs`1" priority="2" />
+      <Item value="IsInNamespace`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.MicroKernel.Registration.ComponentRegistration`1">
+      <Item value="Instance`0" priority="0" />
+      <Item value="LifeStyle" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@Castle.MicroKernel.Registration.AllTypes">
+      <Item value="FromAssembly`0" priority="0" />
+      <Item value="From`0" priority="0" />
+      <Item value="FromAssemblyNamed`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:@System.Reflection.Assembly">
+      <Item value="LoadFrom`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.MicroKernel.Registration.FromAssemblyDescriptor">
+      <Item value="Pick`0" priority="0" />
+      <Item value="BasedOn`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.MicroKernel.Registration.BasedOnDescriptor">
+      <Item value="Configure`0" priority="1" />
+      <Item value="WithService" priority="0" />
+      <Item value="If`0" priority="2" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.MicroKernel.Registration.ComponentRegistration">
+      <Item value="LifeStyle" priority="0" />
+      <Item value="Named`0" priority="0" />
+      <Item value="ServiceType" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.MicroKernel.Registration.Lifestyle.LifestyleGroup`1">
+      <Item value="PerWebRequest" priority="0" />
+      <Item value="Transient" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:Castle.MicroKernel.Registration.ServiceDescriptor">
+      <Item value="FirstInterface`0" priority="0" />
+    </ItemStatistics>
+    <ItemStatistics item="Qualified:System.String">
+      <Item value="EndsWith`0" priority="0" />
     </ItemStatistics>
   </CompletionStatisticsManager>
 </Configuration>
