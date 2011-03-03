@@ -8,5 +8,6 @@ namespace ChopShop.Model
     public class Product
     {
         public Guid Id { get; set; }
+        public string Test { get; set; }
     }
 }
