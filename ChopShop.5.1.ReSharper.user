@@ -19,21 +19,20 @@
       <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/f:WindsorControllerFactory.cs" caret="0" fromTop="0" />
       <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Global.asax.cs" caret="1479" fromTop="48" />
       <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Views/d:Home/f:Index.cshtml" caret="0" fromTop="0" />
-      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Controllers/f:HomeController.cs" caret="317" fromTop="12" />
       <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/d:Controllers/f:HomeController.cs" caret="343" fromTop="14" />
       <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/d:Configuration/f:ControllersInstaller.cs" caret="1000" fromTop="25" />
       <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:UtcDateTimeInterceptor.cs" caret="12318" fromTop="295" />
       <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:SessionManager.cs" caret="1303" fromTop="37" />
-      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:NHibernateDataHttpModule.cs" caret="1259" fromTop="34" />
       <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/f:Web.config" caret="5281" fromTop="60" />
       <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Web.config" caret="3569" fromTop="26" />
       <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Global.asax.cs" caret="1030" fromTop="19" />
       <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="934" fromTop="20" />
       <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Shop/f:ShopServicesInstaller.cs" caret="1053" fromTop="22" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:NHibernateDataHttpModule.cs" caret="587" fromTop="15" />
+      <File id="0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877/d:Controllers/f:HomeController.cs" caret="0" fromTop="0" />
+      <File id="80F5C731-8520-47DB-BD06-2B45ABE03382/f:Product.cs" caret="192" fromTop="10" />
     </RecentFiles>
     <RecentEdits>
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="307" fromTop="11" />
-      <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="1096" fromTop="41" />
       <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Global.asax.cs" caret="2177" fromTop="59" />
       <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="1087" fromTop="26" />
       <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Admin/f:AdminServicesInstaller.cs" caret="1077" fromTop="24" />
@@ -62,6 +61,8 @@
       <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Web.config" caret="5279" fromTop="60" />
       <File id="8E1DD1E8-F79A-4F64-A780-2E8865D1C7E6/f:Global.asax.cs" caret="2177" fromTop="65" />
       <File id="A14C356B-1236-4BF1-8563-E9E956BC69DA/d:Shop/f:ShopServicesInstaller.cs" caret="830" fromTop="16" />
+      <File id="BE107658-633C-49AE-B8E5-68B2C77963BB/f:NHibernateDataHttpModule.cs" caret="596" fromTop="15" />
+      <File id="80F5C731-8520-47DB-BD06-2B45ABE03382/f:Product.cs" caret="192" fromTop="10" />
     </RecentEdits>
   </RecentFiles>
   <NAntValidationSettings>
@@ -84,7 +85,7 @@
       <Item value="override" priority="3" />
       <Item value="kernel" priority="1" />
       <Item value="var" priority="8" />
-      <Item value="string" priority="2" />
+      <Item value="string" priority="3" />
       <Item value="controllerName" priority="1" />
       <Item value="try" priority="0" />
       <Item value="return" priority="2" />
@@ -141,6 +142,8 @@
       <Item value="PerWebRequestLifestyleManager`0" priority="0" />
       <Item value="NHibernate" priority="0" />
       <Item value="NHibernateDataHttpModule`0" priority="0" />
+      <Item value="Guid`0" priority="0" />
+      <Item value="prop" priority="0" />
     </ItemStatistics>
     <ItemStatistics item="Qualified:Castle.MicroKernel.IKernel">
       <Item value="ReleaseComponent`0" priority="0" />
