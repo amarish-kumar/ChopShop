@@ -1,0 +1,13 @@
+﻿@model ICollection<ChopShop.Model.Product>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+<li>
+@foreach (var product in Model)
+{ 
+<ul>@product.Name @product.Code @product.Description</ul>
+}
+</li>
