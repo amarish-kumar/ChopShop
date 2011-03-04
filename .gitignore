@@ -20,4 +20,5 @@ Uploads/
 .dropbox
 .DS_Store
 *.user
+desktop.ini
 ~$*
