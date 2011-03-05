@@ -86,6 +86,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ViewModel\EditProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\DTO\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -151,6 +153,10 @@
       <Project>{A14C356B-1236-4BF1-8563-E9E956BC69DA}</Project>
       <Name>ChopShop.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ChopShop.Localisation\ChopShop.Localisation.csproj">
+      <Project>{FBF7C880-650F-4A9F-82DB-DA3ED182D961}</Project>
+      <Name>ChopShop.Localisation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChopShop.Model\ChopShop.Model.csproj">
       <Project>{80F5C731-8520-47DB-BD06-2B45ABE03382}</Project>
       <Name>ChopShop.Model</Name>
@@ -158,6 +164,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Product\List.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Product\Edit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

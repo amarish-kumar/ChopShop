@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\AdminServicesInstaller.cs" />
+    <Compile Include="LocalisationInstaller.cs" />
     <Compile Include="Shop\ShopServicesInstaller.cs" />
     <Compile Include="WindsorControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

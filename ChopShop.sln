@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChopShop.Shop.Services", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChopShop.Configuration", "ChopShop.Configuration\ChopShop.Configuration.csproj", "{A14C356B-1236-4BF1-8563-E9E956BC69DA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChopShop.Localisation", "ChopShop.Localisation\ChopShop.Localisation.csproj", "{FBF7C880-650F-4A9F-82DB-DA3ED182D961}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{A14C356B-1236-4BF1-8563-E9E956BC69DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A14C356B-1236-4BF1-8563-E9E956BC69DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A14C356B-1236-4BF1-8563-E9E956BC69DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBF7C880-650F-4A9F-82DB-DA3ED182D961}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBF7C880-650F-4A9F-82DB-DA3ED182D961}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBF7C880-650F-4A9F-82DB-DA3ED182D961}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBF7C880-650F-4A9F-82DB-DA3ED182D961}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

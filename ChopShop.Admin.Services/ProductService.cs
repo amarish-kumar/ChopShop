@@ -36,5 +36,10 @@ namespace ChopShop.Admin.Services
         {
             throw new NotImplementedException();
         }
+
+        public Product GetSingle(int productId)
+        {
+            return productRepository.LoadById(productId);
+        }
     }
 }

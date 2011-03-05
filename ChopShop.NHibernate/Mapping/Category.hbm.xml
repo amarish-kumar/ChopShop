@@ -14,5 +14,10 @@
       <key column="CategoryId" />
       <many-to-many column="ProductId" class="Product" />
     </bag>
+    <many-to-one name="Parent" column="ParentId" />
+    <bag name="SubCategories" inverse="true">
+      <key column="ParentId" />
+      <one-to-many class="Category"/>
+    </bag>
   </class>
 </hibernate-mapping>
