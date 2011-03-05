@@ -6,6 +6,8 @@ using System.Text;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using ChopShop.NHibernate;
+using NHibernate;
 
 namespace ChopShop.Configuration.Admin
 {

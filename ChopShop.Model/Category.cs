@@ -6,7 +6,9 @@ namespace ChopShop.Model
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
-        public virtual int ProductId { get; set; }
+        public virtual string Description { get; set; }
+        public virtual ICollection<Category> SubCategories { get; set; }
         public virtual ICollection<Product> Products { get; set; }
+        public virtual Category Parent { get; set; }
     }
 }

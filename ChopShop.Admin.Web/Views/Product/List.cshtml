@@ -5,9 +5,16 @@
 }
 
 <h2>List</h2>
-<li>
+<ul>
 @foreach (var product in Model)
 { 
-<ul>@product.Name @product.Code @product.Description</ul>
-}
+<li><p>@product.Name @product.Sku @product.Description</p>
+    <ul>
+    @foreach (var category in product.Categories)
+    { 
+        <li>@category.Id, @category.Name</li>
+    }
+    </ul>
 </li>
+}
+</>

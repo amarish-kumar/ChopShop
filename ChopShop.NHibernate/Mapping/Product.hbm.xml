@@ -7,10 +7,11 @@
       <generator class="identity" />
     </id>
     <property name="Name" column="Name" length="255" not-null="true" />
-    <property name="Code" column="Code" length="100" not-null="false" />
+    <property name="Sku" column="Sku" length="100" not-null="false" />
     <property name="Description" type="StringClob" not-null="false">
       <column name="Description" sql-type="nvarchar(max)" />
     </property>
+    <property name="IsDeleted" column="IsDeleted" not-null="true" />
     <set name="Categories" table="Products_Categories" >
       <key column="ProductId" />
       <many-to-many class="Category" column="CategoryId" />

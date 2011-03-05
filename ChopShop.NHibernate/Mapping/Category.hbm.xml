@@ -7,6 +7,9 @@
       <generator class="identity" />
     </id>
     <property name="Name" column="Name" length="255" not-null="true" />
+    <property name="Description" type="StringClob" not-null="false">
+      <column name="Description" sql-type="nvarchar(max)" />
+    </property>
     <bag name="Products" table="Products_Categories">
       <key column="CategoryId" />
       <many-to-many column="ProductId" class="Product" />
