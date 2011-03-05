@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    namespace="ChopShop.Model"
-                   assembly="ChopShop.Model">
-  <class name="Product" table="Products" schema="dbo">
+                   assembly="ChopShop.Model"
+                   schema="dbo">
+  <class name="Product" table="Products">
     <id name="Id" column="Id">
       <generator class="identity" />
     </id>
@@ -12,9 +13,14 @@
       <column name="Description" sql-type="nvarchar(max)" />
     </property>
     <property name="IsDeleted" column="IsDeleted" not-null="true" />
+    <property name="Quantity" column="Quantity" />
     <set name="Categories" table="Products_Categories" >
       <key column="ProductId" />
       <many-to-many class="Category" column="CategoryId" />
-    </set>    
+    </set>
+    <bag name="Costs" table="Cost" inverse="true">
+      <key column="ProductId" />
+      <one-to-many class="Cost"/>
+    </bag>
   </class>
 </hibernate-mapping>

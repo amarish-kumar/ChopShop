@@ -19,8 +19,6 @@ namespace ChopShop.Admin.Web.Models.ViewModel
         public EditCost Cost { get; set; }
         public bool IsDeleted { get; set; }
         public ICollection<Category> Categories { get; set; }
-
-        public ILocalisationService localisationService { get; set; }
     }
 
     public class EditCost

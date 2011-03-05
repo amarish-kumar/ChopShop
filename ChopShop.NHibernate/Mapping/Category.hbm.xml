@@ -1,8 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    namespace="ChopShop.Model"
-                   assembly="ChopShop.Model">
-  <class name="Category" table="Categories" schema="dbo">
+                   assembly="ChopShop.Model"
+                   schema="dbo">
+  <class name="Category" table="Categories">
     <id name="Id" column="Id">
       <generator class="identity" />
     </id>

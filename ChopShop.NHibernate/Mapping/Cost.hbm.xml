@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="ChopShop.Model"
+                   assembly="ChopShop.Model"
+                   schema="dbo">
+
+  <class name="Cost" table="Costs">
+    <id name="Id" column="Id">
+      <generator class="identity" />
+    </id>
+    <property name="Value" column="Value" not-null="true" />
+    <property name="IsTaxIncluded" column="IsTaxIncluded" not-null="true" />
+    <property name="TaxRate" column="TaxRate" not-null="true" />
+    <property name="Currency" column="Currency" not-null="true" />
+    
+  </class>
+</hibernate-mapping>
