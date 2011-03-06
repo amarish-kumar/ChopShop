@@ -22,4 +22,4 @@ Uploads/
 *.user
 desktop.ini
 ~$*
-!/packages/*/lib/*.dll
+!/packages/*/lib/**/*.dll

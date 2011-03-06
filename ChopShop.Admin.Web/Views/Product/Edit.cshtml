@@ -6,4 +6,11 @@
 
 <h2>Edit</h2>
 
-@Html.LabelFor(x=>x.Name)
+@Html.LabelFor(x=>x.Name)<br />
+@Model.Name<br />
+<ul>
+@foreach (var cost in Model.Cost)
+{ 
+<li>@cost.Value</li>
+}
+</ul>

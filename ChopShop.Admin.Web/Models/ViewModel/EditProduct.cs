@@ -16,7 +16,7 @@ namespace ChopShop.Admin.Web.Models.ViewModel
         public string Name { get; set; }
         public string Description { get; set; }
         public string Sku { get; set; }
-        public EditCost Cost { get; set; }
+        public ICollection<EditCost> Cost { get; set; }
         public bool IsDeleted { get; set; }
         public ICollection<Category> Categories { get; set; }
     }
@@ -24,14 +24,8 @@ namespace ChopShop.Admin.Web.Models.ViewModel
     public class EditCost
     {
         public int Id { get; set; }
-        public Decimal Value { get; set; }
+        public decimal Value { get; set; }
         public bool IsTaxIncluded { get; set; }
         public decimal TaxRate { get; set; }
-        public EditTaxType TaxType { get; set; }
-    }
-
-    public class EditTaxType
-    {
-        public string TaxType { get; set; }
     }
 }
