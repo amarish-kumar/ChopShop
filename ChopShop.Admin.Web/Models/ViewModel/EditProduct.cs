@@ -18,7 +18,14 @@ namespace ChopShop.Admin.Web.Models.ViewModel
         public string Sku { get; set; }
         public ICollection<EditCost> Cost { get; set; }
         public bool IsDeleted { get; set; }
-        public ICollection<Category> Categories { get; set; }
+        public ICollection<EditCategory> Categories { get; set; }
+    }
+
+    public class EditCategory
+    {
+        public virtual int Id { get; set; }
+        public virtual string Name { get; set; }
+        public virtual string Description { get; set; }
     }
 
     public class EditCost

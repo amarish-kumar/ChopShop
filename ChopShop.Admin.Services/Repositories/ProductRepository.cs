@@ -20,31 +20,19 @@ namespace ChopShop.Admin.Services.Repositories
         public ICollection<Product> List()
         {
             ICollection<Product> products;
-            using (var transaction = session.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted))
-            {
                 products = session.CreateCriteria<Product>()
                                   .List<Product>();
-                transaction.Commit();
-            }
             return products;
         }
 
         public void Add(Product entity)
         {
-            using (var transaction = session.BeginTransaction(System.Data.IsolationLevel.Snapshot))
-            {
-                session.Save(entity);
-                transaction.Commit();
-            }
+            session.Save(entity);
         }
 
         public void Update(Product product)
         {
-            using (var transaction = session.BeginTransaction(System.Data.IsolationLevel.Snapshot))
-            {
-                session.Update(product);
-                transaction.Commit();
-            }
+            session.Update(product);
         }
 
         public void Delete(Product product)
@@ -55,23 +43,15 @@ namespace ChopShop.Admin.Services.Repositories
 
         public ICollection<Product> Search(DetachedCriteria searchParameters)
         {
-            ICollection<Product> products;
-            using (var transaction = session.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted))
-            {
-                products = searchParameters.GetExecutableCriteria(session).List<Product>();
-                transaction.Commit();
-            }
+            ICollection<Product> products = searchParameters.GetExecutableCriteria(session).List<Product>();
+
             return products;
         }
 
         public Product LoadById(int id)
         {
-            Product product;
-            using (var transaction = session.BeginTransaction(System.Data.IsolationLevel.ReadUncommitted))
-            {
-                product = session.Get<Product>(id);
-                transaction.Commit();
-            }
+            Product product = session.Get<Product>(id);
+
             return product;
         }
     }

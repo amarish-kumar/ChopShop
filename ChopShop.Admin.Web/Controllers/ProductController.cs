@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using AutoMapper;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Web.Models.ViewModel;
+using ChopShop.Configuration;
 using ChopShop.Model;
 
 namespace ChopShop.Admin.Web.Controllers
@@ -26,12 +27,14 @@ namespace ChopShop.Admin.Web.Controllers
         }
 
         [HttpGet]
+        [TransactionFilter(TransactionFilterType.ReadUncommitted)]
         public ActionResult Edit(int id)
         {
             var productEntity = productService.GetSingle(id) ?? new Product();
             var product = new EditProduct();
             Mapper.CreateMap<Product, EditProduct>();
-            //Mapper.CreateMap<Cost, EditCost>();
+            Mapper.CreateMap<Cost, EditCost>();
+            Mapper.CreateMap<Category, EditCategory>();
             Mapper.Map(productEntity, product);
             
             return View(product);

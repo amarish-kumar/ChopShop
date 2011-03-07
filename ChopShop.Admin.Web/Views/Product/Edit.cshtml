@@ -8,9 +8,21 @@
 
 @Html.LabelFor(x=>x.Name)<br />
 @Model.Name<br />
+@if(@Model.Categories.Any())
+{
 <ul>
-@foreach (var cost in Model.Cost)
-{ 
-<li>@cost.Value</li>
+@foreach (var category in Model.Categories)
+{
+    <li>@category.Name - @category.Description</li>
 }
 </ul>
+}
+
+@if(@Model.Cost != null){
+<ul>
+@foreach (var cost in Model.Cost)
+{   
+    <li>@cost.Value</li>
+}
+</ul>
+}

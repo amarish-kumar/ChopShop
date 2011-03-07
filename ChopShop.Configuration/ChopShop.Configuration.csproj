@@ -67,6 +67,7 @@
     <Compile Include="Admin\AdminServicesInstaller.cs" />
     <Compile Include="LocalisationInstaller.cs" />
     <Compile Include="Shop\ShopServicesInstaller.cs" />
+    <Compile Include="TransactionFilter.cs" />
     <Compile Include="WindsorControllerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WindsorExtension.cs" />
