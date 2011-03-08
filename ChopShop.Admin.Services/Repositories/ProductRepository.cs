@@ -50,9 +50,7 @@ namespace ChopShop.Admin.Services.Repositories
 
         public Product LoadById(int id)
         {
-            Product product = session.Get<Product>(id);
-
-            return product;
+            return session.Get<Product>(id);
         }
     }
 }

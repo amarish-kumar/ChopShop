@@ -16,9 +16,22 @@ namespace ChopShop.Admin.Web.Models.ViewModel
         public string Name { get; set; }
         public string Description { get; set; }
         public string Sku { get; set; }
-        public ICollection<EditCost> Cost { get; set; }
+        public ICollection<EditPrice> Prices { get; set; }
         public bool IsDeleted { get; set; }
         public ICollection<EditCategory> Categories { get; set; }
+
+        public void LoadFromEntity(Product productEntity)
+        {
+            Id = productEntity.Id;
+            Name = productEntity.Name;
+            Description = productEntity.Name;
+            Sku = productEntity.Sku;
+            Prices = productEntity.Prices.Select(x => new EditPrice {Id = x.Id, Value = x.Value, IsTaxIncluded = x.IsTaxIncluded, TaxRate = x.TaxRate}).ToList(); // eew
+            IsDeleted = productEntity.IsDeleted;
+            Categories =
+                productEntity.Categories.Select(
+                    x => new EditCategory() {Id = x.Id, Name = x.Name, Description = x.Description}).ToList();
+        }
     }
 
     public class EditCategory
@@ -28,7 +41,7 @@ namespace ChopShop.Admin.Web.Models.ViewModel
         public virtual string Description { get; set; }
     }
 
-    public class EditCost
+    public class EditPrice
     {
         public int Id { get; set; }
         public decimal Value { get; set; }

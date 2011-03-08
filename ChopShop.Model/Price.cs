@@ -2,7 +2,7 @@
 
 namespace ChopShop.Model
 {
-    public class Cost
+    public class Price
     {
         public virtual int Id { get; set; }
         public virtual decimal Value { get; set; }

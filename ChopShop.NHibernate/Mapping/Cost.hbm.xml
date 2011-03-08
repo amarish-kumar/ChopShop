@@ -4,7 +4,7 @@
                    assembly="ChopShop.Model"
                    schema="dbo">
 
-  <class name="Cost" table="Costs">
+  <class name="Price" table="Prices">
     <id name="Id" column="Id">
       <generator class="identity" />
     </id>

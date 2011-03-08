@@ -18,11 +18,11 @@
 </ul>
 }
 
-@if(@Model.Cost != null){
+@if(@Model.Prices != null){
 <ul>
-@foreach (var cost in Model.Cost)
+@foreach (var price in Model.Prices)
 {   
-    <li>@cost.Value</li>
+    <li>@price.Value</li>
 }
 </ul>
 }

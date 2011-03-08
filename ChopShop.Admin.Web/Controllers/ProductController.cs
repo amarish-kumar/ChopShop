@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using AutoMapper;
+﻿using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
@@ -32,10 +27,7 @@ namespace ChopShop.Admin.Web.Controllers
         {
             var productEntity = productService.GetSingle(id) ?? new Product();
             var product = new EditProduct();
-            Mapper.CreateMap<Product, EditProduct>();
-            Mapper.CreateMap<Cost, EditCost>();
-            Mapper.CreateMap<Category, EditCategory>();
-            Mapper.Map(productEntity, product);
+            product.LoadFromEntity(productEntity);
             
             return View(product);
         }
