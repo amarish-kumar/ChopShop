@@ -9,7 +9,7 @@ using ChopShop.Model;
 
 namespace ChopShop.Admin.Web.Models.ViewModel
 {
-    public class EditProduct
+    public class EditProduct : IValidation
     {
         public int Id { get; set; }
         [LocalisedDisplayName("Name", typeof(Localisation.ViewModels.EditProduct))]
@@ -31,6 +31,19 @@ namespace ChopShop.Admin.Web.Models.ViewModel
             Categories =
                 productEntity.Categories.Select(
                     x => new EditCategory() {Id = x.Id, Name = x.Name, Description = x.Description}).ToList();
+        }
+
+        public IEnumerable<ErrorInfo> Errors()
+        {
+            if (string.IsNullOrEmpty(Name))
+            {
+                yield return new ErrorInfo("Name", "Please provide a name for this product");
+            }
+        }
+
+        public bool IsValid()
+        {
+            return !Errors().Any();
         }
     }
 
