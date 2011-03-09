@@ -77,5 +77,32 @@ namespace ChopShop.Localisation.ViewModels {
                 return ResourceManager.GetString("Name", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name cannot be greater than 255 characters in length.
+        /// </summary>
+        public static string NameLength {
+            get {
+                return ResourceManager.GetString("NameLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide a name for this product.
+        /// </summary>
+        public static string NameRequired {
+            get {
+                return ResourceManager.GetString("NameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Sku cannot be greater than 100 characters in length.
+        /// </summary>
+        public static string SkuLength {
+            get {
+                return ResourceManager.GetString("SkuLength", resourceCulture);
+            }
+        }
     }
 }

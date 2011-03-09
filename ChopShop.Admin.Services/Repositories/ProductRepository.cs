@@ -5,6 +5,7 @@ using ChopShop.Model;
 using ChopShop.NHibernate;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Transform;
 
 namespace ChopShop.Admin.Services.Repositories
 {
@@ -17,11 +18,10 @@ namespace ChopShop.Admin.Services.Repositories
             session = SessionManager.SessionFactory.GetCurrentSession();
         }
 
-        public ICollection<Product> List()
+        public IEnumerable<Product> List()
         {
-            ICollection<Product> products;
-                products = session.CreateCriteria<Product>()
-                                  .List<Product>();
+            ICollection<Product> products = session.CreateCriteria<Product>()
+                                                   .List<Product>();
             return products;
         }
 
@@ -41,16 +41,38 @@ namespace ChopShop.Admin.Services.Repositories
             Update(product);
         }
 
-        public ICollection<Product> Search(DetachedCriteria searchParameters)
+        public IEnumerable<Product> Search(DetachedCriteria searchParameters)
         {
-            ICollection<Product> products = searchParameters.GetExecutableCriteria(session).List<Product>();
+            IEnumerable<Product> products = searchParameters.GetExecutableCriteria(session)
+                                                            .List<Product>();
 
             return products;
         }
 
+        /// <summary>
+        /// Loads the product using mapping configuration
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public Product LoadById(int id)
         {
             return session.Get<Product>(id);
+        }
+
+        /// <summary>
+        /// Loads the entire product from the database including Categories and Prices
+        /// </summary>
+        /// <param name="id">Product Id</param>
+        /// <returns></returns>
+        public Product LoadObjectGraphById(int id)
+        {
+            var product = session.CreateCriteria<Product>()
+                                 .Add(Restrictions.Eq("IsDeleted", false))
+                                 .SetFetchMode("Categories", FetchMode.Join)
+                                 .SetFetchMode("Prices", FetchMode.Join)
+                                 .UniqueResult<Product>();
+
+            return product;
         }
     }
 }

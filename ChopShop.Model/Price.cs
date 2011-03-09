@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ChopShop.Model
+﻿namespace ChopShop.Model
 {
     public class Price
     {

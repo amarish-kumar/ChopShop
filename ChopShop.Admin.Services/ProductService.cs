@@ -15,7 +15,7 @@ namespace ChopShop.Admin.Services
             this.productRepository = productRepository;
         }
 
-        public ICollection<Product> List()
+        public IEnumerable<Product> List()
         {
             return productRepository.List();
         }
@@ -39,7 +39,7 @@ namespace ChopShop.Admin.Services
 
         public Product GetSingle(int productId)
         {
-            return productRepository.LoadById(productId);
+            return productRepository.LoadObjectGraphById(productId);
         }
     }
 }

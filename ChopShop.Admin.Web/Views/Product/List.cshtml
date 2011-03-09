@@ -16,10 +16,10 @@
     }
     </ul>
     <ul>
-    @foreach (var cost in product.Costs)
+    @foreach (var price in product.Prices)
     { 
     <li>
-    @cost.Currency @cost.Value
+    @price.Currency @price.Value
     </li>
     }
     </ul>

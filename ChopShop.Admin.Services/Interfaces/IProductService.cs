@@ -6,7 +6,7 @@ namespace ChopShop.Admin.Services.Interfaces
 {
     public interface IProductService
     {
-        ICollection<Product> List();
+        IEnumerable<Product> List();
         void Add(Product product);
         void Update(Product product);
         void Delete(int productId);

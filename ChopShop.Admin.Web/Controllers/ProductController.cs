@@ -19,6 +19,7 @@ namespace ChopShop.Admin.Web.Controllers
         }
 
         [HttpGet]
+        [TransactionFilter(TransactionFilterType.ReadUncommitted)]
         public ActionResult List()
         {
             return View(productService.List());

@@ -7,30 +7,26 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Web.Models;
+using ChopShop.Configuration;
 
 namespace ChopShop.Admin.Web.Controllers
 {
     public class AccountController : Controller
     {
-
+        private readonly IAdminAuthenticationService adminAuthenticationService;
         public IFormsAuthenticationService FormsService { get; set; }
         public IMembershipService MembershipService { get; set; }
 
-        protected override void Initialize(RequestContext requestContext)
+        public AccountController(IAdminAuthenticationService adminAuthenticationService)
         {
-            if (FormsService == null) { FormsService = new FormsAuthenticationService(); }
-            if (MembershipService == null) { MembershipService = new AccountMembershipService(); }
-
-            base.Initialize(requestContext);
+            this.adminAuthenticationService = adminAuthenticationService;
         }
 
-        // **************************************
-        // URL: /Account/LogOn
-        // **************************************
-
-        public ActionResult LogOn()
+        public ViewResult LogOn()
         {
+            adminAuthenticationService.SignOut(HttpContext.Session);
             return View();
         }
 
@@ -39,22 +35,18 @@ namespace ChopShop.Admin.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (MembershipService.ValidateUser(model.UserName, model.Password))
+                if (adminAuthenticationService.IsValidUser(model.UserName, model.Password))
                 {
-                    FormsService.SignIn(model.UserName, model.RememberMe);
+                    adminAuthenticationService.SignIn(model.UserName, HttpContext.Session);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);
                     }
-                    else
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    
+                    return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "The user name or password provided is incorrect.");
-                }
+                
+                ModelState.AddModelError("", "The user name or password provided is incorrect.");
             }
 
             // If we got this far, something failed, redisplay form
@@ -67,85 +59,10 @@ namespace ChopShop.Admin.Web.Controllers
 
         public ActionResult LogOff()
         {
-            FormsService.SignOut();
+            adminAuthenticationService.SignOut(HttpContext.Session);
 
             return RedirectToAction("Index", "Home");
         }
-
-        // **************************************
-        // URL: /Account/Register
-        // **************************************
-
-        public ActionResult Register()
-        {
-            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult Register(RegisterModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                // Attempt to register the user
-                MembershipCreateStatus createStatus = MembershipService.CreateUser(model.UserName, model.Password, model.Email);
-
-                if (createStatus == MembershipCreateStatus.Success)
-                {
-                    FormsService.SignIn(model.UserName, false /* createPersistentCookie */);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
-            return View(model);
-        }
-
-        // **************************************
-        // URL: /Account/ChangePassword
-        // **************************************
-
-        [Authorize]
-        public ActionResult ChangePassword()
-        {
-            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
-            return View();
-        }
-
-        [Authorize]
-        [HttpPost]
-        public ActionResult ChangePassword(ChangePasswordModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                if (MembershipService.ChangePassword(User.Identity.Name, model.OldPassword, model.NewPassword))
-                {
-                    return RedirectToAction("ChangePasswordSuccess");
-                }
-                else
-                {
-                    ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
-                }
-            }
-
-            // If we got this far, something failed, redisplay form
-            ViewBag.PasswordLength = MembershipService.MinPasswordLength;
-            return View(model);
-        }
-
-        // **************************************
-        // URL: /Account/ChangePasswordSuccess
-        // **************************************
-
-        public ActionResult ChangePasswordSuccess()
-        {
-            return View();
-        }
-
+   
     }
 }

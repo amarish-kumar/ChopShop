@@ -14,11 +14,11 @@
     </property>
     <property name="IsDeleted" column="IsDeleted" not-null="true" />
     <property name="Quantity" column="Quantity" />
-    <set name="Categories" table="Products_Categories" fetch="join" lazy="false" >
+    <set name="Categories" table="Products_Categories" inverse ="true" lazy="true">
       <key column="ProductId" />
       <many-to-many class="Category" column="CategoryId" />
     </set>
-    <bag name="Prices" table="Price" inverse="true" fetch="join" lazy="false">
+    <bag name="Prices" table="Price" inverse="true" lazy="true">
       <key column="ProductId" />
       <one-to-many class="Price"/>
     </bag>
