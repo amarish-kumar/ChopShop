@@ -39,7 +39,8 @@ namespace ChopShop.Admin.Web.Controllers
         [HttpGet]
         public ActionResult Add()
         {
-            return Edit(0);
+            var product = new EditProduct();
+            return View("Edit", product);
         }
 
         [HttpPost]

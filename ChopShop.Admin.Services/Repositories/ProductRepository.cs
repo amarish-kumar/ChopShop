@@ -67,6 +67,7 @@ namespace ChopShop.Admin.Services.Repositories
         public Product LoadObjectGraphById(int id)
         {
             var product = session.CreateCriteria<Product>()
+                                 .Add(Restrictions.Eq("Id", id))
                                  .Add(Restrictions.Eq("IsDeleted", false))
                                  .SetFetchMode("Categories", FetchMode.Join)
                                  .SetFetchMode("Prices", FetchMode.Join)
