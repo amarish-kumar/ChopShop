@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using ChopShop.Model;
 using ChopShop.NHibernate;
 using NHibernate;
 using NHibernate.Criterion;
-using NHibernate.Transform;
 
 namespace ChopShop.Admin.Services.Repositories
 {
@@ -74,6 +72,14 @@ namespace ChopShop.Admin.Services.Repositories
                                  .UniqueResult<Product>();
 
             return product;
+        }
+
+        public int Count(DetachedCriteria searchParameters)
+        {
+            var count = searchParameters.GetExecutableCriteria(session)
+                                        .SetProjection(Projections.RowCountInt64())
+                                        .UniqueResult();
+            return Convert.ToInt32(count);
         }
     }
 }

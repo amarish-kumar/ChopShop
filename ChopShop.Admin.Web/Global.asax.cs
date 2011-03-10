@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
+using System.Reflection;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using ChopShop.Configuration;
 using ChopShop.Configuration.Admin;
@@ -39,7 +42,16 @@ namespace ChopShop.Admin.Web
             RegisterRoutes(RouteTable.Routes);
             RegisterContainer();
             RegisterFilterProviders();
+            RegisterTypesInExecutingAssembly();
             RegisterNHProfiler();
+        }
+
+        private void RegisterTypesInExecutingAssembly()
+        {
+            container.Register(AllTypes.Pick()
+                                   .From(Assembly.GetExecutingAssembly().GetTypes())
+                                   .Configure(x => x.LifeStyle.PerWebRequest)
+                                   .WithService.FirstInterface());
         }
 
         protected void Application_End()

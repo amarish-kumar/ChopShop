@@ -50,5 +50,10 @@ namespace ChopShop.Admin.Services.Repositories
         {
             throw new NotImplementedException();
         }
+
+        public int Count(DetachedCriteria searchParameters)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

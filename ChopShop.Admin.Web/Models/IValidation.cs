@@ -1,14 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ChopShop.Admin.Web.Models
 {
-    public interface IValidation
+    public interface IValidation<in T>
     {
-        IEnumerable<ErrorInfo> Errors();
-        bool IsValid();
+        IEnumerable<ErrorInfo> Errors(T validatingService);
+        bool IsValid(T validatingService);
+    }
+
+    public abstract class AdminValidation<T> : IValidation<T> where T : class
+    {
+        public virtual IEnumerable<ErrorInfo> Errors(T validatingService)
+        {
+            return null;
+        }
+
+        public bool IsValid(T validatingService)
+        {
+            return !Errors(validatingService).Any();
+        }
     }
 
     public class ErrorInfo

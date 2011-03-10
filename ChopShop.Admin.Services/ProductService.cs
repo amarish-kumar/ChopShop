@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Services.Repositories;
+using ChopShop.Admin.Web.Models.DTO;
 using ChopShop.Model;
+using NHibernate.Criterion;
 
 namespace ChopShop.Admin.Services
 {
@@ -40,6 +42,16 @@ namespace ChopShop.Admin.Services
         public Product GetSingle(int productId)
         {
             return productRepository.LoadObjectGraphById(productId);
+        }
+
+        public bool SkuExists(SearchProduct searchProduct)
+        {
+            var searchCriteria = DetachedCriteria.For(typeof (Product))
+                                                 .Add(!Restrictions.Eq("Id", searchProduct.Id))
+                                                 .Add(Restrictions.Eq("Sku", searchProduct.Sku));
+
+            var productsWithSameSkuAndDifferentIds = productRepository.Count(searchCriteria);
+            return productsWithSameSkuAndDifferentIds > 0;
         }
     }
 }

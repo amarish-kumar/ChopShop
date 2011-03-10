@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Web.Models;
@@ -31,15 +30,19 @@ namespace ChopShop.Admin.Web.Controllers
         {
             var productEntity = productService.GetSingle(id) ?? new Product();
             var product = new EditProduct();
-            product.LoadFromEntity(productEntity);
-            
+            product.FromEntity(productEntity);
+            ViewBag.Title = Localisation.Admin.PageContent.Edit;
+            ViewBag.Product = Localisation.Admin.PageContent.Product;
             return View(product);
         }
 
         [HttpGet]
+        [TransactionFilter(TransactionFilterType.ReadUncommitted)]
         public ActionResult Add()
         {
             var product = new EditProduct();
+            ViewBag.Title = Localisation.Admin.PageContent.Add;
+            ViewBag.Product = Localisation.Admin.PageContent.Product;
             return View("Edit", product);
         }
 
@@ -47,13 +50,22 @@ namespace ChopShop.Admin.Web.Controllers
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
         public ActionResult Add(EditProduct product)
         {
-            if (!ModelState.IsValid && !product.IsValid())
+            if (!product.IsValid(productService))
             {
-                AddModelStateErrors(product.Errors());
+                AddModelStateErrors(product.Errors(productService));
             }
-           
 
-            return View("Edit", product);
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Title = Localisation.Admin.PageContent.Add;
+                ViewBag.Product = Localisation.Admin.PageContent.Product;
+                return View("Edit", product);
+            }
+
+            var productEntity = product.ToEntity();
+            productService.Add(productEntity);
+
+            return RedirectToAction("Edit", new {id = productEntity.Id});
         }
 
         private void AddModelStateErrors(IEnumerable<ErrorInfo> errors)

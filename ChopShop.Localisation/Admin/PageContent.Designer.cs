@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ChopShop.Localisation.ViewModels {
+namespace ChopShop.Localisation.Admin {
     using System;
     
     
@@ -22,14 +22,14 @@ namespace ChopShop.Localisation.ViewModels {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class EditProduct {
+    public class PageContent {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal EditProduct() {
+        internal PageContent() {
         }
         
         /// <summary>
@@ -39,7 +39,7 @@ namespace ChopShop.Localisation.ViewModels {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ChopShop.Localisation.ViewModels.EditProduct", typeof(EditProduct).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("ChopShop.Localisation.Admin.PageContent", typeof(PageContent).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,65 +61,29 @@ namespace ChopShop.Localisation.ViewModels {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SKU Description.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
-        public static string Description {
+        public static string Add {
             get {
-                return ResourceManager.GetString("Description", resourceCulture);
+                return ResourceManager.GetString("Add", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to SKU Name.
+        ///   Looks up a localized string similar to Edit.
         /// </summary>
-        public static string Name {
+        public static string Edit {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
+                return ResourceManager.GetString("Edit", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The name cannot be greater than 255 characters in length.
+        ///   Looks up a localized string similar to Product.
         /// </summary>
-        public static string NameLength {
+        public static string Product {
             get {
-                return ResourceManager.GetString("NameLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Please provide a name for this product.
-        /// </summary>
-        public static string NameRequired {
-            get {
-                return ResourceManager.GetString("NameRequired", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Quantity.
-        /// </summary>
-        public static string Quantity {
-            get {
-                return ResourceManager.GetString("Quantity", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Sku already exists. Please choose a new Sku or edit the existing Sku.
-        /// </summary>
-        public static string SkuExists {
-            get {
-                return ResourceManager.GetString("SkuExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The Sku cannot be greater than 100 characters in length.
-        /// </summary>
-        public static string SkuLength {
-            get {
-                return ResourceManager.GetString("SkuLength", resourceCulture);
+                return ResourceManager.GetString("Product", resourceCulture);
             }
         }
     }

@@ -117,25 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Description" xml:space="preserve">
-    <value>SKU Description</value>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>SKU Name</value>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
   </data>
-  <data name="NameLength" xml:space="preserve">
-    <value>The name cannot be greater than 255 characters in length</value>
-  </data>
-  <data name="NameRequired" xml:space="preserve">
-    <value>Please provide a name for this product</value>
-  </data>
-  <data name="Quantity" xml:space="preserve">
-    <value>Quantity</value>
-  </data>
-  <data name="SkuExists" xml:space="preserve">
-    <value>The Sku already exists. Please choose a new Sku or edit the existing Sku</value>
-  </data>
-  <data name="SkuLength" xml:space="preserve">
-    <value>The Sku cannot be greater than 100 characters in length</value>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
   </data>
 </root>

@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using ChopShop.Admin.Services.Interfaces;
+using ChopShop.Admin.Web.Models.DTO;
 using ChopShop.Localisation;
 using ChopShop.Model;
 
 namespace ChopShop.Admin.Web.Models.ViewModel
 {
-    public class EditProduct : IValidation
+    public class EditProduct : AdminValidation<IProductService>
     {
         public int Id { get; set; }
         
@@ -24,13 +26,16 @@ namespace ChopShop.Admin.Web.Models.ViewModel
         
         [LocalisedDisplayName("Price", typeof(Localisation.ViewModels.EditProduct))]
         public ICollection<EditPrice> Prices { get; set; }
+
+        [LocalisedDisplayName("Quantity", typeof(Localisation.ViewModels.EditProduct))]
+        public int Quantity { get; set; }
         
         public bool IsDeleted { get; set; }
         
         [LocalisedDisplayName("Categories", typeof(Localisation.ViewModels.EditProduct))]
         public ICollection<EditCategory> Categories { get; set; }
 
-        public void LoadFromEntity(Product productEntity)
+        public void FromEntity(Product productEntity)
         {
             Id = productEntity.Id;
             Name = productEntity.Name;
@@ -40,17 +45,35 @@ namespace ChopShop.Admin.Web.Models.ViewModel
             IsDeleted = productEntity.IsDeleted;
             Categories =
                 productEntity.Categories.Select(
-                    x => new EditCategory() {Id = x.Id, Name = x.Name, Description = x.Description}).ToList();
+                    x => new EditCategory {Id = x.Id, Name = x.Name, Description = x.Description}).ToList();
+            Quantity = productEntity.Quantity;
         }
 
-        public IEnumerable<ErrorInfo> Errors()
+        public override IEnumerable<ErrorInfo> Errors(IProductService productService)
         {
-            yield return null;
+            if (SkuExists(productService))
+            {
+                yield return new ErrorInfo("Sku", Localisation.ViewModels.EditProduct.SkuExists);
+            }
+        }
+        private bool SkuExists(IProductService productService)
+        {
+            var searchProduct = new SearchProduct {Id = Id, Sku = Sku};
+            return productService.SkuExists(searchProduct);
         }
 
-        public bool IsValid()
+        public Product ToEntity()
         {
-            return !Errors().Any();
+            var product = new Product
+                              {
+                                  Id = Id,
+                                  Description = Description,
+                                  Name = Name,
+                                  Quantity = Quantity,
+                                  Sku = Sku
+                              };
+
+            return product;
         }
     }
 }
