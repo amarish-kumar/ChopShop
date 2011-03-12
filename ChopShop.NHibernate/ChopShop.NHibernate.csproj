@@ -80,7 +80,7 @@
     <EmbeddedResource Include="Mapping\Product.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\Cost.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Price.hbm.xml" />
     <EmbeddedResource Include="Mapping\AdminUser.hbm.xml" />
     <Content Include="SQL\Tables\Categories.sql" />
     <Content Include="SQL\Tables\Costs.sql" />
