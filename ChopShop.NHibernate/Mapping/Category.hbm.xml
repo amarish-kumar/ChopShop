@@ -11,12 +11,12 @@
     <property name="Description" type="StringClob" not-null="false">
       <column name="Description" sql-type="nvarchar(max)" />
     </property>
-    <bag name="Products" table="Products_Categories">
+    <bag name="Products" table="Products_Categories" lazy="true">
       <key column="CategoryId" />
       <many-to-many column="ProductId" class="Product" />
     </bag>
     <many-to-one name="Parent" column="ParentId" />
-    <bag name="SubCategories" inverse="true">
+    <bag name="SubCategories" inverse="true" lazy="true">
       <key column="ParentId" />
       <one-to-many class="Category"/>
     </bag>

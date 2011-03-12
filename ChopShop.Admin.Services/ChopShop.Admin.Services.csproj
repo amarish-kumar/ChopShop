@@ -62,16 +62,16 @@
   <ItemGroup>
     <Compile Include="AdminAuthenticationService.cs" />
     <Compile Include="AdminService.cs" />
+    <Compile Include="CategoryService.cs" />
     <Compile Include="Interfaces\IAdminAuthenticationService.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
+    <Compile Include="Interfaces\ICategoryService.cs" />
     <Compile Include="Interfaces\IFormsAuthentication.cs" />
-    <Compile Include="Repositories\CategoryRepository.cs" />
-    <Compile Include="Repositories\AdminUserRepository.cs" />
-    <Compile Include="Interfaces\IRepository.cs" />
-    <Compile Include="Repositories\ProductRepository.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>

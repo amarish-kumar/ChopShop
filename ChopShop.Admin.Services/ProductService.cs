@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ChopShop.Admin.Services.Interfaces;
+using ChopShop.Admin.Services.Repositories;
 using ChopShop.Admin.Web.Models;
 using ChopShop.Model;
 using NHibernate;
@@ -10,11 +11,11 @@ namespace ChopShop.Admin.Services
 {
     public class ProductService : IProductService
     {
-        private readonly IRepository<Product> productRepository;
+        private readonly IRepository<Product> repository;
 
-        public ProductService(IRepository<Product> productRepository)
+        public ProductService(IRepository<Product> repository)
         {
-            this.productRepository = productRepository;
+            this.repository = repository;
         }
 
         public IEnumerable<Product> List()
@@ -22,14 +23,14 @@ namespace ChopShop.Admin.Services
             var searchCriteria = DetachedCriteria.For(typeof (Product))
                                                  .SetFetchMode("Categories", FetchMode.Join)
                                                  .SetFetchMode("Prices", FetchMode.Join);
-            return productRepository.Search(searchCriteria);
+            return repository.Search(searchCriteria);
         }
 
         public bool TryUpdate(Product product)
         {
             if (IsValid(product))
             {
-                productRepository.Update(product);
+                repository.Update(product);
                 return true;    
             }
             return false;
@@ -39,9 +40,9 @@ namespace ChopShop.Admin.Services
         {
             var searchCriteria = DetachedCriteria.For(typeof (Product))
                                                  .Add(Restrictions.Eq("Id", productId));
-            var product = productRepository.Search(searchCriteria).FirstOrDefault();
+            var product = repository.Search(searchCriteria).FirstOrDefault();
             product.IsDeleted = true;
-            productRepository.Update(product);
+            repository.Update(product);
             return true;
         }
 
@@ -52,7 +53,7 @@ namespace ChopShop.Admin.Services
                                                  .SetFetchMode("Categories", FetchMode.Join)
                                                  .SetFetchMode("Prices", FetchMode.Join);
 
-            var product = productRepository.Search(searchCriteria);
+            var product = repository.Search(searchCriteria);
 
             return product.FirstOrDefault();
         }
@@ -61,7 +62,7 @@ namespace ChopShop.Admin.Services
         {
             if (IsValid(product))
             {
-                productRepository.Add(product);
+                repository.Add(product);
                 return true;
             }
             
@@ -94,7 +95,7 @@ namespace ChopShop.Admin.Services
                                                  .Add(!Restrictions.Eq("Id", product.Id))
                                                  .Add(Restrictions.Eq("Sku", product.Sku));
 
-            var productsWithSameSkuAndDifferentIds = productRepository.Count(searchCriteria);
+            var productsWithSameSkuAndDifferentIds = repository.Count(searchCriteria);
             return productsWithSameSkuAndDifferentIds > 0;
         }
     }

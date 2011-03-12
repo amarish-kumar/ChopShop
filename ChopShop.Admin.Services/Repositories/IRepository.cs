@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using NHibernate.Criterion;
 
-namespace ChopShop.Admin.Services.Interfaces
+namespace ChopShop.Admin.Services.Repositories
 {
     public interface IRepository<T>
     {

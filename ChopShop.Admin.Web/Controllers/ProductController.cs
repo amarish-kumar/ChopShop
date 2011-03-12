@@ -11,6 +11,7 @@ namespace ChopShop.Admin.Web.Controllers
     public class ProductController : Controller
     {
         private readonly IProductService productService;
+        public ICategoryService CategoryService { get; set; }
 
         public ProductController(IProductService productService)
         {
@@ -64,6 +65,7 @@ namespace ChopShop.Admin.Web.Controllers
             }
             return RedirectToAction("Edit", new {id = productEntity.Id});
         }
+
 
         private void AddModelStateErrors(List<ErrorInfo> errors)
         {
