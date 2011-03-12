@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
+using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 
 namespace ChopShop.Admin.Web.Controllers
@@ -17,13 +20,20 @@ namespace ChopShop.Admin.Web.Controllers
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
         public JsonResult List()
         {
-            return Json(categoryService.List(), JsonRequestBehavior.AllowGet);
+            var categoryEntities = categoryService.List();
+            var category = new List<EditCategory>();
+            foreach (var entity in categoryEntities)
+            {
+                var newCategory = new EditCategory();
+                newCategory.FromEntity(entity);
+                category.Add(newCategory);
+            }
+            return Json(category, JsonRequestBehavior.AllowGet);
         }
 
-        public ActionResult Index()
+        public JsonResult CategoriesForProduct(int productId)
         {
-            return View();
+            throw new NotImplementedException();
         }
-
     }
 }

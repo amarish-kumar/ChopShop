@@ -88,12 +88,16 @@
     @Html.ActionLink("Back to List", "Index")
 </div>
 <div id="dialog-addCategory" title="Add Category">
-    <form>
-    Add Category here
-    </form>
+    <ul id="dialog-listCategory"></ul>
+    <button id="button-closeCategoryDialog">Done</button>
 </div>
 <div id="dialog-addPrice" title="Add Price">
-    <form>
+    
     Add Price here
-    </form>
+    
 </div>
+<script id="tmpl-listCategories" type="text/x-jquery-tmpl">
+    <li>
+        ${Name}
+    </li>       
+</script>
