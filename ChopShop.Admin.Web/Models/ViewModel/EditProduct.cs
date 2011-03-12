@@ -1,14 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using ChopShop.Admin.Services.Interfaces;
-using ChopShop.Admin.Web.Models.DTO;
 using ChopShop.Localisation;
 using ChopShop.Model;
 
 namespace ChopShop.Admin.Web.Models.ViewModel
 {
-    public class EditProduct : AdminValidation<IProductService>
+    public class EditProduct
     {
         public int Id { get; set; }
         
@@ -48,20 +46,7 @@ namespace ChopShop.Admin.Web.Models.ViewModel
                     x => new EditCategory {Id = x.Id, Name = x.Name, Description = x.Description}).ToList();
             Quantity = productEntity.Quantity;
         }
-
-        public override IEnumerable<ErrorInfo> Errors(IProductService productService)
-        {
-            if (SkuExists(productService))
-            {
-                yield return new ErrorInfo("Sku", Localisation.ViewModels.EditProduct.SkuExists);
-            }
-        }
-        private bool SkuExists(IProductService productService)
-        {
-            var searchProduct = new SearchProduct {Id = Id, Sku = Sku};
-            return productService.SkuExists(searchProduct);
-        }
-
+       
         public Product ToEntity()
         {
             var product = new Product

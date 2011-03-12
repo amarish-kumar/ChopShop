@@ -50,9 +50,10 @@ namespace ChopShop.Admin.Web.Controllers
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
         public ActionResult Add(EditProduct product)
         {
-            if (!product.IsValid(productService))
+            var productEntity = product.ToEntity();
+            if (!productService.TryAdd(productEntity))
             {
-                AddModelStateErrors(product.Errors(productService));
+                AddModelStateErrors(productEntity.Errors);
             }
 
             if (!ModelState.IsValid)
@@ -61,14 +62,10 @@ namespace ChopShop.Admin.Web.Controllers
                 ViewBag.Product = Localisation.Admin.PageContent.Product;
                 return View("Edit", product);
             }
-
-            var productEntity = product.ToEntity();
-            productService.Add(productEntity);
-
             return RedirectToAction("Edit", new {id = productEntity.Id});
         }
 
-        private void AddModelStateErrors(IEnumerable<ErrorInfo> errors)
+        private void AddModelStateErrors(List<ErrorInfo> errors)
         {
             foreach (var error in errors)
             {

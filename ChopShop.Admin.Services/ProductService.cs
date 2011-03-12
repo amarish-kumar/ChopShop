@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ChopShop.Admin.Services.Interfaces;
-using ChopShop.Admin.Web.Models.DTO;
+using ChopShop.Admin.Web.Models;
 using ChopShop.Model;
 using NHibernate;
 using NHibernate.Criterion;
@@ -25,23 +25,24 @@ namespace ChopShop.Admin.Services
             return productRepository.Search(searchCriteria);
         }
 
-        public void Add(Product product)
+        public bool TryUpdate(Product product)
         {
-            productRepository.Add(product);
+            if (IsValid(product))
+            {
+                productRepository.Update(product);
+                return true;    
+            }
+            return false;
         }
 
-        public void Update(Product product)
-        {
-            productRepository.Update(product);
-        }
-
-        public void Delete(int productId)
+        public bool TryDelete(int productId)
         {
             var searchCriteria = DetachedCriteria.For(typeof (Product))
                                                  .Add(Restrictions.Eq("Id", productId));
             var product = productRepository.Search(searchCriteria).FirstOrDefault();
             product.IsDeleted = true;
             productRepository.Update(product);
+            return true;
         }
 
         public Product GetSingle(int productId)
@@ -56,11 +57,42 @@ namespace ChopShop.Admin.Services
             return product.FirstOrDefault();
         }
 
-        public bool SkuExists(SearchProduct searchProduct)
+        public bool TryAdd(Product product)
         {
-            var searchCriteria = DetachedCriteria.For(typeof (Product))
-                                                 .Add(!Restrictions.Eq("Id", searchProduct.Id))
-                                                 .Add(Restrictions.Eq("Sku", searchProduct.Sku));
+            if (IsValid(product))
+            {
+                productRepository.Add(product);
+                return true;
+            }
+            
+            return false;
+        }
+
+        /// <summary>
+        /// Ensure the product is validated against business rules
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        private bool IsValid(Product product)
+        {
+            if (SkuExists(product))
+            {
+                product.AddError(new ErrorInfo("Sku", Localisation.ViewModels.EditProduct.SkuExists));
+            }
+
+            return !product.Errors.Any();
+        }
+
+        /// <summary>
+        /// Business Rule: Sku's must be unique
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
+        private bool SkuExists(Product product)
+        {
+            var searchCriteria = DetachedCriteria.For(typeof(Product))
+                                                 .Add(!Restrictions.Eq("Id", product.Id))
+                                                 .Add(Restrictions.Eq("Sku", product.Sku));
 
             var productsWithSameSkuAndDifferentIds = productRepository.Count(searchCriteria);
             return productsWithSameSkuAndDifferentIds > 0;

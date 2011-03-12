@@ -94,7 +94,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\IValidation.cs" />
     <Compile Include="Models\ViewModel\EditCategory.cs" />
     <Compile Include="Models\ViewModel\EditPrice.cs" />
     <Compile Include="Models\ViewModel\EditProduct.cs" />
