@@ -123,4 +123,19 @@
   <data name="Name" xml:space="preserve">
     <value>SKU Name</value>
   </data>
+  <data name="NameLength" xml:space="preserve">
+    <value>The name cannot be greater than 255 characters in length</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Please provide a name for this product</value>
+  </data>
+  <data name="Quantity" xml:space="preserve">
+    <value>Quantity</value>
+  </data>
+  <data name="SkuExists" xml:space="preserve">
+    <value>The Sku already exists. Please choose a new Sku or edit the existing Sku</value>
+  </data>
+  <data name="SkuLength" xml:space="preserve">
+    <value>The Sku cannot be greater than 100 characters in length</value>
+  </data>
 </root>

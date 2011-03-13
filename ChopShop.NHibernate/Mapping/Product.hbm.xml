@@ -1,20 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
                    namespace="ChopShop.Model"
-                   assembly="ChopShop.Model">
-  <class name="Product" table="Products" schema="dbo">
+                   assembly="ChopShop.Model"
+                   schema="dbo">
+  <class name="Product" table="Products">
     <id name="Id" column="Id">
-      <generator class="identity" />
+      <generator class="guid.comb" />
     </id>
     <property name="Name" column="Name" length="255" not-null="true" />
-    <property name="Sku" column="Sku" length="100" not-null="false" />
-    <property name="Description" type="StringClob" not-null="false">
+    <property name="Sku" column="Sku" length="100" not-null="true" />
+    <property name="Description" type="StringClob">
       <column name="Description" sql-type="nvarchar(max)" />
     </property>
     <property name="IsDeleted" column="IsDeleted" not-null="true" />
-    <set name="Categories" table="Products_Categories" >
+    <property name="Quantity" column="Quantity" />
+    <set name="Categories" table="Products_Categories" inverse ="true" lazy="true">
       <key column="ProductId" />
       <many-to-many class="Category" column="CategoryId" />
-    </set>    
+    </set>
+    <set name="Prices" table="Price" lazy="true">
+      <key column="ProductId" />
+      <one-to-many class="Price"/>
+    </set>
   </class>
 </hibernate-mapping>

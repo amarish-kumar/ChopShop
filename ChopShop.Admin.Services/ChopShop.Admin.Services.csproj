@@ -51,6 +51,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,13 +60,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminAuthenticationService.cs" />
+    <Compile Include="AdminService.cs" />
+    <Compile Include="CategoryService.cs" />
+    <Compile Include="Interfaces\IAdminAuthenticationService.cs" />
+    <Compile Include="Interfaces\IAdminService.cs" />
+    <Compile Include="Interfaces\ICategoryService.cs" />
+    <Compile Include="Interfaces\IFormsAuthentication.cs" />
     <Compile Include="Repositories\IRepository.cs" />
-    <Compile Include="Repositories\ProductRepository.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Repository.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChopShop.Configuration\ChopShop.Configuration.csproj">
+      <Project>{A14C356B-1236-4BF1-8563-E9E956BC69DA}</Project>
+      <Name>ChopShop.Configuration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChopShop.Localisation\ChopShop.Localisation.csproj">
+      <Project>{FBF7C880-650F-4A9F-82DB-DA3ED182D961}</Project>
+      <Name>ChopShop.Localisation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChopShop.Model\ChopShop.Model.csproj">
       <Project>{80F5C731-8520-47DB-BD06-2B45ABE03382}</Project>
       <Name>ChopShop.Model</Name>

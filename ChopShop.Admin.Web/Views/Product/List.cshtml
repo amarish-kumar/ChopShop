@@ -15,6 +15,14 @@
         <li>@category.Id, @category.Name</li>
     }
     </ul>
+    <ul>
+    @foreach (var price in product.Prices)
+    { 
+    <li>
+    @price.Currency @price.Value
+    </li>
+    }
+    </ul>
 </li>
 }
 </>

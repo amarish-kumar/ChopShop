@@ -74,15 +74,16 @@
       <Name>ChopShop.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="SQL\" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mapping\Category.hbm.xml" />
     <EmbeddedResource Include="Mapping\Product.hbm.xml">
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Content Include="SQL\Tables\Categories.sql" />
-    <Content Include="SQL\Tables\Products.sql" />
-    <Content Include="SQL\Tables\Products_Categories.sql" />
+    <EmbeddedResource Include="Mapping\Price.hbm.xml" />
+    <EmbeddedResource Include="Mapping\AdminUser.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,40 @@
+﻿@model ChopShop.Admin.Web.Models.ViewModel.EditPrice
+@using ChopShop.Admin.Web.Helpers
+<div id="dialog-addPrice" title="Select Price">
+    <fieldset>
+        <legend>Add Price</legend>
+        <form>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Value)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Value)
+            @Html.ValidationMessageFor(model => model.Value)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsTaxIncluded)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsTaxIncluded)
+            @Html.ValidationMessageFor(model => model.IsTaxIncluded)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TaxRate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.TaxRate)
+            @Html.ValidationMessageFor(model => model.TaxRate)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Currency)
+        </div>
+        <div class="editor-field">
+            @Html.EnumDropDownListFor(model => Model.Currency)
+            @Html.ValidationMessageFor(model => model.Currency)
+        </div>
+        <p>
+            <button id="button-createPrice">Create</button>
+        </p>
+        </form>
+    </fieldset>
+</div>

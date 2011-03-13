@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="ChopShop.Model"
+                   namespace="ChopShop.Model"
+                   schema="dbo">
+  <class name="AdminUser" table="AdminUsers">
+    <id name="Id" column="Id">
+      <generator class="guid.comb" />
+    </id>
+    <property name="Name" column="Name" length="255" />
+    <property name="Password" column="Password" length="10" />
+    <property name="Email" column="Email" length="255" />
+  </class>
+</hibernate-mapping>

@@ -1,9 +1,107 @@
 ﻿@model ChopShop.Admin.Web.Models.ViewModel.EditProduct
-
-@{
-    ViewBag.Title = "Edit";
+@using ChopShop.Localisation
+@using ChopShop.Admin.Web.Helpers
+<h2>@ViewBag.Title</h2>
+<script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>@ViewBag.Title @ViewBag.Product</legend>
+        @Html.HiddenFor(model => model.Id)
+        <div style="width: 100%">
+            <div style="width: 50%; float: left;">
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Name)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Name)
+                    @Html.ValidationMessageFor(model => model.Name)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Description)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Description)
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Sku)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Sku)
+                    @Html.ValidationMessageFor(model => model.Sku)
+                </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Quantity)
+                </div>
+                <div class="editor-field">
+                    @Html.EditorFor(model => model.Quantity)
+                    @Html.ValidationMessageFor(model => model.Quantity)
+                </div>
+            </div>
+            <div style="width: 50%; float: left;">
+            @if (ViewBag.ViewType == "Edit")
+            { 
+                <div>
+                    <p>
+                        Categories</p>
+                    @if (Model.Categories != null)
+                    {
+                        <ul id="page-listCategory">
+                            @foreach (var category in Model.Categories.OrderBy(x=>x.Name))
+                            {
+                                <li>
+                                    @category.Name <span data-categoryId="@category.Id">X</span>
+                                </li>
+                            }
+                        </ul>                        
+                    }
+                    <p>
+                        <button id="button-selectCategory">
+                            Select a Category</button></p>
+                </div>
+                <div>
+                    <p>
+                        Prices</p>
+                    @if (Model.Prices != null)
+                    { 
+                        <ul>
+                            @foreach (var price in Model.Prices)
+                            {
+                                <li>@price.Currency @price.Value</li>
+                            }
+                        </ul>
+                    }
+                    <p>
+                    
+                    </p>
+                    <p>
+                        <button id="button-addPrice">
+                            Add a Price</button></p>
+                </div>
+            }
+            </div>            
+        </div>
+        <div style="clear: both;">
+        </div>
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
 }
+<div>
+    @Html.ActionLink("Back to List", "List")
+</div>
+@{
+    Html.RenderPartial("_SelectCategoryPartial");
+    Html.RenderPartial("_EditPricePartial", new ChopShop.Admin.Web.Models.ViewModel.EditPrice());
+}    
 
-<h2>Edit</h2>
 
-@Html.LabelFor(x=>x.Name)
+<script type="text/javascript">
+    $(function () {
+        admin.product = @Html.Raw(Model.ToJson());
+    });
+</script>
