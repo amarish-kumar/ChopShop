@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
+using ChopShop.Admin.Web.Configuration;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using System.Linq;
 
 namespace ChopShop.Admin.Web.Controllers
 {
-    public class CategoryController : Controller
+    public class CategoryController : ChopShopController
     {
         private readonly ICategoryService categoryService;
 
@@ -49,7 +50,6 @@ namespace ChopShop.Admin.Web.Controllers
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
         public JsonResult AddToProduct(int categoryId, int productId)
         {
-            //var product = ProductService.GetSingle(productId);
             categoryService.AddProductToCategory(categoryId, productId);
             return Json(true);
         }

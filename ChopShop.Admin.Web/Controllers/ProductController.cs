@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
-using ChopShop.Admin.Web.Models;
+using ChopShop.Admin.Web.Configuration;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using ChopShop.Model;
 
 namespace ChopShop.Admin.Web.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : ChopShopController
     {
         private readonly IProductService productService;
         public ICategoryService CategoryService { get; set; }
@@ -65,14 +64,6 @@ namespace ChopShop.Admin.Web.Controllers
             }
             return RedirectToAction("Edit", new {id = productEntity.Id});
         }
-
-
-        private void AddModelStateErrors(List<ErrorInfo> errors)
-        {
-            foreach (var error in errors)
-            {
-                ModelState.AddModelError(error.Key, error.Value);
-            }
-        }
+       
     }
 }
