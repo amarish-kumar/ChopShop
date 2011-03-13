@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Services.Repositories;
@@ -28,6 +29,11 @@ namespace ChopShop.Admin.Services
             return repository.Search(searchCriteria).ToList();
         }
 
+        /// <summary>
+        /// Try to update the Product
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns>False if Product does not meet business rules.  Errors are contained in the Errors Collection of the Product</returns>
         public bool TryUpdate(Product product)
         {
             if (IsValid(product))
@@ -38,7 +44,7 @@ namespace ChopShop.Admin.Services
             return false;
         }
 
-        public bool TryDelete(int productId)
+        public bool TryDelete(Guid productId)
         {
             var searchCriteria = DetachedCriteria.For(typeof (Product))
                                                  .Add(Restrictions.Eq("Id", productId));
@@ -48,7 +54,7 @@ namespace ChopShop.Admin.Services
             return true;
         }
 
-        public Product GetSingle(int productId)
+        public Product GetSingle(Guid productId)
         {
             var searchCriteria = DetachedCriteria.For(typeof (Product))
                                                  .Add(Restrictions.Eq("Id", productId))
@@ -60,6 +66,11 @@ namespace ChopShop.Admin.Services
             return product.FirstOrDefault();
         }
 
+        /// <summary>
+        /// Try to add a new Product to the database
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns>False if Product does not meet business rules.  Errors are contained in the Errors collection of the Product</returns>
         public bool TryAdd(Product product)
         {
             if (IsValid(product))

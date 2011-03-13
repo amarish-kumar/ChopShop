@@ -1,8 +1,7 @@
 ﻿namespace ChopShop.Model
 {
-    public class Price
+    public class Price:Entity
     {
-        public virtual int Id { get; set; }
         public virtual decimal Value { get; set; }
         public virtual bool IsTaxIncluded { get; set; }
         public virtual decimal TaxRate { get; set; }

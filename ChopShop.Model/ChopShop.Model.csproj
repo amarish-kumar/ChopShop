@@ -49,6 +49,7 @@
     <Compile Include="AdminUser.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="DTO\ErrorInfo.cs" />
+    <Compile Include="Entity.cs" />
     <Compile Include="Price.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Product.cs" />

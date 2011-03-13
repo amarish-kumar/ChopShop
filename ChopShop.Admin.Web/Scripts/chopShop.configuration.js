@@ -3,8 +3,8 @@
 
 /// Configure all buttons and jQueryUI behaviours from here.  Call functions in chopShop.admin for real functionality
 $(function () {
-    $('button, input:submit').button().click(function () { return false; });
-
+    $('button').button().click(function () { return false; });
+    $('input:submit').button();
     $('#dialog-addCategory').dialog({
         autoOpen: false,
         beforeClose: function () {
@@ -29,4 +29,6 @@ $(function () {
     $('#button-closeCategoryDialog').click(function () {
         $('#dialog-addCategory').dialog('close');
     });
+
+    
 });

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using ChopShop.Localisation;
@@ -8,7 +9,7 @@ namespace ChopShop.Admin.Web.Models.ViewModel
 {
     public class EditProduct
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         
         [LocalisedDisplayName("Name", typeof(Localisation.ViewModels.EditProduct))]
         [Required(AllowEmptyStrings = false, ErrorMessageResourceName = "NameRequired", ErrorMessageResourceType = typeof(Localisation.ViewModels.EditProduct))]
@@ -39,11 +40,19 @@ namespace ChopShop.Admin.Web.Models.ViewModel
             Name = productEntity.Name;
             Description = productEntity.Name;
             Sku = productEntity.Sku;
-            Prices = productEntity.Prices.Select(x => new EditPrice { Id = x.Id, Value = x.Value, IsTaxIncluded = x.IsTaxIncluded, TaxRate = x.TaxRate }).ToList(); // need to figure out automapper asap
+            if (productEntity.Prices != null)
+            {
+                Prices = productEntity.Prices.Select(x => new EditPrice { Id = x.Id, Value = x.Value, IsTaxIncluded = x.IsTaxIncluded, TaxRate = x.TaxRate }).ToList(); // need to figure out automapper asap    
+            }
+            
             IsDeleted = productEntity.IsDeleted;
-            Categories =
-                productEntity.Categories.Select(
-                    x => new EditCategory {Id = x.Id, Name = x.Name, Description = x.Description}).ToList();
+            if (productEntity.Categories != null)
+            {
+                Categories =
+                    productEntity.Categories.Select(
+                        x => new EditCategory { Id = x.Id, Name = x.Name, Description = x.Description }).ToList();    
+            }
+            
             Quantity = productEntity.Quantity;
         }
        

@@ -2,6 +2,7 @@
 using System.Reflection;
 using NHibernate;
 using Configuration = NHibernate.Cfg.Configuration;
+using NHibernate.Tool.hbm2ddl;
 
 namespace ChopShop.NHibernate
 {
@@ -25,11 +26,22 @@ namespace ChopShop.NHibernate
         {
             if (sessionFactory == null)
             {
-                sessionFactory = new Configuration()
+                var configuration = new Configuration()
                     .AddAssembly(Assembly.GetExecutingAssembly())
                     .SetProperty("connection.connection_string", GetCoreConnectionString())
-                    .Configure()
-                    .BuildSessionFactory();
+                    .Configure();
+
+//#if (DEBUG)
+//                {
+                    //var schemaUpdate = new SchemaUpdate(configuration);
+                    //schemaUpdate.Execute(true, true);
+               
+                //var schemaCreate = new SchemaExport(configuration);
+                //schemaCreate.Create(true, true);
+//                }
+//#endif
+
+                sessionFactory = configuration.BuildSessionFactory();
             }
         }
 

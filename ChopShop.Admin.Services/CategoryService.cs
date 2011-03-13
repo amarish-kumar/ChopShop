@@ -33,12 +33,12 @@ namespace ChopShop.Admin.Services
             throw new NotImplementedException();
         }
 
-        public bool TryDelete(int categoryId)
+        public bool TryDelete(Guid categoryId)
         {
             throw new NotImplementedException();
         }
 
-        public Category GetSingle(int categoryId)
+        public Category GetSingle(Guid categoryId)
         {
             var searchCriteria = DetachedCriteria.For(typeof (Category))
                 .Add(Restrictions.Eq("Id", categoryId));
@@ -51,7 +51,7 @@ namespace ChopShop.Admin.Services
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Category> ListCategoriesForProduct(int id)
+        public IEnumerable<Category> ListCategoriesForProduct(Guid id)
         {
             var searchCriteria = DetachedCriteria.For(typeof(Category), "c")
                 .CreateAlias("Products", "p")
@@ -63,7 +63,7 @@ namespace ChopShop.Admin.Services
             return repository.Search(searchCriteria);
         }
 
-        public void AddProductToCategory(int categoryId, int productId)
+        public void AddProductToCategory(Guid categoryId, Guid productId)
         {
             var categorySearchCriteria = DetachedCriteria.For(typeof (Category)).SetFetchMode("Products", FetchMode.Join).Add(Restrictions.Eq("Id", categoryId));
             var category = repository.Search(categorySearchCriteria);
@@ -73,7 +73,7 @@ namespace ChopShop.Admin.Services
             repository.Update(category.FirstOrDefault());
         }
 
-        public void RemoveProductFromCategory(int categoryId, int productId)
+        public void RemoveProductFromCategory(Guid categoryId, Guid productId)
         {
             var categorySearchCriteria = DetachedCriteria.For(typeof(Category)).SetFetchMode("Products", FetchMode.Join).Add(Restrictions.Eq("Id", categoryId));
             var category = repository.Search(categorySearchCriteria);

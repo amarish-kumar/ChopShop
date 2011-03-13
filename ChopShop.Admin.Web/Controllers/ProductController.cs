@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Web.Configuration;
 using ChopShop.Admin.Web.Models.ViewModel;
@@ -26,7 +27,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
             var productEntity = productService.GetSingle(id) ?? new Product();
             var product = new EditProduct();

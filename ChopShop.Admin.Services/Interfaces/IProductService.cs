@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ChopShop.Model;
 
 namespace ChopShop.Admin.Services.Interfaces
@@ -7,8 +8,8 @@ namespace ChopShop.Admin.Services.Interfaces
     {
         IEnumerable<Product> List();
         bool TryUpdate(Product product);
-        bool TryDelete(int productId);
-        Product GetSingle(int productId);
+        bool TryDelete(Guid productId);
+        Product GetSingle(Guid productId);
         bool TryAdd(Product product);
     }
 }
