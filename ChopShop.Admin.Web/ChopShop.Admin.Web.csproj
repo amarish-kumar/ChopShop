@@ -103,6 +103,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\chopShop.Admin.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\chopShop.admin.js" />
     <Content Include="Scripts\chopShop.configuration.js" />

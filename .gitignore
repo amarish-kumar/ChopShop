@@ -21,6 +21,7 @@ Uploads/
 .DS_Store
 *.user
 desktop.ini
+*.lock
 ~$*
 !/packages/*/lib/**/*.dll
 !/packages/*/lib/*.dll
