@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Services.Repositories;
+using ChopShop.Admin.Web.Models;
 using ChopShop.Model;
 using NHibernate;
 using NHibernate.Criterion;
@@ -48,7 +49,32 @@ namespace ChopShop.Admin.Services
 
         public bool TryAdd(Category category)
         {
-            throw new NotImplementedException();
+            if (IsValid(category))
+            {
+                repository.Add(category);
+                return true;
+            }
+            return false;
+        }
+
+        private bool IsValid(Category category)
+        {
+            if (CategoryNameExists(category))
+            {
+                category.Errors.Add(new ErrorInfo("Name", Localisation.ViewModels.EditCategory.CategoryExists));
+            }
+
+            return !category.Errors.Any();
+        }
+
+        private bool CategoryNameExists(Category category)
+        {
+            var searchCriteria = DetachedCriteria.For(typeof (Category))
+                .Add(!Restrictions.Eq("Id", category.Id))
+                .Add(Restrictions.Eq("Name", category.Name));
+
+            var categoriesWithSameNameAndDifferentIds = repository.Count(searchCriteria);
+            return categoriesWithSameNameAndDifferentIds > 0;
         }
 
         public IEnumerable<Category> ListCategoriesForProduct(Guid id)

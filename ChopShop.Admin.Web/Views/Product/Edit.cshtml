@@ -42,23 +42,25 @@
                 </div>
             </div>
             <div style="width: 50%; float: left;">
+            @if (ViewBag.ViewType == "Edit")
+            { 
                 <div>
                     <p>
                         Categories</p>
                     @if (Model.Categories != null)
                     {
                         <ul id="page-listCategory">
-                            @foreach (var category in Model.Categories)
+                            @foreach (var category in Model.Categories.OrderBy(x=>x.Name))
                             {
                                 <li>
-                                    @category.Name
+                                    @category.Name <span data-categoryId="@category.Id">X</span>
                                 </li>
                             }
                         </ul>                        
                     }
                     <p>
-                        <button id="button-addCategory">
-                            Add a Category</button></p>
+                        <button id="button-selectCategory">
+                            Select a Category</button></p>
                 </div>
                 <div>
                     <p>
@@ -73,10 +75,14 @@
                         </ul>
                     }
                     <p>
+                    
+                    </p>
+                    <p>
                         <button id="button-addPrice">
                             Add a Price</button></p>
                 </div>
-            </div>
+            }
+            </div>            
         </div>
         <div style="clear: both;">
         </div>
@@ -88,18 +94,19 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-<div id="dialog-addCategory" title="Add Category">
+<div id="dialog-addCategory" title="Select Category">
     <ul id="dialog-listCategory"></ul>
+    <p><input type="text" name="categoryName" id="input-categoryName" /><button id="button-addCategory">add new</button></p>
     <button id="button-closeCategoryDialog">Done</button>
 </div>
-<div id="dialog-addPrice" title="Add Price">
+<div id="dialog-addPrice" title="Select Price">
     
     Add Price here
     
 </div>
 <script id="tmpl-listCategories" type="text/x-jquery-tmpl">
-    <li class="item-selected">
-        <span>${Name}</span><span data-categoryId="${Id}">${IsInProduct}</span>
+    <li class="{{if IsInProduct}}item-selected{{/if}}">
+        ${Name}&nbsp;{{if !IsInProduct}}<span data-categoryId="${Id}">X</span>{{/if}}
     </li>       
 </script>
 <script type="text/javascript">

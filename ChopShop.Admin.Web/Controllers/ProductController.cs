@@ -34,6 +34,7 @@ namespace ChopShop.Admin.Web.Controllers
             product.FromEntity(productEntity);
             ViewBag.Title = Localisation.Admin.PageContent.Edit;
             ViewBag.Product = Localisation.Admin.PageContent.Product;
+            ViewBag.ViewType = "Edit";
             return View(product);
         }
 
@@ -44,6 +45,7 @@ namespace ChopShop.Admin.Web.Controllers
             var product = new EditProduct();
             ViewBag.Title = Localisation.Admin.PageContent.Add;
             ViewBag.Product = Localisation.Admin.PageContent.Product;
+            ViewBag.ViewType = "Add";
             return View("Edit", product);
         }
 
@@ -61,6 +63,7 @@ namespace ChopShop.Admin.Web.Controllers
             {
                 ViewBag.Title = Localisation.Admin.PageContent.Add;
                 ViewBag.Product = Localisation.Admin.PageContent.Product;
+                ViewBag.ViewType = "Add";
                 return View("Edit", product);
             }
             return RedirectToAction("Edit", new {id = productEntity.Id});

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using ChopShop.Admin.Web.Models;
 
 namespace ChopShop.Model
 {
@@ -46,6 +48,25 @@ namespace ChopShop.Model
                 return base.GetHashCode();
             }
             return Id.GetHashCode();
+        }
+
+        private List<ErrorInfo> errors;
+        public virtual List<ErrorInfo> Errors
+        {
+            get
+            {
+                return errors ?? new List<ErrorInfo>();
+            }
+        }
+
+        public virtual void AddError(ErrorInfo errorInfo)
+        {
+            if (errors == null)
+            {
+                errors = new List<ErrorInfo>();
+            }
+
+            errors.Add(errorInfo);
         }
     }
 

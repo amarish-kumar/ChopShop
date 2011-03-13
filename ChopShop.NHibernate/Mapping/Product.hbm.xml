@@ -8,8 +8,8 @@
       <generator class="guid.comb" />
     </id>
     <property name="Name" column="Name" length="255" not-null="true" />
-    <property name="Sku" column="Sku" length="100" not-null="false" />
-    <property name="Description" type="StringClob" not-null="false">
+    <property name="Sku" column="Sku" length="100" not-null="true" />
+    <property name="Description" type="StringClob">
       <column name="Description" sql-type="nvarchar(max)" />
     </property>
     <property name="IsDeleted" column="IsDeleted" not-null="true" />

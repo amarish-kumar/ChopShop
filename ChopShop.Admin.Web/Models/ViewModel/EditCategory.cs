@@ -17,5 +17,17 @@ namespace ChopShop.Admin.Web.Models.ViewModel
             Name = categoryEntity.Name;
             Description = categoryEntity.Description;
         }
+
+        public Category ToEntity()
+        {
+            var category = new Category
+                               {
+                                   Id = this.Id,
+                                   Name = this.Name,
+                                   Description = this.Description
+                               };
+
+            return category;
+        }
     }
 }

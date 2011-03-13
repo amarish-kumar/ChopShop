@@ -8,7 +8,7 @@
       <generator class="guid.comb" />
     </id>
     <property name="Name" column="Name" length="255" not-null="true" />
-    <property name="Description" type="StringClob" not-null="false">
+    <property name="Description" type="StringClob">
       <column name="Description" sql-type="nvarchar(max)" />
     </property>
     <set name="Products" table="Products_Categories" lazy="true">

@@ -1,5 +1,6 @@
 ﻿/// <reference path="jquery-1.4.4-vsdoc.js"/>
 /// <reference path="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" />
+/// <reference path=json2.js" />
 
 var admin = {
     product: {},
@@ -10,6 +11,7 @@ var admin = {
             if (callback) {
                 callback(result);
             }
+            return result;
         }, 'json');
     },
 
@@ -32,8 +34,10 @@ var admin = {
             this.getAllCategoriesForProduct(function (result) {
                 if (result) {
                     $('#page-listCategory').empty();
-                    jQuery.each(result, function () {
-                        $('#page-listCategory').append('<li>' + $(this).Name + '</li>');
+                    jQuery.each(result, function (key, value) {
+                        var categoryName = value.Name;
+                        var categoryId = value.Id;
+                        $('#page-listCategory').append('<li>' + categoryName + ' <span data-categoryId="' + categoryId +'">X</span></li>');
                     });
                 }
             });
@@ -47,15 +51,17 @@ var admin = {
                 admin.categoriesHaveChanged = true;
                 callback(result);
             }
+            return result;
         }, 'json');
     },
 
-    removeCategoryFromProduct: function(categoryId, callback){
-        $.post('/Category/RemoveFromProduct', {'categoryId':categoryId, 'productId':admin.product.Id}, function(result){
-            if(callback){
+    removeCategoryFromProduct: function (categoryId, callback) {
+        $.post('/Category/RemoveFromProduct', { 'categoryId': categoryId, 'productId': admin.product.Id }, function (result) {
+            if (callback) {
                 admin.categoriesHaveChanged = true;
                 callback(result);
             }
+            return result;
         }, 'json');
     },
 
@@ -64,7 +70,25 @@ var admin = {
             if (callback) {
                 callback(result);
             }
+            return result;
         }, 'json');
+    },
+
+    addCategory: function (callback) {
+        var category = { Name: $('#input-categoryName').val(), Id: '00000000-0000-0000-0000-000000000000', Description: '' };
+        $.ajax({
+            url: '/Category/_Add',
+            type: 'POST',
+            data: JSON.stringify(category),
+            dataType: 'json',
+            contentType: 'application/json;charset=utf-8',
+            success: function (result) {
+                if (callback) {
+                    callback(result);
+                }
+                return result;
+            }
+        });
     }
 
 };
