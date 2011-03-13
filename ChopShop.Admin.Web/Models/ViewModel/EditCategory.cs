@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using ChopShop.Model;
 
 namespace ChopShop.Admin.Web.Models.ViewModel

@@ -1,0 +1,16 @@
+﻿<div id="dialog-addCategory" title="Select Category">
+    <fieldset>
+        <ul id="dialog-listCategory"></ul>
+        <p>
+            <input type="text" name="categoryName" id="input-categoryName" />
+            <button id="button-addCategory">add new</button>
+        </p>
+        <button id="button-closeCategoryDialog">Done</button>
+    </fieldset>
+</div>
+
+<script id="tmpl-listCategories" type="text/x-jquery-tmpl">
+    <li class="{{if IsInProduct}}item-selected{{/if}}">
+        ${Name}&nbsp;{{if !IsInProduct}}<span data-categoryId="${Id}">X</span>{{/if}}
+    </li>       
+</script>

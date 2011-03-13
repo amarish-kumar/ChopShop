@@ -12,6 +12,6 @@
     <property name="IsTaxIncluded" column="IsTaxIncluded" not-null="true" />
     <property name="TaxRate" column="TaxRate" not-null="true" />
     <property name="Currency" column="Currency" not-null="true" />
-    
+    <property name="ProductId" column="ProductId" not-null="true" />
   </class>
 </hibernate-mapping>

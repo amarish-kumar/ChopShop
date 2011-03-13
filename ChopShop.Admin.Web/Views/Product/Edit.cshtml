@@ -70,7 +70,7 @@
                         <ul>
                             @foreach (var price in Model.Prices)
                             {
-                                <li>@price.Value</li>
+                                <li>@price.Currency @price.Value</li>
                             }
                         </ul>
                     }
@@ -92,23 +92,14 @@
     </fieldset>
 }
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "List")
 </div>
-<div id="dialog-addCategory" title="Select Category">
-    <ul id="dialog-listCategory"></ul>
-    <p><input type="text" name="categoryName" id="input-categoryName" /><button id="button-addCategory">add new</button></p>
-    <button id="button-closeCategoryDialog">Done</button>
-</div>
-<div id="dialog-addPrice" title="Select Price">
-    
-    Add Price here
-    
-</div>
-<script id="tmpl-listCategories" type="text/x-jquery-tmpl">
-    <li class="{{if IsInProduct}}item-selected{{/if}}">
-        ${Name}&nbsp;{{if !IsInProduct}}<span data-categoryId="${Id}">X</span>{{/if}}
-    </li>       
-</script>
+@{
+    Html.RenderPartial("_SelectCategoryPartial");
+    Html.RenderPartial("_EditPricePartial", new ChopShop.Admin.Web.Models.ViewModel.EditPrice());
+}    
+
+
 <script type="text/javascript">
     $(function () {
         admin.product = @Html.Raw(Model.ToJson());

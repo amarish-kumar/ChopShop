@@ -37,12 +37,16 @@ var admin = {
                     jQuery.each(result, function (key, value) {
                         var categoryName = value.Name;
                         var categoryId = value.Id;
-                        $('#page-listCategory').append('<li>' + categoryName + ' <span data-categoryId="' + categoryId +'">X</span></li>');
+                        $('#page-listCategory').append('<li>' + categoryName + ' <span data-categoryId="' + categoryId + '">X</span></li>');
                     });
                 }
             });
             this.categoriesHaveChanged = false;
         }
+    },
+
+    refreshPricesForProduct: function(callback){
+
     },
 
     addCategoryToProduct: function (categoryId, callback) {
@@ -87,6 +91,39 @@ var admin = {
                     callback(result);
                 }
                 return result;
+            }
+        });
+    },
+
+    resetAddPriceDialog: function (callback) {
+        $('#Value').val('0.00');
+        $('#IsTaxIncluded').attr('checked', false);
+        $('#TaxRate').val('0.00');
+        $('#Currency').val('GBP');
+        if (callback) {
+            callback();
+        }
+    },
+
+    addPriceToProduct: function (callback) {
+        var price = {
+            Value: $('#Value').val(),
+            IsTaxIncluded: $('#IsTaxIncluded').is(':checked'),
+            TaxRate: $('#TaxRate').val(),
+            Currency: $('#Currency').val(),
+            ProductId: admin.product.Id
+        };
+
+        $.ajax({
+            url: '/Product/AddPrice',
+            type: 'POST',
+            data: JSON.stringify(price),
+            dataType: 'json',
+            contentType: 'application/json;charset=utf-8',
+            success: function (result) {
+                if (callback) {
+                    callback(result);
+                }
             }
         });
     }

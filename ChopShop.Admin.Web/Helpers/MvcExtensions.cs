@@ -37,7 +37,72 @@ namespace ChopShop.Admin.Web.Helpers
             return htmlHelper.DropDownListFor(expression, items);
         }
 
-      
+        public static List<SelectListItem> ToSelectList<T>(this IEnumerable<T> enumerable, Func<T, int> key, string defaultOption)
+        {
+            var items = enumerable.Select(x => new SelectListItem
+            {
+                Text = key(x).ToString(),
+                Value = key(x).ToString(),
+                Selected = false
+            }).ToList();
+
+            items.Insert(0, new SelectListItem
+            {
+                Text = defaultOption,
+                Value = "-1",
+                Selected = true
+            });
+
+            return items;
+        }
+
+        public static List<SelectListItem> ToSelectList<T>(
+            this IEnumerable<T> enumerable,
+            Func<T, string> text,
+            Func<T, string> value,
+            string defaultOption
+            )
+        {
+            var items = enumerable.Select(x => new SelectListItem
+            {
+                Text = text(x),
+                Value = value(x),
+                Selected = false
+            }).ToList();
+
+            items.Insert(0, new SelectListItem
+            {
+                Text = defaultOption,
+                Value = "-1",
+                Selected = true
+            });
+
+            return items;
+        }
+
+        public static List<SelectListItem> ToSelectList<T>(
+            this IEnumerable<T> enumerable,
+            Func<T, string> text,
+            Func<T, int> value,
+            string defaultOption
+            )
+        {
+            var items = enumerable.Select(x => new SelectListItem
+            {
+                Text = text(x),
+                Value = value(x).ToString(),
+                Selected = false
+            }).ToList();
+
+            items.Insert(0, new SelectListItem
+            {
+                Text = defaultOption,
+                Value = "-1",
+                Selected = true
+            });
+
+            return items;
+        }
 
     }
 }

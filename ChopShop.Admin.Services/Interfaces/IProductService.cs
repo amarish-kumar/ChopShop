@@ -11,5 +11,6 @@ namespace ChopShop.Admin.Services.Interfaces
         bool TryDelete(Guid productId);
         Product GetSingle(Guid productId);
         bool TryAdd(Product product);
+        bool TryAddPrice(Price price);
     }
 }

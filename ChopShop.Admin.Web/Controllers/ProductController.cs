@@ -68,6 +68,18 @@ namespace ChopShop.Admin.Web.Controllers
             }
             return RedirectToAction("Edit", new {id = productEntity.Id});
         }
+
+        [HttpPost]
+        [TransactionFilter(TransactionFilterType.ReadCommitted)]
+        public JsonResult AddPrice(EditPrice price)
+        {
+            var priceEntity = price.ToEntity();
+            if (!productService.TryAddPrice(priceEntity))
+            {
+                return Json(false);
+            }
+            return Json(true);
+        }
        
     }
 }

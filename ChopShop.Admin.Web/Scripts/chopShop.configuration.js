@@ -13,7 +13,10 @@ $(function () {
     });
 
     $('#dialog-addPrice').dialog({
-        autoOpen: false
+        autoOpen: false,
+        beforeClose: function () {
+            admin.refreshPricesForProduct();
+        }
     });
 
     $('#button-selectCategory').click(function () {
@@ -23,7 +26,9 @@ $(function () {
     });
 
     $('#button-addPrice').click(function () {
-        $('#dialog-addPrice').dialog('open');
+        admin.resetAddPriceDialog(function () {
+            $('#dialog-addPrice').dialog('open');
+        });
     });
 
     $('#button-closeCategoryDialog').click(function () {
@@ -53,9 +58,15 @@ $(function () {
 
     $('#dialog-listCategory span').live('click', function () {
         var categoryId = $(this).data('categoryId');
-        var $this = $(this);       
+        var $this = $(this);
         admin.addCategoryToProduct(categoryId, function () {
             $this.parent().addClass('item-selected');
-        });      
+        });
+    });
+
+    $('#button-createPrice').click(function () {
+        admin.addPriceToProduct(function () {
+            $('#dialog-addPrice').dialog('close');
+        });
     });
 });

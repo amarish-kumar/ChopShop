@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Web.Configuration;
@@ -14,7 +13,6 @@ namespace ChopShop.Admin.Web.Controllers
     {
         private readonly ICategoryService categoryService;
 
-        public IProductService ProductService { get; set; }
 
         public CategoryController(ICategoryService categoryService)
         {

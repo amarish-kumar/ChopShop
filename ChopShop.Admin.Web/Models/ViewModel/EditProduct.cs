@@ -42,7 +42,7 @@ namespace ChopShop.Admin.Web.Models.ViewModel
             Sku = productEntity.Sku;
             if (productEntity.Prices != null)
             {
-                Prices = productEntity.Prices.Select(x => new EditPrice { Id = x.Id, Value = x.Value, IsTaxIncluded = x.IsTaxIncluded, TaxRate = x.TaxRate }).ToList(); // need to figure out automapper asap    
+                Prices = productEntity.Prices.Select(x => new EditPrice { Id = x.Id, Value = x.Value, IsTaxIncluded = x.IsTaxIncluded, TaxRate = x.TaxRate, Currency = x.Currency }).ToList(); // need to figure out automapper asap    
             }
             
             IsDeleted = productEntity.IsDeleted;

@@ -14,10 +14,12 @@ namespace ChopShop.Admin.Services
     public class ProductService : IProductService
     {
         private readonly IRepository<Product> repository;
+        private readonly IRepository<Price> priceRepository;
 
-        public ProductService(IRepository<Product> repository)
+        public ProductService(IRepository<Product> repository, IRepository<Price> priceRepository)
         {
             this.repository = repository;
+            this.priceRepository = priceRepository;
         }
 
         public IEnumerable<Product> List()
@@ -59,7 +61,8 @@ namespace ChopShop.Admin.Services
             var searchCriteria = DetachedCriteria.For(typeof (Product))
                                                  .Add(Restrictions.Eq("Id", productId))
                                                  .SetFetchMode("Categories", FetchMode.Join)
-                                                 .SetFetchMode("Prices", FetchMode.Join);
+                                                 .SetFetchMode("Prices", FetchMode.Join)
+                                                 .SetResultTransformer(new DistinctRootEntityResultTransformer());
 
             var product = repository.Search(searchCriteria);
 
@@ -80,6 +83,12 @@ namespace ChopShop.Admin.Services
             }
             
             return false;
+        }
+
+        public bool TryAddPrice(Price price)
+        {
+            priceRepository.Add(price);
+            return true;
         }
 
         /// <summary>
