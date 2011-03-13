@@ -23,8 +23,7 @@ namespace ChopShop.Admin.Services.Repositories
 
         public IEnumerable<T> Search(DetachedCriteria searchParameters)
         {
-            IEnumerable<T> entities = searchParameters.GetExecutableCriteria(session)
-                .List<T>();
+            IEnumerable<T> entities = searchParameters.GetExecutableCriteria(session).Future<T>();
 
             return entities;
         }

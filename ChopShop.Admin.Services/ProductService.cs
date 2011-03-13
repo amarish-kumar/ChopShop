@@ -6,6 +6,7 @@ using ChopShop.Admin.Web.Models;
 using ChopShop.Model;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Transform;
 
 namespace ChopShop.Admin.Services
 {
@@ -22,8 +23,9 @@ namespace ChopShop.Admin.Services
         {
             var searchCriteria = DetachedCriteria.For(typeof (Product))
                                                  .SetFetchMode("Categories", FetchMode.Join)
-                                                 .SetFetchMode("Prices", FetchMode.Join);
-            return repository.Search(searchCriteria);
+                                                 .SetFetchMode("Prices", FetchMode.Join)
+                                                 .SetResultTransformer(new DistinctRootEntityResultTransformer());
+            return repository.Search(searchCriteria).ToList();
         }
 
         public bool TryUpdate(Product product)

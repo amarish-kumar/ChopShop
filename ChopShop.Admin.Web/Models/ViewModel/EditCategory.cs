@@ -6,9 +6,10 @@ namespace ChopShop.Admin.Web.Models.ViewModel
 {
     public class EditCategory
     {
-        public virtual int Id { get; set; }
-        public virtual string Name { get; set; }
-        public virtual string Description { get; set; }
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public bool IsInProduct { get; set; }
 
         public void FromEntity(Category categoryEntity)
         {

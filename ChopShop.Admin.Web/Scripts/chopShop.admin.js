@@ -2,21 +2,22 @@
 /// <reference path="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" />
 
 var admin = {
-    allCategories: {},
+    product: {},
+    categoriesHaveChanged: false,
 
     getAllCategories: function (callback) {
-        $.get('/Category/List', '', function (result) {
-            admin.allCategories = result;
+        $.get('/Category/CategoriesForSelectDialog', { 'id': admin.product.Id }, function (result) {
             if (callback) {
-                callback();
+                callback(result);
             }
         }, 'json');
     },
 
     displayAllCategories: function (callback) {
-        this.getAllCategories(function () {
-            if (admin.allCategories) {
-                $('#tmpl-listCategories').tmpl(admin.allCategories).appendTo('#dialog-listCategory');
+        this.getAllCategories(function (result) {
+            if (result) {
+                $('#dialog-listCategory').empty();
+                $('#tmpl-listCategories').tmpl(result).appendTo('#dialog-listCategory');
             }
         });
 
@@ -26,8 +27,44 @@ var admin = {
     },
 
     refreshCategoriesForProduct: function (callback) {
-        // refresh the categories on the page
-        
+        if (this.categoriesHaveChanged) {
+            // refresh the categories on the page
+            this.getAllCategoriesForProduct(function (result) {
+                if (result) {
+                    $('#page-listCategory').empty();
+                    jQuery.each(result, function () {
+                        $('#page-listCategory').append('<li>' + $(this).Name + '</li>');
+                    });
+                }
+            });
+            this.categoriesHaveChanged = false;
+        }
+    },
+
+    addCategoryToProduct: function (categoryId, callback) {
+        $.post('/Category/AddToProduct', { 'categoryId': categoryId, 'productId': admin.product.Id }, function (result) {
+            if (callback) {
+                admin.categoriesHaveChanged = true;
+                callback(result);
+            }
+        }, 'json');
+    },
+
+    removeCategoryFromProduct: function(categoryId, callback){
+        $.post('/Category/RemoveFromProduct', {'categoryId':categoryId, 'productId':admin.product.Id}, function(result){
+            if(callback){
+                admin.categoriesHaveChanged = true;
+                callback(result);
+            }
+        }, 'json');
+    },
+
+    getAllCategoriesForProduct: function (callback) {
+        $.get('/Category/CategoriesForProduct', { 'id': admin.product.Id }, function (result) {
+            if (callback) {
+                callback(result);
+            }
+        }, 'json');
     }
 
 };

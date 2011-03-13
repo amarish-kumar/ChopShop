@@ -10,5 +10,8 @@ namespace ChopShop.Admin.Services.Interfaces
         bool TryDelete(int productId);
         Category GetSingle(int productId);
         bool TryAdd(Category product);
+        IEnumerable<Category> ListCategoriesForProduct(int id);
+        void AddProductToCategory(int categoryId, int productId);
+        void RemoveProductFromCategory(int categoryId, int productId);
     }
 }

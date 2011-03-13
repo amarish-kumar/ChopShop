@@ -18,9 +18,9 @@
       <key column="ProductId" />
       <many-to-many class="Category" column="CategoryId" />
     </set>
-    <bag name="Prices" table="Price" inverse="true" lazy="true">
+    <set name="Prices" table="Price" inverse="true" lazy="true">
       <key column="ProductId" />
       <one-to-many class="Price"/>
-    </bag>
+    </set>
   </class>
 </hibernate-mapping>
