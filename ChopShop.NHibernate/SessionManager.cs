@@ -33,9 +33,9 @@ namespace ChopShop.NHibernate
 
 //#if (DEBUG)
 //                {
-                    //var schemaUpdate = new SchemaUpdate(configuration);
-                    //schemaUpdate.Execute(true, true);
-               
+                //var schemaUpdate = new SchemaUpdate(configuration);
+                //schemaUpdate.Execute(true, true);
+
                 //var schemaCreate = new SchemaExport(configuration);
                 //schemaCreate.Create(true, true);
 //                }

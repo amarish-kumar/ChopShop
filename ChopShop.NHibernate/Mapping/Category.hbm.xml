@@ -11,7 +11,7 @@
     <property name="Description" type="StringClob">
       <column name="Description" sql-type="nvarchar(max)" />
     </property>
-    <set name="Products" table="Products_Categories" lazy="true">
+    <set name="Products" table="Products_Categories" lazy="true" inverse="true">
       <key column="CategoryId" />
       <many-to-many column="ProductId" class="Product" />
     </set>
