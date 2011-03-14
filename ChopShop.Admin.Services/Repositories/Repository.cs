@@ -31,8 +31,7 @@ namespace ChopShop.Admin.Services.Repositories
         public int Count(DetachedCriteria searchParameters)
         {
             var count = searchParameters.GetExecutableCriteria(session)
-                .SetProjection(Projections.RowCountInt64())
-                .UniqueResult();
+                .SetProjection(Projections.RowCountInt64()).FutureValue<Int32>();
             return Convert.ToInt32(count);
         }
     }

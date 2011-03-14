@@ -48,7 +48,9 @@
   <ItemGroup>
     <Compile Include="AdminUser.cs" />
     <Compile Include="Category.cs" />
+    <Compile Include="Configuration.cs" />
     <Compile Include="DTO\ErrorInfo.cs" />
+    <Compile Include="DTO\ProductListSearchCriteria.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Price.cs" />
     <Compile Include="Image.cs" />

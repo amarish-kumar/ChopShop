@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin\AdminServicesInstaller.cs" />
+    <Compile Include="IConfiguration.cs" />
     <Compile Include="Shop\ShopServicesInstaller.cs" />
     <Compile Include="TransactionFilter.cs" />
     <Compile Include="WindsorControllerFactory.cs" />
@@ -76,6 +77,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ChopShop.Model\ChopShop.Model.csproj">
+      <Project>{80F5C731-8520-47DB-BD06-2B45ABE03382}</Project>
+      <Name>ChopShop.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ChopShop.NHibernate\ChopShop.NHibernate.csproj">
       <Project>{BE107658-633C-49AE-B8E5-68B2C77963BB}</Project>
       <Name>ChopShop.NHibernate</Name>

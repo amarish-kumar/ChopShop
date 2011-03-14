@@ -5,6 +5,7 @@ using ChopShop.Admin.Web.Configuration;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using ChopShop.Model;
+using ChopShop.Model.DTO;
 
 namespace ChopShop.Admin.Web.Controllers
 {
@@ -20,9 +21,11 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ActionResult List()
+        public ActionResult List(ProductListSearchCriteria searchCriteria)
         {
-            return View(productService.List());
+            var productEntityList = productService.List(searchCriteria);
+            var productList = new ProductListItem().FromEntityList(productEntityList);
+            return View(productList);
         }
 
         [HttpGet]

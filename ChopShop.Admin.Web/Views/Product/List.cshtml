@@ -1,28 +1,42 @@
-﻿@model ICollection<ChopShop.Model.Product>
-
-@{
-    ViewBag.Title = "List";
-}
+﻿@model IEnumerable<ChopShop.Admin.Web.Models.ViewModel.ProductListItem>
 
 <h2>List</h2>
-<ul>
-@foreach (var product in Model)
-{ 
-<li><p>@product.Name @product.Sku @product.Description</p>
-    <ul>
-    @foreach (var category in product.Categories)
-    { 
-        <li>@category.Id, @category.Name</li>
-    }
-    </ul>
-    <ul>
-    @foreach (var price in product.Prices)
-    { 
-    <li>
-    @price.Currency @price.Value
-    </li>
-    }
-    </ul>
-</li>
+
+<p>
+    @Html.ActionLink("Create New", "Add")
+</p>
+<table>
+    <tr>
+        <th></th>
+        <th>
+            Name
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Quantity
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @String.Format("{0:F}", item.Price)
+        </td>
+        <td>
+            @item.Quantity
+
+        </td>
+    </tr>
 }
-</>
+
+</table>
+

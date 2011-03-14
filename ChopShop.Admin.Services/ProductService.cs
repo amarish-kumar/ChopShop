@@ -5,6 +5,7 @@ using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Services.Repositories;
 using ChopShop.Admin.Web.Models;
 using ChopShop.Model;
+using ChopShop.Model.DTO;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Transform;
@@ -67,7 +68,7 @@ namespace ChopShop.Admin.Services
             var product = repository.Search(searchCriteria);
 
             return product.FirstOrDefault();
-        }
+        } 
 
         /// <summary>
         /// Try to add a new Product to the database
@@ -89,6 +90,30 @@ namespace ChopShop.Admin.Services
         {
             priceRepository.Add(price);
             return true;
+        }
+
+        public IEnumerable<Product> List(ProductListSearchCriteria listSearchCriteria)
+        {
+            var searchCriteria = DetachedCriteria.For(typeof (Product))
+                .SetFetchMode("Categories", FetchMode.Join)
+                .SetFetchMode("Prices", FetchMode.Join);
+
+            ConvertListSearchCriteriaToDetachedCriteria(searchCriteria, listSearchCriteria);
+            return repository.Search(searchCriteria);
+        }
+
+        private void ConvertListSearchCriteriaToDetachedCriteria(DetachedCriteria searchCriteria, ProductListSearchCriteria listSearchCriteria)
+        {
+            // add ordering by Property
+            searchCriteria.AddOrder(listSearchCriteria.Ascending
+                                        ? Order.Asc(listSearchCriteria.SortBy)
+                                        : Order.Desc(listSearchCriteria.SortBy));
+
+            if (!listSearchCriteria.ShowDeletedProducts)
+            {
+                searchCriteria.Add(Restrictions.Eq("IsDeleted", false)); // default to showing not deleted products
+            }
+            
         }
 
         /// <summary>

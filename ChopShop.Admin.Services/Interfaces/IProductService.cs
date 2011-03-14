@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using ChopShop.Model;
+using ChopShop.Model.DTO;
 
 namespace ChopShop.Admin.Services.Interfaces
 {
@@ -12,5 +13,6 @@ namespace ChopShop.Admin.Services.Interfaces
         Product GetSingle(Guid productId);
         bool TryAdd(Product product);
         bool TryAddPrice(Price price);
+        IEnumerable<Product> List(ProductListSearchCriteria searchCriteria);
     }
 }
