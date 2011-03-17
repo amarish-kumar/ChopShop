@@ -120,4 +120,10 @@
   <data name="CategoryExists" xml:space="preserve">
     <value>This category already exists</value>
   </data>
+  <data name="NameLength" xml:space="preserve">
+    <value>The maximum length is 255 characters</value>
+  </data>
+  <data name="NameRequired" xml:space="preserve">
+    <value>Please provide a name for this category</value>
+  </data>
 </root>

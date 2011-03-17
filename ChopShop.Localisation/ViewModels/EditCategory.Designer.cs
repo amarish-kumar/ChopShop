@@ -68,5 +68,23 @@ namespace ChopShop.Localisation.ViewModels {
                 return ResourceManager.GetString("CategoryExists", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The maximum length is 255 characters.
+        /// </summary>
+        public static string NameLength {
+            get {
+                return ResourceManager.GetString("NameLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide a name for this category.
+        /// </summary>
+        public static string NameRequired {
+            get {
+                return ResourceManager.GetString("NameRequired", resourceCulture);
+            }
+        }
     }
 }

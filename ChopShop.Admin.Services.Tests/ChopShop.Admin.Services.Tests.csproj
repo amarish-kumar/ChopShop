@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{881A5938-E64A-4709-A4C4-746BB99FCF6D}</ProjectGuid>
+    <ProjectGuid>{7436F79B-CEC9-4818-A1F2-705B9D8477BA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ChopShop.Admin.Web.Tests</RootNamespace>
-    <AssemblyName>ChopShop.Admin.Web.Tests</AssemblyName>
+    <RootNamespace>ChopShop.Admin.Services.Tests</RootNamespace>
+    <AssemblyName>ChopShop.Admin.Services.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -34,6 +34,9 @@
     <Reference Include="Moq">
       <HintPath>..\packages\Moq.4.0.10827\lib\NET40\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="NHibernate">
+      <HintPath>..\packages\NHibernate.3.0.0.4000\lib\NHibernate.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.5.9.10348, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.5.9.10348\lib\nunit.framework.dll</HintPath>
@@ -46,10 +49,8 @@
       <HintPath>..\packages\NUnit.2.5.9.10348\lib\pnunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Mvc, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,14 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\CategoryControllerTests.cs" />
-    <Compile Include="Controllers\ProductControllerTests.cs" />
-    <Compile Include="Fakes.cs" />
-    <Compile Include="Routes\InboundTests.cs" />
+    <Compile Include="AdminAuthenticationServiceTests.cs" />
+    <Compile Include="ProductServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\EditCategoryTests.cs" />
-    <Compile Include="ViewModels\EditProductTests.cs" />
-    <Compile Include="ViewModels\ProductListItemTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -74,16 +70,11 @@
       <Project>{03F6FA8C-C4FC-47A9-B20E-1D0D04CBEDF9}</Project>
       <Name>ChopShop.Admin.Services</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ChopShop.Admin.Web\ChopShop.Admin.Web.csproj">
-      <Project>{0FE0E871-4B9E-4F8D-B9FF-53A7B8AD1877}</Project>
-      <Name>ChopShop.Admin.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ChopShop.Model\ChopShop.Model.csproj">
       <Project>{80F5C731-8520-47DB-BD06-2B45ABE03382}</Project>
       <Name>ChopShop.Model</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -10,6 +10,7 @@ using System.Web.Security;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Web.Models;
 using ChopShop.Configuration;
+using ChopShop.Model;
 
 namespace ChopShop.Admin.Web.Controllers
 {
@@ -35,9 +36,10 @@ namespace ChopShop.Admin.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (adminAuthenticationService.IsValidUser(model.UserName, model.Password))
+                AdminUser adminUser = null;
+                if (adminAuthenticationService.IsValidUser(model.UserName, model.Password, adminUser))
                 {
-                    adminAuthenticationService.SignIn(model.UserName, HttpContext.Session);
+                    adminAuthenticationService.SignIn(adminUser, HttpContext.Session);
                     if (Url.IsLocalUrl(returnUrl))
                     {
                         return Redirect(returnUrl);

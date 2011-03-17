@@ -28,7 +28,7 @@ namespace ChopShop.Admin.Web.Tests.Controllers
         [Test]
         public void List_should_invoke_List_on_ProductService()
         {
-            service.Setup(x => x.List(It.IsAny<ProductListSearchCriteria>())).Returns(FakeProductList()).Verifiable();
+            service.Setup(x => x.List(It.IsAny<ProductListSearchCriteria>())).Returns(Fakes.FakeProductList()).Verifiable();
 
             var action = controller.List(new ProductListSearchCriteria());
             var model = (List<ProductListItem>)action.ViewData.Model;
@@ -43,7 +43,7 @@ namespace ChopShop.Admin.Web.Tests.Controllers
         [Test]
         public void Edit_should_get_product_from_ProductService_when_invoked()
         {
-            service.Setup(x => x.GetSingle(It.IsAny<Guid>())).Returns(FakeProduct()).Verifiable();
+            service.Setup(x => x.GetSingle(It.IsAny<Guid>())).Returns(Fakes.FakeProduct()).Verifiable();
 
             var action = controller.Edit(Guid.NewGuid());
             var model = (EditProduct) action.ViewData.Model;
@@ -112,21 +112,6 @@ namespace ChopShop.Admin.Web.Tests.Controllers
             Assert.That(controller.ModelState.IsValid, Is.False);
         }
 
-        private Product FakeProduct()
-        {
-            return new Product
-                       {Id = Guid.NewGuid(), Name = "Product 1", Sku = "Product 1", Description = "Product Description"};
-        }
-
-        private IEnumerable<Product> FakeProductList()
-        {
-            var products = new List<Product>();
-            for (int i = 0; i < 10; i++)
-            {
-                products.Add(new Product
-                                 {Name = string.Format("Product{0}", i), Sku = string.Format("Product {0}", i), Description = string.Format("ProductDescription{0}", i)});
-            }
-            return products;
-        }
+       
     }
 }

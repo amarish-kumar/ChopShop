@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChopShop.Admin.Web.Tests", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseLoader", "DatabaseLoader\DatabaseLoader.csproj", "{FB630C43-5D3F-4373-A2B7-99F55ACDEB61}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChopShop.Admin.Services.Tests", "ChopShop.Admin.Services.Tests\ChopShop.Admin.Services.Tests.csproj", "{7436F79B-CEC9-4818-A1F2-705B9D8477BA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{FB630C43-5D3F-4373-A2B7-99F55ACDEB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB630C43-5D3F-4373-A2B7-99F55ACDEB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB630C43-5D3F-4373-A2B7-99F55ACDEB61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7436F79B-CEC9-4818-A1F2-705B9D8477BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7436F79B-CEC9-4818-A1F2-705B9D8477BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7436F79B-CEC9-4818-A1F2-705B9D8477BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7436F79B-CEC9-4818-A1F2-705B9D8477BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

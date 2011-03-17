@@ -39,7 +39,7 @@ namespace ChopShop.Admin.Web.Models.ViewModel
         {
             Id = productEntity.Id;
             Name = productEntity.Name;
-            Description = productEntity.Name;
+            Description = productEntity.Description;
             Sku = productEntity.Sku;
             if (productEntity.Prices != null)
             {
