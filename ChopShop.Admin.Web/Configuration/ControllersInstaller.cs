@@ -4,7 +4,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using ChopShop.Admin.Web.Controllers;
 
-namespace ChopShop.Configuration
+namespace ChopShop.Admin.Web.Configuration
 {
     public class ControllersInstaller : IWindsorInstaller
     {

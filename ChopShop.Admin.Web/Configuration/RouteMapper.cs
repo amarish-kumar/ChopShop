@@ -16,7 +16,7 @@ namespace ChopShop.Admin.Web.Configuration
         {
             IgnoredRoutes();
             ProductRoutes();
-
+            LogOnRoutes();
             FallbackRoute();
         }
 
@@ -41,6 +41,15 @@ namespace ChopShop.Admin.Web.Configuration
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
+        }
+
+        private void LogOnRoutes()
+        {
+            routes.MapRoute(
+                "LogOn",
+                "LogOn",
+                new { controller="Account", action="LogOn"}
+                );
         }
     }
 }

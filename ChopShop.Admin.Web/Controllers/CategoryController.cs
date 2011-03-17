@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
-using ChopShop.Admin.Web.Configuration;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using System.Linq;
@@ -12,7 +11,6 @@ namespace ChopShop.Admin.Web.Controllers
     public class CategoryController : ChopShopController
     {
         private readonly ICategoryService categoryService;
-
 
         public CategoryController(ICategoryService categoryService)
         {

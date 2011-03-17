@@ -134,6 +134,11 @@ namespace DatabaseLoader
                 session.SaveOrUpdate(bicycleParts);
                 session.SaveOrUpdate(engines);
 
+            
+                    var adminUser = new AdminUser { Email = "admin@example.com", Name = "admin", Password = "password" };
+                    session.Save(adminUser);
+                
+
                 tx.Commit();
             }
         }

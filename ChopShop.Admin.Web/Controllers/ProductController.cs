@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
-using ChopShop.Admin.Web.Configuration;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using ChopShop.Model;

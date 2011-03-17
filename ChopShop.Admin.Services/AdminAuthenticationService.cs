@@ -8,13 +8,13 @@ namespace ChopShop.Admin.Services
     public class AdminAuthenticationService : IAdminAuthenticationService
     {
         private readonly IAdminService adminService;
-        private readonly IFormsAuthentication formsAuthentication;
+        private readonly IFormsAuthenticationService formsAuthenticationService;
         private AdminUser adminUser;
 
-        public AdminAuthenticationService(IAdminService adminService, IFormsAuthentication formsAuthentication)
+        public AdminAuthenticationService(IAdminService adminService, IFormsAuthenticationService formsAuthenticationService)
         {
             this.adminService = adminService;
-            this.formsAuthentication = formsAuthentication;
+            this.formsAuthenticationService = formsAuthenticationService;
         }
 
         public void SignIn(string userName, HttpSessionStateBase session)
@@ -24,13 +24,13 @@ namespace ChopShop.Admin.Services
                 throw new ArgumentNullException("Cannot authenticate without a valid email address");
             }
 
-            formsAuthentication.SetAuthCookie(userName, false);
+            formsAuthenticationService.SetAuthCookie(userName, false);
             session.Add("adminUser", adminUser);
         }
 
         public void SignOut(HttpSessionStateBase session)
         {
-            formsAuthentication.SignOut();
+            formsAuthenticationService.SignOut();
             session.Abandon();
         }
 

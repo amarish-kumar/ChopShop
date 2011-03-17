@@ -10,5 +10,6 @@
     <property name="Name" column="Name" length="255" />
     <property name="Password" column="Password" length="10" />
     <property name="Email" column="Email" length="255" />
+    <property name="LastLogin" column="LastLogin" />
   </class>
 </hibernate-mapping>
