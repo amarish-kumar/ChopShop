@@ -20,7 +20,7 @@ namespace ChopShop.Admin.Services
         {
             if (adminUser == null)
             {
-                throw new ArgumentNullException("Cannot authenticate without a valid email address");
+                throw new ArgumentNullException("Invalid authentication");
             }
 
             formsAuthentication.SetAuthCookie(adminUser.Name, false);
@@ -33,7 +33,7 @@ namespace ChopShop.Admin.Services
             session.Abandon();
         }
 
-        public bool IsValidUser(string email, string password, AdminUser adminUser)
+        public bool IsValidUser(string email, string password,out AdminUser adminUser)
         {
             adminUser = adminService.GetUserForLogin(email, password);
             return adminUser != null;

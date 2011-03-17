@@ -14,6 +14,12 @@ namespace ChopShop.Admin.Web.Tests.Routes
             TestRoute("~/Product", new{controller="Product", action="List"});
         }
 
+        [Test]
+        public void Slash_LogOn_should_return_Account_LogOn()
+        {
+            TestRoute("~/LogOn", new{controller="Account", action="LogOn"});
+        }
+
         private static void TestRoute(string url, object expectedControllerAction)
         {
             var routes = new RouteCollection();

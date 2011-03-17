@@ -132,8 +132,8 @@ namespace DatabaseLoader
                 session.SaveOrUpdate(engines);
 
             
-                    var adminUser = new AdminUser { Email = "admin@example.com", Name = "admin", Password = "password" };
-                    session.Save(adminUser);
+                var adminUser = new AdminUser { Email = "admin@example.com", Name = "admin", Password = "password" };
+                session.SaveOrUpdate(adminUser);
                 
 
                 tx.Commit();

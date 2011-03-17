@@ -45,6 +45,7 @@ namespace ChopShop.Configuration
                 else
                 {
                     session.Transaction.Rollback();
+                    session.Close();
                 }
             }
         }

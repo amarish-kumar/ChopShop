@@ -63,10 +63,11 @@
     <Compile Include="AdminAuthenticationService.cs" />
     <Compile Include="AdminService.cs" />
     <Compile Include="CategoryService.cs" />
+    <Compile Include="FormsAuthentication.cs" />
     <Compile Include="Interfaces\IAdminAuthenticationService.cs" />
     <Compile Include="Interfaces\IAdminService.cs" />
     <Compile Include="Interfaces\ICategoryService.cs" />
-    <Compile Include="Interfaces\IFormsAuthenticationService.cs" />
+    <Compile Include="Interfaces\IFormsAuthentication.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="ProductService.cs" />

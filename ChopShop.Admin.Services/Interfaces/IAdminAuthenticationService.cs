@@ -7,6 +7,6 @@ namespace ChopShop.Admin.Services.Interfaces
     {
         void SignIn(AdminUser adminUser, HttpSessionStateBase session);
         void SignOut(HttpSessionStateBase httpSessionStateBase);
-        bool IsValidUser(string email, string password, AdminUser adminUser);
+        bool IsValidUser(string email, string password,out AdminUser adminUser);
     }
 }

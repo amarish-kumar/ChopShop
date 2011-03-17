@@ -29,7 +29,7 @@ namespace ChopShop.Admin.Web.Controllers
             if (ModelState.IsValid)
             {
                 AdminUser adminUser = null;
-                if (adminAuthenticationService.IsValidUser(model.UserName, model.Password, adminUser))
+                if (adminAuthenticationService.IsValidUser(model.UserName, model.Password, out adminUser))
                 {
                     adminAuthenticationService.SignIn(adminUser, HttpContext.Session);
                     if (Url.IsLocalUrl(returnUrl))

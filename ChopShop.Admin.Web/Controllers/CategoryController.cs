@@ -24,17 +24,17 @@ namespace ChopShop.Admin.Web.Controllers
             var categoriesForProduct = categoryService.ListCategoriesForProduct(id);
             var allCategories = categoryService.List()
                                                .Select(x => new EditCategory { Id = x.Id, Name = x.Name, Description = x.Description })
-                                               .OrderBy(x=>x.Name)
+                                               .OrderBy(x => x.Name)
                                                .ToList();
 
-            allCategories.ForEach(x=>
+            allCategories.ForEach(x =>
                                       {
                                           if (categoriesForProduct.FirstOrDefault(y => y.Id == x.Id) != null)
                                           {
                                               x.IsInProduct = true;
                                           }
                                       });
-            
+
             return Json(allCategories, JsonRequestBehavior.AllowGet);
         }
 
@@ -44,8 +44,8 @@ namespace ChopShop.Admin.Web.Controllers
         {
             var categoriesForProduct = categoryService.ListCategoriesForProduct(id);
             var categories = categoriesForProduct.ToList()
-                                                 .Select(x => new EditCategory {Id = x.Id, Description = x.Description, Name = x.Name})
-                                                 .OrderBy(x=>x.Name)
+                                                 .Select(x => new EditCategory { Id = x.Id, Description = x.Description, Name = x.Name })
+                                                 .OrderBy(x => x.Name)
                                                  .ToList();
             return Json(categories, JsonRequestBehavior.AllowGet);
         }
@@ -77,6 +77,8 @@ namespace ChopShop.Admin.Web.Controllers
         public ActionResult Add()
         {
             var category = new EditCategory();
+            ViewBag.Title = Localisation.Admin.PageContent.Add;
+            ViewBag.Category = Localisation.Admin.PageContent.Category;
             return View("Edit", category);
         }
 
@@ -84,16 +86,24 @@ namespace ChopShop.Admin.Web.Controllers
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
         public ActionResult Add(EditCategory category)
         {
-            var categoryEntity = category.ToEntity();
-            if (!categoryService.TryAdd(categoryEntity))
+            var categoryEntity = new Category();
+            if (ModelState.IsValid)
             {
-                AddModelStateErrors(categoryEntity.Errors);
+                categoryEntity = category.ToEntity();
+                if (!categoryService.TryAdd(categoryEntity))
+                {
+                    AddModelStateErrors(categoryEntity.Errors);
+                }
             }
 
-            ViewBag.Title = !ModelState.IsValid ? Localisation.Admin.PageContent.Add : Localisation.Admin.PageContent.Edit;
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Title = Localisation.Admin.PageContent.Add;
+                ViewBag.Category = Localisation.Admin.PageContent.Category;
+                return View("Edit", category);
+            }
 
-            ViewBag.Category = Localisation.Admin.PageContent.Category;
-            return View("Edit", category);
+            return RedirectToAction("Edit", new {id = categoryEntity.Id});
         }
 
         [HttpGet]

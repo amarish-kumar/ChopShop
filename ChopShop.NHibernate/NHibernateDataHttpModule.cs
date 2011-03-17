@@ -20,7 +20,7 @@ namespace ChopShop.NHibernate
         private void context_EndRequest(object sender, EventArgs e)
         {
             ISession session = ManagedWebSessionContext.Unbind(HttpContext.Current, SessionManager.SessionFactory);
-            if (session == null) return;
+            if (session == null || !session.IsOpen) return;
             if (session.Transaction != null && session.Transaction.IsActive)
             {
                 session.Transaction.Rollback();
