@@ -85,7 +85,9 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\ChopShopController.cs" />
+    <Compile Include="Configuration\CustomFilters\ChopShopAuthorisationAttribute.cs" />
+    <Compile Include="Configuration\CustomFilters\GetAdminSession.cs" />
+    <Compile Include="Controllers\ChopShopController.cs" />
     <Compile Include="Configuration\ControllersInstaller.cs" />
     <Compile Include="Configuration\RouteMapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -96,7 +98,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\MvcExtensions.cs" />
-    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\ViewModel\LogOnModel.cs" />
     <Compile Include="Models\ViewModel\EditCategory.cs" />
     <Compile Include="Models\ViewModel\EditPrice.cs" />
     <Compile Include="Models\ViewModel\EditProduct.cs" />

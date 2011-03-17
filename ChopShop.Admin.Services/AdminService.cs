@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Services.Repositories;
 using ChopShop.Model;
@@ -8,11 +9,11 @@ namespace ChopShop.Admin.Services
 {
     public class AdminService : IAdminService
     {
-        private readonly IRepository<AdminUser> adminUserRepository;
+        private readonly IRepository<AdminUser> repository;
 
-        public AdminService(IRepository<AdminUser> adminUserRepository)
+        public AdminService(IRepository<AdminUser> repository)
         {
-            this.adminUserRepository = adminUserRepository;
+            this.repository = repository;
         }
 
         public AdminUser GetUserForLogin(string email, string password)
@@ -22,7 +23,14 @@ namespace ChopShop.Admin.Services
                                                  .Add(Restrictions.Eq("Password", password));
 
 
-            throw new NotImplementedException();
+            var adminUser = repository.Search(searchCriteria).FirstOrDefault();
+            if (adminUser != null)
+            {
+                adminUser.LastLogin = DateTime.UtcNow;
+                repository.Update(adminUser);
+            }
+
+            return adminUser;
         }
     }
 }       

@@ -1,24 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Security.Principal;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Routing;
-using System.Web.Security;
+﻿using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
-using ChopShop.Admin.Web.Models;
+using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using ChopShop.Model;
+
 
 namespace ChopShop.Admin.Web.Controllers
 {
     public class AccountController : Controller
     {
         private readonly IAdminAuthenticationService adminAuthenticationService;
-        public IFormsAuthenticationService FormsService { get; set; }
-        public IMembershipService MembershipService { get; set; }
 
         public AccountController(IAdminAuthenticationService adminAuthenticationService)
         {
@@ -32,6 +23,7 @@ namespace ChopShop.Admin.Web.Controllers
         }
 
         [HttpPost]
+        [TransactionFilter(TransactionFilterType.ReadCommitted)]
         public ActionResult LogOn(LogOnModel model, string returnUrl)
         {
             if (ModelState.IsValid)
