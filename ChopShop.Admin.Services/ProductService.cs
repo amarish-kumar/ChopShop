@@ -25,7 +25,7 @@ namespace ChopShop.Admin.Services
 
         public IEnumerable<Product> List()
         {
-            var searchCriteria = DetachedCriteria.For(typeof (Product))
+            var searchCriteria = DetachedCriteria.For(typeof(Product))
                                                  .SetFetchMode("Categories", FetchMode.Join)
                                                  .SetFetchMode("Prices", FetchMode.Join)
                                                  .SetResultTransformer(new DistinctRootEntityResultTransformer());
@@ -42,14 +42,14 @@ namespace ChopShop.Admin.Services
             if (IsValid(product))
             {
                 repository.Update(product);
-                return true;    
+                return true;
             }
             return false;
         }
 
         public bool TryDelete(Guid productId)
         {
-            var searchCriteria = DetachedCriteria.For(typeof (Product))
+            var searchCriteria = DetachedCriteria.For(typeof(Product))
                                                  .Add(Restrictions.Eq("Id", productId));
             var product = repository.Search(searchCriteria).FirstOrDefault();
             product.IsDeleted = true;
@@ -59,7 +59,7 @@ namespace ChopShop.Admin.Services
 
         public Product GetSingle(Guid productId)
         {
-            var searchCriteria = DetachedCriteria.For(typeof (Product))
+            var searchCriteria = DetachedCriteria.For(typeof(Product))
                                                  .Add(Restrictions.Eq("Id", productId))
                                                  .SetFetchMode("Categories", FetchMode.Join)
                                                  .SetFetchMode("Prices", FetchMode.Join)
@@ -68,7 +68,7 @@ namespace ChopShop.Admin.Services
             var product = repository.Search(searchCriteria);
 
             return product.FirstOrDefault();
-        } 
+        }
 
         /// <summary>
         /// Try to add a new Product to the database
@@ -82,7 +82,7 @@ namespace ChopShop.Admin.Services
                 repository.Add(product);
                 return true;
             }
-            
+
             return false;
         }
 
@@ -94,26 +94,31 @@ namespace ChopShop.Admin.Services
 
         public IEnumerable<Product> List(ProductListSearchCriteria listSearchCriteria)
         {
-            var searchCriteria = DetachedCriteria.For(typeof (Product))
-                .SetFetchMode("Categories", FetchMode.Join)
-                .SetFetchMode("Prices", FetchMode.Join);
-
-            ConvertListSearchCriteriaToDetachedCriteria(searchCriteria, listSearchCriteria);
+            var searchCriteria = GetSearchCriteriaFromListSearch(listSearchCriteria);
             return repository.Search(searchCriteria);
         }
 
-        private void ConvertListSearchCriteriaToDetachedCriteria(DetachedCriteria searchCriteria, ProductListSearchCriteria listSearchCriteria)
+        private DetachedCriteria GetSearchCriteriaFromListSearch(ProductListSearchCriteria listSearchCriteria)
         {
+
+            var searchCriteria = DetachedCriteria.For(typeof(Product), "p")
+                                                 .SetFetchMode("Prices", FetchMode.Join)
+                                                 .SetFetchMode("Categories", FetchMode.Join)
+                                                 .SetResultTransformer(new DistinctRootEntityResultTransformer());
+
             // add ordering by Property
+            var sortBy = listSearchCriteria.SortBy ?? "Name";
             searchCriteria.AddOrder(listSearchCriteria.Ascending
-                                        ? Order.Asc(listSearchCriteria.SortBy)
-                                        : Order.Desc(listSearchCriteria.SortBy));
+                                        ? Order.Asc(sortBy)
+                                        : Order.Desc(sortBy));
 
             if (!listSearchCriteria.ShowDeletedProducts)
             {
                 searchCriteria.Add(Restrictions.Eq("IsDeleted", false)); // default to showing not deleted products
             }
-            
+
+
+            return searchCriteria;
         }
 
         /// <summary>

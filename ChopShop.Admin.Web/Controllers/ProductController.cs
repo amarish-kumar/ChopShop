@@ -56,10 +56,14 @@ namespace ChopShop.Admin.Web.Controllers
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
         public ActionResult Add(EditProduct product)
         {
-            var productEntity = product.ToEntity();
-            if (!productService.TryAdd(productEntity))
+            var productEntity = new Product();
+            if (ModelState.IsValid) // validate inputs first
             {
-                AddModelStateErrors(productEntity.Errors);
+                productEntity = product.ToEntity();
+                if (!productService.TryAdd(productEntity)) // validate business logic
+                {
+                    AddModelStateErrors(productEntity.Errors);
+                }
             }
 
             if (!ModelState.IsValid)
