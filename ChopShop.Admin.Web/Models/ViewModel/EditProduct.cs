@@ -21,6 +21,7 @@ namespace ChopShop.Admin.Web.Models.ViewModel
         
         [LocalisedDisplayName("Sku", typeof(Localisation.ViewModels.EditProduct))]
         [StringLength(100, ErrorMessageResourceName="SkuLength", ErrorMessageResourceType = typeof(Localisation.ViewModels.EditProduct))]
+        [Required(AllowEmptyStrings = false, ErrorMessageResourceName="SKURequired", ErrorMessageResourceType = typeof(Localisation.ViewModels.EditProduct))]
         public string Sku { get; set; }
         
         [LocalisedDisplayName("Price", typeof(Localisation.ViewModels.EditProduct))]

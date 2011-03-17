@@ -21,22 +21,18 @@ namespace DatabaseLoader
             session = SessionManager.SessionFactory.OpenSession();
             HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
             // Clear down all the data in the database
-
             var types = typeof(Entity).Assembly.GetTypes().Where(
                 x => x.BaseType == typeof(Entity) && !x.IsAbstract).ToArray();
 
-           
-                RunSqlNonQuery("exec sp_MSForEachTable 'Alter table ? nocheck constraint all '");
-                foreach (var type in types)
-                {
-                    session.Delete(string.Format("from {0} o", type.Name));
-                }
-                session.Flush();
 
-                RunSqlNonQuery("exec sp_MSForEachTable 'alter table ? check constraint all'");
+            RunSqlNonQuery("exec sp_MSForEachTable 'Alter table ? nocheck constraint all '");
+            foreach (var type in types)
+            {
+                session.Delete(string.Format("from {0} o", type.Name));
+            }
+            session.Flush();
 
-                
-            
+            RunSqlNonQuery("exec sp_MSForEachTable 'alter table ? check constraint all'");
         }
 
         private void RunSqlNonQuery(string sql)
@@ -61,6 +57,7 @@ namespace DatabaseLoader
         }
 
         [Test]
+        [Ignore("Use only when overriding database")]
         public void ThisMethod_should_create_data_for_ChopShop_when_it_is_executed()
         {
             using (var tx = session.BeginTransaction(IsolationLevel.ReadCommitted))

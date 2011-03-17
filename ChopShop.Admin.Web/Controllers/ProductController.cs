@@ -12,7 +12,6 @@ namespace ChopShop.Admin.Web.Controllers
     public class ProductController : ChopShopController
     {
         private readonly IProductService productService;
-        public ICategoryService CategoryService { get; set; }
 
         public ProductController(IProductService productService)
         {
@@ -21,7 +20,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ActionResult List(ProductListSearchCriteria searchCriteria)
+        public ViewResult List(ProductListSearchCriteria searchCriteria)
         {
             var productEntityList = productService.List(searchCriteria);
             var productList = new ProductListItem().FromEntityList(productEntityList);
@@ -30,9 +29,15 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ActionResult Edit(Guid id)
+        public ViewResult Edit(Guid id)
         {
             var productEntity = productService.GetSingle(id) ?? new Product();
+
+            if (productEntity.Id == Guid.Empty)
+            {
+                ModelState.AddModelError("", Localisation.ViewModels.EditProduct.ProductNotFound);
+            }
+
             var product = new EditProduct();
             product.FromEntity(productEntity);
             ViewBag.Title = Localisation.Admin.PageContent.Edit;
@@ -43,7 +48,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ActionResult Add()
+        public ViewResult Add()
         {
             var product = new EditProduct();
             ViewBag.Title = Localisation.Admin.PageContent.Add;

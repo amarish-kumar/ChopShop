@@ -138,4 +138,10 @@
   <data name="SkuLength" xml:space="preserve">
     <value>The Sku cannot be greater than 100 characters in length</value>
   </data>
+  <data name="ProductNotFound" xml:space="preserve">
+    <value>Product not found</value>
+  </data>
+  <data name="SKURequired" xml:space="preserve">
+    <value>Please provide a code for this product</value>
+  </data>
 </root>

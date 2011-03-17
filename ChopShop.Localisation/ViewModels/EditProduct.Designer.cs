@@ -97,6 +97,15 @@ namespace ChopShop.Localisation.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Product not found.
+        /// </summary>
+        public static string ProductNotFound {
+            get {
+                return ResourceManager.GetString("ProductNotFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Quantity.
         /// </summary>
         public static string Quantity {
@@ -120,6 +129,15 @@ namespace ChopShop.Localisation.ViewModels {
         public static string SkuLength {
             get {
                 return ResourceManager.GetString("SkuLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please provide a code for this product.
+        /// </summary>
+        public static string SKURequired {
+            get {
+                return ResourceManager.GetString("SKURequired", resourceCulture);
             }
         }
     }
