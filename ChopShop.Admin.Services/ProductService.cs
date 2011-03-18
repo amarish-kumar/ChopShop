@@ -59,11 +59,11 @@ namespace ChopShop.Admin.Services
 
         public Product GetSingle(Guid productId)
         {
-            var searchCriteria = DetachedCriteria.For(typeof(Product))
-                                                 .Add(Restrictions.Eq("Id", productId))
-                                                 .SetFetchMode("Categories", FetchMode.Join)
-                                                 .SetFetchMode("Prices", FetchMode.Join)
-                                                 .SetResultTransformer(new DistinctRootEntityResultTransformer());
+            var searchCriteria = DetachedCriteria.For(typeof (Product))
+                .Add(Restrictions.Eq("Id", productId))
+                .SetFetchMode("Categories", FetchMode.Join)
+                .SetFetchMode("Prices", FetchMode.Join);
+//                                                 .SetResultTransformer(new DistinctRootEntityResultTransformer());
 
             var product = repository.Search(searchCriteria);
 
