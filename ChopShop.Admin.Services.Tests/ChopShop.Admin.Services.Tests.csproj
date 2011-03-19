@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AdminAuthenticationServiceTests.cs" />
+    <Compile Include="CategoryServiceTests.cs" />
     <Compile Include="ProductServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
