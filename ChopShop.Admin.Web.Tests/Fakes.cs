@@ -20,5 +20,15 @@ namespace ChopShop.Admin.Web.Tests
             }
             return products;
         }
+
+        public static IEnumerable<Category> FakeCategoryList()
+        {
+            var categories = new List<Category>();
+            for (int i = 0; i < 10; i++)
+            {
+                categories.Add(new Category{Name="Category " + i, Description="Category Description " + i});
+            }
+            return categories;
+        }
     }
 }
