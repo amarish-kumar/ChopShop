@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
+using ChopShop.Admin.Web.Models;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using System.Linq;
@@ -97,9 +99,14 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ActionResult Edit(Guid id)
+        public ViewResult Edit(Guid id)
         {
             var categoryEntity = categoryService.GetSingle(id) ?? new Category();
+            if (categoryEntity.Id == Guid.Empty)
+            {
+               ModelState.AddModelError("", Localisation.ViewModels.EditCategory.CategoryNotFound);
+            }
+
             var category = new EditCategory();
             category.FromEntity(categoryEntity);
             ViewBag.Title = Localisation.Admin.PageContent.Edit;
@@ -111,11 +118,21 @@ namespace ChopShop.Admin.Web.Controllers
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
         public JsonResult _Add(EditCategory category)
         {
-            var categoryEntity = category.ToEntity();
-            if (!categoryService.TryAdd(categoryEntity))
+            var categoryEntity = new Category();
+            if (ModelState.IsValid)
             {
-                return Json(Guid.Empty);
+                categoryEntity = category.ToEntity();
+                if (!categoryService.TryAdd(categoryEntity))
+                {
+                    AddModelStateErrors(categoryEntity.Errors);
+                }
             }
+
+            if (!ModelState.IsValid)
+            {
+                return Json(categoryEntity.Errors);
+            }
+           
             return Json(categoryEntity.Id);
         }
     }
