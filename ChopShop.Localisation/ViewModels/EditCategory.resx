@@ -126,4 +126,11 @@
   <data name="NameRequired" xml:space="preserve">
     <value>Please provide a name for this category</value>
   </data>
+                                      
+	<data name="CategoryNotFound">
+                                      
+		<value xml:space="preserve">Category not found</value>
+                                      
+	</data>
+                                      
 </root>

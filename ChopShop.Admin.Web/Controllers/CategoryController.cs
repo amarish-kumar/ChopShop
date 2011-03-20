@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
+using ChopShop.Admin.Web.Models;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using System.Linq;
@@ -22,20 +24,11 @@ namespace ChopShop.Admin.Web.Controllers
         public JsonResult CategoriesForSelectDialog(Guid id)
         {
             var categoriesForProduct = categoryService.ListCategoriesForProduct(id);
-            var allCategories = categoryService.List()
-                                               .Select(x => new EditCategory { Id = x.Id, Name = x.Name, Description = x.Description })
-                                               .OrderBy(x => x.Name)
-                                               .ToList();
+            var allCategories = categoryService.List();
+            var allCategoriesForDialog = new EditCategory().CategoryList(allCategories, id,
+                                                                                    categoriesForProduct);
 
-            allCategories.ForEach(x =>
-                                      {
-                                          if (categoriesForProduct.FirstOrDefault(y => y.Id == x.Id) != null)
-                                          {
-                                              x.IsInProduct = true;
-                                          }
-                                      });
-
-            return Json(allCategories, JsonRequestBehavior.AllowGet);
+            return Json(allCategoriesForDialog, JsonRequestBehavior.AllowGet);
         }
 
         [HttpGet]
@@ -43,10 +36,8 @@ namespace ChopShop.Admin.Web.Controllers
         public JsonResult CategoriesForProduct(Guid id)
         {
             var categoriesForProduct = categoryService.ListCategoriesForProduct(id);
-            var categories = categoriesForProduct.ToList()
-                                                 .Select(x => new EditCategory { Id = x.Id, Description = x.Description, Name = x.Name })
-                                                 .OrderBy(x => x.Name)
-                                                 .ToList();
+
+            var categories = new EditCategory().CategoryList(categoriesForProduct, id);
             return Json(categories, JsonRequestBehavior.AllowGet);
         }
 
@@ -108,9 +99,14 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ActionResult Edit(Guid id)
+        public ViewResult Edit(Guid id)
         {
             var categoryEntity = categoryService.GetSingle(id) ?? new Category();
+            if (categoryEntity.Id == Guid.Empty)
+            {
+               ModelState.AddModelError("", Localisation.ViewModels.EditCategory.CategoryNotFound);
+            }
+
             var category = new EditCategory();
             category.FromEntity(categoryEntity);
             ViewBag.Title = Localisation.Admin.PageContent.Edit;
@@ -122,11 +118,21 @@ namespace ChopShop.Admin.Web.Controllers
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
         public JsonResult _Add(EditCategory category)
         {
-            var categoryEntity = category.ToEntity();
-            if (!categoryService.TryAdd(categoryEntity))
+            var categoryEntity = new Category();
+            if (ModelState.IsValid)
             {
-                return Json(Guid.Empty);
+                categoryEntity = category.ToEntity();
+                if (!categoryService.TryAdd(categoryEntity))
+                {
+                    AddModelStateErrors(categoryEntity.Errors);
+                }
             }
+
+            if (!ModelState.IsValid)
+            {
+                return Json(categoryEntity.Errors);
+            }
+           
             return Json(categoryEntity.Id);
         }
     }
