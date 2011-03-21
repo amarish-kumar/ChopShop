@@ -92,13 +92,18 @@ namespace ChopShop.Admin.Services
             return true;
         }
 
-        public IEnumerable<Product> List(ProductListSearchCriteria listSearchCriteria)
+        public Tuple<IEnumerable<Product>, int> List(ProductListSearchCriteria listSearchCriteria)
         {
-            var searchCriteria = GetSearchCriteriaFromListSearch(listSearchCriteria);
-            return repository.Search(searchCriteria);
+            var searchCriteria = GetSearchCriteriaFromListSearch(listSearchCriteria, false);
+            var productList = repository.Search(searchCriteria);
+            var countCriteria = GetSearchCriteriaFromListSearch(listSearchCriteria, true);
+            var totalProducts = repository.Count(countCriteria);
+            var result = new Tuple<IEnumerable<Product>, int>(productList, totalProducts);
+
+            return result;
         }
 
-        private DetachedCriteria GetSearchCriteriaFromListSearch(ProductListSearchCriteria listSearchCriteria)
+        private DetachedCriteria GetSearchCriteriaFromListSearch(ProductListSearchCriteria listSearchCriteria, bool withTotal)
         {
 
             var searchCriteria = DetachedCriteria.For(typeof(Product), "p")
@@ -106,17 +111,21 @@ namespace ChopShop.Admin.Services
                                                  .SetFetchMode("Categories", FetchMode.Join)
                                                  .SetResultTransformer(new DistinctRootEntityResultTransformer());
 
-            // add ordering by Property
-            var sortBy = listSearchCriteria.SortBy ?? "Name";
-            searchCriteria.AddOrder(listSearchCriteria.Ascending
-                                        ? Order.Asc(sortBy)
-                                        : Order.Desc(sortBy));
-
             if (!listSearchCriteria.ShowDeletedProducts)
             {
                 searchCriteria.Add(Restrictions.Eq("IsDeleted", false)); // default to showing not deleted products
             }
 
+            if (!withTotal)
+            {
+                // add ordering by Property
+                var sortBy = string.IsNullOrEmpty(listSearchCriteria.SortBy) ? "Name" : listSearchCriteria.SortBy;
+                searchCriteria.AddOrder(listSearchCriteria.Ascending
+                                            ? Order.Asc(sortBy)
+                                            : Order.Desc(sortBy));
+                searchCriteria.SetFirstResult(listSearchCriteria.CurrentPage*listSearchCriteria.ResultsPerPage)
+                    .SetMaxResults(listSearchCriteria.ResultsPerPage);
+            }
 
             return searchCriteria;
         }

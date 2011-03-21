@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using ChopShop.Model;
 using ChopShop.Model.DTO;
+using System.Configuration;
+using Telerik.Web.Mvc;
 
 namespace ChopShop.Admin.Web.Controllers
 {
@@ -19,11 +22,55 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ViewResult List(ProductListSearchCriteria searchCriteria)
+        public ViewResult List(int size, int page, string orderBy)
         {
-            var productEntityList = productService.List(searchCriteria);
-            var productList = new ProductListItem().FromEntityList(productEntityList);
+            Tuple<IEnumerable<Product>, int> result = GetResult(page, orderBy);
+            var productList = new ProductListItem().FromEntityList(result.Item1);
+            ViewBag.TotalProducts = result.Item2;
+            ViewBag.CurrentPage = page;
             return View(productList);
+        }
+
+        [HttpGet]
+        [TransactionFilter(TransactionFilterType.ReadUncommitted)]
+        [GridAction(EnableCustomBinding=true)]
+        public ActionResult _List(int size, int page, string orderBy)
+        {
+            Tuple<IEnumerable<Product>, int> result = GetResult(page, orderBy);
+            var productList = new ProductListItem().FromEntityList(result.Item1);
+            return View(new GridModel{Data = productList, Total = result.Item2});
+        }
+
+        private Tuple<IEnumerable<Product>, int> GetResult(int page, string orderBy)
+        {
+            var searchCriteria = new ProductListSearchCriteria
+                                     {
+                                         CurrentPage = page - 1,
+                                         Ascending = GetSortDirection(orderBy),
+                                         SortBy = GetSortArgument(orderBy),
+                                         ResultsPerPage = Convert.ToInt32(ConfigurationManager.AppSettings["ProductsPerPage"])
+                                     };
+            return productService.List(searchCriteria);
+        }
+
+        private string GetSortArgument(string orderBy)
+        {
+            if (orderBy == "~")
+            {
+                return string.Empty;
+            }
+
+            return string.IsNullOrEmpty(orderBy) ? string.Empty : orderBy.Split('-')[0];
+        }
+
+        private bool GetSortDirection(string orderBy)
+        {
+            if (orderBy == "~")
+            {
+                return true;
+            }
+
+            return string.IsNullOrEmpty(orderBy) ? true : orderBy.Split('-')[1] == "asc";
         }
 
         [HttpGet]
@@ -77,7 +124,7 @@ namespace ChopShop.Admin.Web.Controllers
                 ViewBag.ViewType = "Add";
                 return View("Edit", product);
             }
-            return RedirectToAction("Edit", new {id = productEntity.Id});
+            return RedirectToAction("Edit", new { id = productEntity.Id });
         }
 
         [HttpPost]
@@ -91,6 +138,6 @@ namespace ChopShop.Admin.Web.Controllers
             }
             return Json(true);
         }
-       
+
     }
 }

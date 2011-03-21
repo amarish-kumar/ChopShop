@@ -12,6 +12,7 @@ namespace ChopShop.Admin.Web.Models.ViewModel
         public decimal Price { get; set; }
         public List<string> Categories { get; set; }
         public int Quantity { get; set; }
+        public string Sku { get; set; }
 
 
         public List<ProductListItem> FromEntityList(IEnumerable<Product> productEntityList)
@@ -25,7 +26,8 @@ namespace ChopShop.Admin.Web.Models.ViewModel
                     Name = x.Name,
                     Price = x.Prices != null ? (x.Prices.FirstOrDefault() != null ? x.Prices.FirstOrDefault().Value : 0) : 0,
                     Categories = x.Categories != null ? x.Categories.Select(y => y.Name).ToList() : null,
-                    Quantity = x.Quantity
+                    Quantity = x.Quantity,
+                    Sku = x.Sku
                 }).ToList());
             }
             return productList;
