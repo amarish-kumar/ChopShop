@@ -46,12 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Address.cs" />
     <Compile Include="AdminUser.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="DTO\ErrorInfo.cs" />
     <Compile Include="DTO\ProductListSearchCriteria.cs" />
     <Compile Include="Entity.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="OrderItem.cs" />
     <Compile Include="Price.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Product.cs" />

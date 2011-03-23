@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="ChopShop.Model"
+                   assembly="ChopShop.Model"
+                   schema ="dbo">
+  <class name="Customer" table="Customers">
+    <id name="Id" column="Id">
+      <generator class="guid.comb"/>
+    </id>
+    <property name="FirstName" column="FirstName" length="255" not-null="true" />
+    <property name="LastName" column="LastName" length="255" not-null="true" />
+    <component name="BillingAddress" class="Address" />
+    <component name="DeliveryAddress" class="Address" />
+    <property name="ContactNumber" column="ContactNumber" />
+  </class>
+</hibernate-mapping>

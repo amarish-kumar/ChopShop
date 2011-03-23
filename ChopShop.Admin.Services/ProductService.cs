@@ -9,6 +9,7 @@ using ChopShop.Model.DTO;
 using NHibernate;
 using NHibernate.Criterion;
 using NHibernate.Transform;
+using Order = NHibernate.Criterion.Order;
 
 namespace ChopShop.Admin.Services
 {
