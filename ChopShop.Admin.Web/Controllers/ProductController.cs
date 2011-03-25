@@ -22,7 +22,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ViewResult List(int size, int page, string orderBy)
+        public ViewResult List(int size = 0, int page = 0, string orderBy = null)
         {
             Tuple<IEnumerable<Product>, int> result = GetResult(page, orderBy);
             var productList = new ProductListItem().FromEntityList(result.Item1);

@@ -9,8 +9,22 @@
     </id>
     <property name="FirstName" column="FirstName" length="255" not-null="true" />
     <property name="LastName" column="LastName" length="255" not-null="true" />
-    <component name="BillingAddress" class="Address" />
-    <component name="DeliveryAddress" class="Address" />
+    <component name="BillingAddress" class="Address" >
+      <property name="AddressLine1" column="BillingAddressLine1" />
+      <property name="AddressLine2" column="BillingAddressLine2" />
+      <property name="AddressLine3" column="BillingAddressLine3" />
+      <property name="AddressLine4" column="BillingAddressLine4" />
+      <property name="PostCode" column="BillingPostCode" />
+      <property name="Country" column="BillingCountry" />
+    </component>
+    <component name="DeliveryAddress" class="Address">
+      <property name="AddressLine1" column="DeliveryAddressLine1" />
+      <property name="AddressLine2" column="DeliveryAddressLine2" />
+      <property name="AddressLine3" column="DeliveryAddressLine3" />
+      <property name="AddressLine4" column="DeliveryAddressLine4" />
+      <property name="PostCode" column="DeliveryPostCode" />
+      <property name="Country" column="DeliveryCountry" />
+    </component>
     <property name="ContactNumber" column="ContactNumber" />
   </class>
 </hibernate-mapping>

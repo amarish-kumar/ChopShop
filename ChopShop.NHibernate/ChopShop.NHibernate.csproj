@@ -86,7 +86,9 @@
     <EmbeddedResource Include="Mapping\AdminUser.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Mapping\Order.hbm.xml" />
+    <EmbeddedResource Include="Mapping\Order.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Mapping\OrderItem.hbm.xml" />
   </ItemGroup>
   <ItemGroup>

@@ -7,28 +7,30 @@
 </p>
 @if (Model != null && Model.Any())
 { 
-    @(Html.Telerik()
+ @(Html.Telerik()
           .Grid(Model)
           .Name("Products")
           .BindTo(Model)
           .EnableCustomBinding(true)
           .DataKeys(k => k.Add(c => c.Id))
-            .DataBinding(d =>
-            {
-                d.Server().Select("List", "Product");
-                d.Server().Update("Edit", "Product");
-                //d.Ajax().Select("_List", "Product");
-            })
+          .DataBinding(d =>
+          {
+              d.Server().Select("Edit", "Product");
+              d.Server().Update("Edit", "Product");
+              //d.Ajax().Select("_List", "Product");
+              //d.Ajax().Update("_Edit",, "Product");
+          })
           .Columns(c =>
-          {            
+          {
               c.Bound(o => o.Name);
               c.Bound(o => o.Sku);
               c.Bound(o => o.Quantity);
               c.Bound(o => o.Categories).Sortable(false);
               c.Bound(o => o.Price).Sortable(false);
-              c.Command(command=>command.Edit().ButtonType(GridButtonType.Text));
+              
+              c.Command(command => command.Select().ButtonType(GridButtonType.Text));
           })
-                      .Pageable(p => { p.PageSize(20); p.Total((int)ViewBag.TotalProducts); })
+          .Pageable(p => { p.PageSize(20); p.Total((int)ViewBag.TotalProducts); })
           .Sortable()
           .PrefixUrlParameters(false)
       )                   
