@@ -64,6 +64,7 @@
     <EmbeddedResource Include="Admin\PageContent.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>PageContent.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewModels\EditCategory.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

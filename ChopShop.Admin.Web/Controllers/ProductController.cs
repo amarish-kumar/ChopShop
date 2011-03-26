@@ -77,7 +77,7 @@ namespace ChopShop.Admin.Web.Controllers
                 ViewBag.ViewType = "Add";
                 return View("Edit", product);
             }
-            return RedirectToAction("Edit", new {id = productEntity.Id});
+            return RedirectToAction("Edit", new { id = productEntity.Id });
         }
 
         [HttpPost]
@@ -91,6 +91,42 @@ namespace ChopShop.Admin.Web.Controllers
             }
             return Json(true);
         }
-       
+
+        [HttpGet]
+        [TransactionFilter(TransactionFilterType.ReadUncommitted)]
+        public ViewResult Delete(Guid id)
+        {
+            var productEntity = productService.GetSingle(id) ?? new Product();
+
+            if (productEntity.Id == Guid.Empty)
+            {
+                ModelState.AddModelError("", Localisation.ViewModels.EditProduct.ProductNotFound);
+            }
+
+            var product = new EditProduct();
+            product.FromEntity(productEntity);
+            ViewBag.Title = Localisation.Admin.PageContent.Delete;
+            ViewBag.Product = Localisation.Admin.PageContent.Product;
+            ViewBag.ViewType = "Delete";
+            return View(product);
+        }
+
+        [HttpPost]
+        [TransactionFilter(TransactionFilterType.ReadCommitted)]
+        public ActionResult Delete(Guid id, FormCollection collection)
+        {
+            var productEntity = productService.GetSingle(id) ?? new Product();
+
+            if (productEntity.Id == Guid.Empty)
+            {
+                ModelState.AddModelError("", Localisation.ViewModels.EditProduct.ProductNotFound);
+            }
+
+            if (!productService.TryDelete(id)) // validate business logic
+            {
+                AddModelStateErrors(productEntity.Errors);
+            }
+            return RedirectToAction("List");
+        }
     }
 }
