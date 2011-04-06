@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   namespace="ChopShop.Model"
+                   assembly="ChopShop.Model"
+                   schema="dbo">
+  <class name="OrderItem" table="OrderItems">
+    <id name="Id" column="Id">
+      <generator class="guid.comb" /> 
+    </id>
+    <property name="ProductId" column="ProductId" update="false" />
+    <property name="Quantity" column="Quantity" />
+    <component name="Price" class="Price" />
+    <property name="OrderId" column="OrderId" />
+  </class>
+</hibernate-mapping>
