@@ -61,7 +61,7 @@ namespace ChopShop.Admin.Services
         {
             if (CategoryNameExists(category))
             {
-                category.Errors.Add(new ErrorInfo("Name", Localisation.ViewModels.EditCategory.CategoryExists));
+                category.AddError(new ErrorInfo("Name", Localisation.ViewModels.EditCategory.CategoryExists));
             }
 
             return !category.Errors.Any();

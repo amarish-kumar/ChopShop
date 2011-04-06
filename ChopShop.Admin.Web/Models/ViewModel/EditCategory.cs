@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using ChopShop.Model;
 
 namespace ChopShop.Admin.Web.Models.ViewModel
@@ -32,6 +34,30 @@ namespace ChopShop.Admin.Web.Models.ViewModel
                                };
 
             return category;
+        }
+
+        public List<EditCategory> CategoryList(IEnumerable<Category> allCategories, Guid productId, IEnumerable<Category> allCategoriesForProduct = null)
+        {
+            if (allCategories != null  && allCategories.Any())
+            {
+                var categoryList = allCategories.Select(x => new EditCategory { Id = x.Id, Name = x.Name, Description = x.Description })
+                                                .OrderBy(x => x.Name)
+                                                .ToList();
+
+                if (allCategoriesForProduct != null && allCategoriesForProduct.Any())
+                {
+                    categoryList.ForEach(x =>
+                                             {
+                                                 if (allCategoriesForProduct.FirstOrDefault(y => y.Id == x.Id) != null)
+                                                 {
+                                                     x.IsInProduct = true;
+                                                 }
+                                             });
+                }
+
+                return categoryList;
+            }
+            return null;
         }
     }
 }

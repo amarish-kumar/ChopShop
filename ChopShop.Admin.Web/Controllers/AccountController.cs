@@ -16,6 +16,7 @@ namespace ChopShop.Admin.Web.Controllers
             this.adminAuthenticationService = adminAuthenticationService;
         }
 
+        [HttpGet]
         public ViewResult LogOn()
         {
             adminAuthenticationService.SignOut(HttpContext.Session);
@@ -55,7 +56,7 @@ namespace ChopShop.Admin.Web.Controllers
         {
             adminAuthenticationService.SignOut(HttpContext.Session);
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("LogOn", "Account");
         }
    
     }
