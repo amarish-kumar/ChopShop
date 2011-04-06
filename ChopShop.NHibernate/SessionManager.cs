@@ -33,12 +33,12 @@ namespace ChopShop.NHibernate
 
 //#if (DEBUG)
 //                {
-                var schemadrop = new SchemaExport(configuration);
-                schemadrop.Drop(true,false);
+                //var schemadrop = new SchemaExport(configuration);
+                //schemadrop.Drop(true,false);
                 
-                var schemaUpdate = new SchemaUpdate(configuration);
+                //var schemaUpdate = new SchemaUpdate(configuration);
                 
-                schemaUpdate.Execute(true, true);
+                //schemaUpdate.Execute(true, true);
 
                 //var schemaCreate = new SchemaExport(configuration);
                 //schemaCreate.Create(true, true);
