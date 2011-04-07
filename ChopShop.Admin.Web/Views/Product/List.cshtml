@@ -1,5 +1,7 @@
 ﻿@model IEnumerable<ChopShop.Admin.Web.Models.ViewModel.ProductListItem>
-@using Telerik.Web.Mvc.UI
+@using ChopShop.Admin.Web.Models.ViewModel
+@using ChopShop.Admin.Web.Models.DTO
+@using ChopShop.Admin.Web.Helpers
 <h2>
     List</h2>
 <p>
@@ -7,31 +9,33 @@
 </p>
 @if (Model != null && Model.Any())
 { 
- @(Html.Telerik()
-          .Grid(Model)
-          .Name("Products")
-          .BindTo(Model)
-          .EnableCustomBinding(true)
-          .DataKeys(k => k.Add(c => c.Id))
-          .DataBinding(d =>
-          {
-              d.Server().Select("Edit", "Product");
-              d.Server().Update("Edit", "Product");
-              //d.Ajax().Select("_List", "Product");
-              //d.Ajax().Update("_Edit",, "Product");
-          })
-          .Columns(c =>
-          {
-              c.Bound(o => o.Name);
-              c.Bound(o => o.Sku);
-              c.Bound(o => o.Quantity);
-              c.Bound(o => o.Categories).Sortable(false);
-              c.Bound(o => o.Price).Sortable(false);
-              
-              c.Command(command => command.Select().ButtonType(GridButtonType.Text));
-          })
-          .Pageable(p => { p.PageSize(20); p.Total((int)ViewBag.TotalProducts); })
-          .Sortable()
-          .PrefixUrlParameters(false)
-      )                   
+<table>
+    <thead>
+        <tr>    
+            <th>@(Html.HeaderLink<ProductListItem>(x => x.Name, new Dictionary<string, object>{ {"id","nameHeader"} }))</th>
+            <th>@(Html.HeaderLink<ProductListItem>(x => x.Sku, new Dictionary<string, object>{ {"id","nameHeader"} }))</th>
+            <th>@(Html.HeaderLink<ProductListItem>(x => x.Quantity, new Dictionary<string, object>{ {"id","nameHeader"} }))</th>
+            <th>@(MvcExtensions.GetDisplayName<ProductListItem>(x=>x.Categories))</th>
+            <th>@(MvcExtensions.GetDisplayName<ProductListItem>(x=>x.Prices))</th>
+        </tr>
+    </thead>
+    <tbody id="listBody">
+        @foreach (var listItem in Model)
+        { 
+        <tr>
+            <td>@listItem.Name</td>
+            <td>@listItem.Sku</td>
+            <td>@listItem.Quantity</td>
+            <td>@DisplayHelper.ProductCategoriesForList(listItem.Categories)</td>
+            <td>@DisplayHelper.ProductPriceForList(listItem.Prices)</td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5">@{Html.RenderPartial("_PagingPartial", (PagingDTO)ViewBag.Paging);}</td>
+        </tr>
+    </tfoot>
+</table>
 }
+

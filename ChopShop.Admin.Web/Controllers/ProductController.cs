@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
+using ChopShop.Admin.Web.Models.DTO;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using ChopShop.Model;
@@ -22,57 +23,46 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ViewResult List(int size = 0, int page = 0, string orderBy = null)
+        public ViewResult List(int page = 0, int perPage = 25, string orderBy = null, string asc = "true")
         {
-            Tuple<IEnumerable<Product>, int> result = GetResult(page, orderBy);
+            Tuple<IEnumerable<Product>, int> result = GetProductList(page, orderBy, asc, perPage);
             var productList = new ProductListItem().FromEntityList(result.Item1);
-            ViewBag.TotalProducts = result.Item2;
-            ViewBag.CurrentPage = page;
+            var pagingDto = new PagingDTO {TotalItems = result.Item2, CurrentPage = page, PerPage = perPage, TotalPages = GetTotalPages(result.Item2, perPage)};
+            ViewBag.Paging = pagingDto;
             return View(productList);
         }
 
-        [HttpGet]
-        [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        [GridAction(EnableCustomBinding=true)]
-        public ActionResult _List(int size, int page, string orderBy)
+        private int GetTotalPages(int totalItems, int perPage)
         {
-            Tuple<IEnumerable<Product>, int> result = GetResult(page, orderBy);
-            var productList = new ProductListItem().FromEntityList(result.Item1);
-            return View(new GridModel{Data = productList, Total = result.Item2});
+            if (totalItems % perPage == 0)
+            {
+                return totalItems/perPage;
+            }
+
+            return Convert.ToInt32(Math.Floor((double) (totalItems/perPage)) + 1);
         }
 
-        private Tuple<IEnumerable<Product>, int> GetResult(int page, string orderBy)
+        //[HttpGet]
+        //[TransactionFilter(TransactionFilterType.ReadUncommitted)]
+        //public ActionResult _List(int page, int perPage, string orderBy, bool ascending)
+        //{
+        //    Tuple<IEnumerable<Product>, int> result = GetProductList(page, orderBy, ascending, perPage);
+        //    var productList = new ProductListItem().FromEntityList(result.Item1);
+        //    return View(new GridModel{Data = productList, Total = result.Item2});
+        //}
+
+        private Tuple<IEnumerable<Product>, int> GetProductList(int page, string orderBy, string ascending, int perPage)
         {
             var searchCriteria = new ProductListSearchCriteria
                                      {
                                          CurrentPage = page - 1,
-                                         Ascending = GetSortDirection(orderBy),
-                                         SortBy = GetSortArgument(orderBy),
-                                         ResultsPerPage = Convert.ToInt32(ConfigurationManager.AppSettings["ProductsPerPage"])
+                                         Ascending = ascending.ToUpper() == "TRUE",
+                                         SortBy = orderBy,
+                                         ResultsPerPage = perPage
                                      };
             return productService.List(searchCriteria);
         }
-
-        private string GetSortArgument(string orderBy)
-        {
-            if (orderBy == "~")
-            {
-                return string.Empty;
-            }
-
-            return string.IsNullOrEmpty(orderBy) ? string.Empty : orderBy.Split('-')[0];
-        }
-
-        private bool GetSortDirection(string orderBy)
-        {
-            if (orderBy == "~")
-            {
-                return true;
-            }
-
-            return string.IsNullOrEmpty(orderBy) ? true : orderBy.Split('-')[1] == "asc";
-        }
-
+       
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
         public ViewResult Edit(Guid id)

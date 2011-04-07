@@ -115,6 +115,15 @@ namespace ChopShop.Localisation.ViewModels {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to SKU Code.
+        /// </summary>
+        public static string Sku {
+            get {
+                return ResourceManager.GetString("Sku", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Sku already exists. Please choose a new Sku or edit the existing Sku.
         /// </summary>
         public static string SkuExists {

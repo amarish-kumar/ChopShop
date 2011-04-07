@@ -144,4 +144,7 @@
   <data name="SKURequired" xml:space="preserve">
     <value>Please provide a code for this product</value>
   </data>
+  <data name="Sku" xml:space="preserve">
+    <value>SKU Code</value>
+  </data>
 </root>
