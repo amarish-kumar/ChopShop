@@ -7,7 +7,7 @@ var admin = {
     categoriesHaveChanged: false,
 
     getAllCategories: function (callback) {
-        $.get('/Category/CategoriesForSelectDialog', { 'id': admin.product.Id }, function (result) {
+        $.get('/Category/_CategoriesForSelectDialog', { 'id': admin.product.Id }, function (result) {
             if (callback) {
                 callback(result);
             }
@@ -50,7 +50,7 @@ var admin = {
     },
 
     addCategoryToProduct: function (categoryId, callback) {
-        $.post('/Category/AddToProduct', { 'categoryId': categoryId, 'productId': admin.product.Id }, function (result) {
+        $.post('/Category/_AddToProduct', { 'categoryId': categoryId, 'productId': admin.product.Id }, function (result) {
             if (callback) {
                 admin.categoriesHaveChanged = true;
                 callback(result);
@@ -60,7 +60,7 @@ var admin = {
     },
 
     removeCategoryFromProduct: function (categoryId, callback) {
-        $.post('/Category/RemoveFromProduct', { 'categoryId': categoryId, 'productId': admin.product.Id }, function (result) {
+        $.post('/Category/_RemoveFromProduct', { 'categoryId': categoryId, 'productId': admin.product.Id }, function (result) {
             if (callback) {
                 admin.categoriesHaveChanged = true;
                 callback(result);
@@ -70,7 +70,7 @@ var admin = {
     },
 
     getAllCategoriesForProduct: function (callback) {
-        $.get('/Category/CategoriesForProduct', { 'id': admin.product.Id }, function (result) {
+        $.get('/Category/_CategoriesForProduct', { 'id': admin.product.Id }, function (result) {
             if (callback) {
                 callback(result);
             }
@@ -115,7 +115,7 @@ var admin = {
         };
 
         $.ajax({
-            url: '/Product/AddPrice',
+            url: '/Product/_AddPrice',
             type: 'POST',
             data: JSON.stringify(price),
             dataType: 'json',

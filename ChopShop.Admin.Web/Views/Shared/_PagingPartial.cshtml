@@ -1,0 +1,50 @@
+﻿@model ChopShop.Admin.Web.Models.DTO.PagingDTO
+@using ChopShop.Admin.Web.Helpers
+
+
+@{if (Model.CurrentPage == 1)
+  { 
+    @("First");
+    @Html.Raw("&nbsp;");
+    @("Previous");
+  }
+  else
+  { 
+    @Html.PagingLink("First", 1, Model.PerPage, new Dictionary<string, object> {{"id", "firstPage"} });    
+    @Html.Raw("&nbsp;");
+    @Html.PagingLink("Previous", Model.CurrentPage -1, Model.PerPage, new Dictionary<string, object> { { "id", "previousPage" } });    
+  }
+}
+
+@Html.Raw("&nbsp;")
+
+@{for (int p = 1; p <= Model.TotalPages; p++)
+  {
+      if (p == Model.CurrentPage)
+      {
+         @(p.ToString());
+      }
+      else
+      { 
+        @Html.PagingLink(p.ToString(), p, Model.PerPage, new Dictionary<string, object> { { "id", string.Format("page{0}", p) } });        
+      }
+      
+    @Html.Raw("&nbsp;")
+  }
+}
+
+@Html.Raw("&nbsp;")
+
+@{if (Model.CurrentPage == Model.TotalPages)
+  {
+    @("Next");
+    @Html.Raw("&nbsp;");
+    @("Last");
+  }
+  else
+  {
+    @Html.PagingLink("Next", Model.CurrentPage+1, Model.PerPage, new Dictionary<string, object> { { "id", "nextPage" } });    
+    @Html.Raw("&nbsp;");
+    @Html.PagingLink("Last", Model.TotalPages, Model.PerPage, new Dictionary<string, object> { { "id", "lastPage" } });
+  }
+}

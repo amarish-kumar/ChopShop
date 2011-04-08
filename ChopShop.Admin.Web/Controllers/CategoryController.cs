@@ -21,7 +21,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public JsonResult CategoriesForSelectDialog(Guid id)
+        public JsonResult _CategoriesForSelectDialog(Guid id)
         {
             var categoriesForProduct = categoryService.ListCategoriesForProduct(id);
             var allCategories = categoryService.List();
@@ -33,7 +33,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public JsonResult CategoriesForProduct(Guid id)
+        public JsonResult _CategoriesForProduct(Guid id)
         {
             var categoriesForProduct = categoryService.ListCategoriesForProduct(id);
 
@@ -43,7 +43,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpPost]
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
-        public JsonResult AddToProduct(Guid categoryId, Guid productId)
+        public JsonResult _AddToProduct(Guid categoryId, Guid productId)
         {
             categoryService.AddProductToCategory(categoryId, productId);
             return Json(true);
@@ -51,7 +51,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpPost]
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
-        public JsonResult RemoveFromProduct(Guid categoryId, Guid productId)
+        public JsonResult _RemoveFromProduct(Guid categoryId, Guid productId)
         {
             categoryService.RemoveProductFromCategory(categoryId, productId);
             return Json(true);

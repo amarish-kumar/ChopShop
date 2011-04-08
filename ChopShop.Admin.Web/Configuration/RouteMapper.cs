@@ -22,10 +22,11 @@ namespace ChopShop.Admin.Web.Configuration
 
         private void ProductRoutes()
         {
+           
             routes.MapRoute(
-                "DefaultProduct",
+                "DefaultProductList",
                 "Product/",
-                new { controller = "Product", action = "List" }
+                new { controller = "Product", action = "List", size=0, page = 0, orderBy = string.Empty }
                 );
         }
 
@@ -48,7 +49,7 @@ namespace ChopShop.Admin.Web.Configuration
             routes.MapRoute(
                 "LogOn",
                 "LogOn",
-                new { controller="Account", action="LogOn"}
+                new { controller = "Account", action = "LogOn" }
                 );
         }
     }

@@ -1,42 +1,43 @@
 ﻿@model IEnumerable<ChopShop.Admin.Web.Models.ViewModel.ProductListItem>
-
-<h2>List</h2>
-
+@using ChopShop.Admin.Web.Models.ViewModel
+@using ChopShop.Admin.Web.Models.DTO
+@using ChopShop.Admin.Web.Helpers
+<h2>
+    List</h2>
 <p>
     @Html.ActionLink("Create New", "Add")
 </p>
+@if (Model != null && Model.Any())
+{ 
 <table>
-    <tr>
-        <th></th>
-        <th>
-            Name
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            Quantity
-        </th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-        <td>
-            @item.Name
-        </td>
-        <td>
-            @String.Format("{0:F}", item.Price)
-        </td>
-        <td>
-            @item.Quantity
-
-        </td>
-    </tr>
-}
-
+    <thead>
+        <tr>    
+            <th>@(Html.HeaderLink<ProductListItem>(x => x.Name, new Dictionary<string, object>{ {"id","nameHeader"} }))</th>
+            <th>@(Html.HeaderLink<ProductListItem>(x => x.Sku, new Dictionary<string, object>{ {"id","nameHeader"} }))</th>
+            <th>@(Html.HeaderLink<ProductListItem>(x => x.Quantity, new Dictionary<string, object>{ {"id","nameHeader"} }))</th>
+            <th>@(MvcExtensions.GetDisplayName<ProductListItem>(x=>x.Categories))</th>
+            <th>@(MvcExtensions.GetDisplayName<ProductListItem>(x=>x.Prices))</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="listBody">
+        @foreach (var listItem in Model)
+        { 
+        <tr>
+            <td>@listItem.Name</td>
+            <td>@listItem.Sku</td>
+            <td>@listItem.Quantity</td>
+            <td>@DisplayHelper.ProductCategoriesForList(listItem.Categories)</td>
+            <td>@DisplayHelper.ProductPriceForList(listItem.Prices)</td>
+            <td>@Html.ActionLink("View", "Edit", new {id=listItem.Id }) &nbsp; @{Html.RenderPartial("_DeleteProductPartial", listItem.Id);}</td>
+        </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="5">@{Html.RenderPartial("_PagingPartial", (PagingDTO)ViewBag.Paging);}</td>
+        </tr>
+    </tfoot>
 </table>
+}
 

@@ -1,6 +1,6 @@
 ﻿namespace ChopShop.Model
 {
-    public class Address : Entity
+    public class Address
     {
         public virtual string AddressLine1 { get; set; }
         public virtual string AddressLine2 { get; set; }

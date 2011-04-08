@@ -13,5 +13,7 @@
     <property name="TaxRate" column="TaxRate" not-null="true" />
     <property name="Currency" column="Currency" not-null="true" />
     <property name="ProductId" column="ProductId" not-null="true" />
+    <property name="StartDate" column="StartDate" />
+    <property name="EndDate" column="EndDate" />
   </class>
 </hibernate-mapping>

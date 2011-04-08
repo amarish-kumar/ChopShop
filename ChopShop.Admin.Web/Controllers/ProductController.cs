@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
+using ChopShop.Admin.Web.Models.DTO;
 using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using ChopShop.Model;
@@ -19,13 +22,46 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ViewResult List(ProductListSearchCriteria searchCriteria)
+        public ViewResult List(int page = 0, int perPage = 25, string orderBy = null, string asc = "true")
         {
-            var productEntityList = productService.List(searchCriteria);
-            var productList = new ProductListItem().FromEntityList(productEntityList);
+            Tuple<IEnumerable<Product>, int> result = GetProductList(page, orderBy, asc, perPage);
+            var productList = new ProductListItem().FromEntityList(result.Item1);
+            var pagingDto = new PagingDTO {TotalItems = result.Item2, CurrentPage = page, PerPage = perPage, TotalPages = GetTotalPages(result.Item2, perPage)};
+            ViewBag.Paging = pagingDto;
             return View(productList);
         }
 
+        private int GetTotalPages(int totalItems, int perPage)
+        {
+            if (totalItems % perPage == 0)
+            {
+                return totalItems/perPage;
+            }
+
+            return Convert.ToInt32(Math.Floor((double) (totalItems/perPage)) + 1);
+        }
+
+        //[HttpGet]
+        //[TransactionFilter(TransactionFilterType.ReadUncommitted)]
+        //public ActionResult _List(int page, int perPage, string orderBy, bool ascending)
+        //{
+        //    Tuple<IEnumerable<Product>, int> result = GetProductList(page, orderBy, ascending, perPage);
+        //    var productList = new ProductListItem().FromEntityList(result.Item1);
+        //    return View(new GridModel{Data = productList, Total = result.Item2});
+        //}
+
+        private Tuple<IEnumerable<Product>, int> GetProductList(int page, string orderBy, string ascending, int perPage)
+        {
+            var searchCriteria = new ProductListSearchCriteria
+                                     {
+                                         CurrentPage = page - 1,
+                                         Ascending = ascending.ToUpper() == "TRUE",
+                                         SortBy = orderBy,
+                                         ResultsPerPage = perPage
+                                     };
+            return productService.List(searchCriteria);
+        }
+       
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
         public ViewResult Edit(Guid id)
@@ -77,12 +113,12 @@ namespace ChopShop.Admin.Web.Controllers
                 ViewBag.ViewType = "Add";
                 return View("Edit", product);
             }
-            return RedirectToAction("Edit", new {id = productEntity.Id});
+            return RedirectToAction("Edit", new { id = productEntity.Id });
         }
 
         [HttpPost]
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
-        public JsonResult AddPrice(EditPrice price)
+        public JsonResult _AddPrice(EditPrice price)
         {
             var priceEntity = price.ToEntity();
             if (!productService.TryAddPrice(priceEntity))
@@ -91,6 +127,26 @@ namespace ChopShop.Admin.Web.Controllers
             }
             return Json(true);
         }
-       
+
+        [HttpPost]
+        [TransactionFilter(TransactionFilterType.ReadCommitted)]
+        public JsonResult _Delete(Guid id)
+        {
+            var IsDeleted = productService.TryDelete(id);
+            return Json(IsDeleted);
+        }
+
+        [HttpPost]
+        [TransactionFilter(TransactionFilterType.ReadUncommitted)]
+        public RedirectToRouteResult Delete(Guid id, int page = 0, int perPage = 25, string orderBy = null, string asc = "true")
+        {
+            var IsDeleted = productService.TryDelete(id);
+            if (IsDeleted)
+            {
+                return RedirectToAction("List", new {page = page, perPage = perPage, orderBy = orderBy, asc = asc});
+            }
+            throw new FileNotFoundException();
+        }
+
     }
 }

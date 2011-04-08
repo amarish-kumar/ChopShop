@@ -33,7 +33,7 @@ namespace ChopShop.Admin.Web.Tests.Controllers
             service.Setup(x => x.ListCategoriesForProduct(It.IsAny<Guid>())).Returns(Fakes.FakeCategoryList())
                 .Verifiable();
 
-            var action = controller.CategoriesForSelectDialog(Guid.NewGuid());
+            var action = controller._CategoriesForSelectDialog(Guid.NewGuid());
 
             Assert.That(action, Is.Not.Null);
             Assert.That(action, Is.InstanceOf<JsonResult>());
@@ -46,7 +46,7 @@ namespace ChopShop.Admin.Web.Tests.Controllers
             service.Setup(x => x.ListCategoriesForProduct(It.IsAny<Guid>())).Returns(Fakes.FakeCategoryList()).
                 Verifiable();
 
-            var action = controller.CategoriesForProduct(Guid.NewGuid());
+            var action = controller._CategoriesForProduct(Guid.NewGuid());
 
             Assert.That(action, Is.Not.Null);
             Assert.That(action, Is.InstanceOf<JsonResult>());

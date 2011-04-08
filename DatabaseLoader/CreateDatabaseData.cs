@@ -119,6 +119,7 @@ namespace DatabaseLoader
                                     };
 
                 var products = new List<Product> { bluepedal, redpedal, bigEngine };
+                products.AddRange(GetProducts());
                 foreach (var product in products)
                 {
                     session.Save(product);
@@ -138,6 +139,16 @@ namespace DatabaseLoader
 
                 tx.Commit();
             }
+        }
+
+        private List<Product> GetProducts()
+        {
+            var products = new List<Product>();
+            for (int i = 1; i <= 50; i++)
+            {
+                products.Add(new Product{Name = string.Format("Product {0}", i), Description = string.Format("Description for Product {0}", i), Quantity = i + 10, Sku = string.Format("0000{0}", i)});
+            }
+            return products;
         }
     }
 }

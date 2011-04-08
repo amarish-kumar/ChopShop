@@ -28,9 +28,10 @@ namespace ChopShop.Admin.Web.Tests.Controllers
         [Test]
         public void List_should_invoke_List_on_ProductService()
         {
-            service.Setup(x => x.List(It.IsAny<ProductListSearchCriteria>())).Returns(Fakes.FakeProductList()).Verifiable();
+            var fakeReturn = new Tuple<IEnumerable<Product>, int>(Fakes.FakeProductList(), 10);
+            service.Setup(x => x.List(It.IsAny<ProductListSearchCriteria>())).Returns(fakeReturn).Verifiable();
 
-            var action = controller.List(new ProductListSearchCriteria());
+            var action = controller.List(0, 0, string.Empty);
             var model = (List<ProductListItem>)action.ViewData.Model;
 
             Assert.That(action, Is.Not.Null);

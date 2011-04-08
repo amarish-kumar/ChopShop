@@ -13,6 +13,6 @@ namespace ChopShop.Admin.Services.Interfaces
         Product GetSingle(Guid productId);
         bool TryAdd(Product product);
         bool TryAddPrice(Price price);
-        IEnumerable<Product> List(ProductListSearchCriteria searchCriteria);
+        Tuple<IEnumerable<Product>, int> List(ProductListSearchCriteria searchCriteria);
     }
 }
