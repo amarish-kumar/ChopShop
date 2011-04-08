@@ -54,6 +54,7 @@ namespace ChopShop.Admin.Services
                                                  .Add(Restrictions.Eq("Id", productId));
             var product = repository.Search(searchCriteria).FirstOrDefault();
             product.IsDeleted = true;
+            product.Quantity = 0;
             repository.Update(product);
             return true;
         }

@@ -128,9 +128,31 @@ namespace ChopShop.Admin.Web.Controllers
             return Json(true);
         }
 
+<<<<<<< HEAD
+        [HttpPost]
+        [TransactionFilter(TransactionFilterType.ReadCommitted)]
+        public JsonResult _Delete(Guid id)
+        {
+            var IsDeleted = productService.TryDelete(id);
+            return Json(IsDeleted);
+        }
+
+        [HttpPost]
+        [TransactionFilter(TransactionFilterType.ReadUncommitted)]
+        public RedirectToRouteResult Delete(Guid id, int page = 0, int perPage = 25, string orderBy = null, string asc = "true")
+        {
+            var IsDeleted = productService.TryDelete(id);
+            if (IsDeleted)
+            {
+                return RedirectToAction("List", new {page = page, perPage = perPage, orderBy = orderBy, asc = asc});
+            }
+            throw new FileNotFoundException();
+        }
+
+=======
         [HttpGet]
         [TransactionFilter(TransactionFilterType.ReadUncommitted)]
-        public ViewResult DeleteConfirmation(Guid id, int page = 0, int perPage = 25, string orderBy = null, string asc = "true")
+        public ViewResult Delete(Guid id)
         {
             var productEntity = productService.GetSingle(id) ?? new Product();
 
@@ -149,7 +171,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpPost]
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
-        public RedirectToRouteResult Delete(Guid id,int page = 0, int perPage = 25, string orderBy = null, string asc = "true")
+        public ActionResult Delete(Guid id, FormCollection collection)
         {
             var productEntity = productService.GetSingle(id) ?? new Product();
 
@@ -162,7 +184,8 @@ namespace ChopShop.Admin.Web.Controllers
             {
                 AddModelStateErrors(productEntity.Errors);
             }
-            return RedirectToAction("List", new {page = page, perPage = perPage, orderBy = orderBy, asc = asc});
+            return RedirectToAction("List");
         }
+>>>>>>> US4
     }
 }
