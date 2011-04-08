@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Web.Mvc;
 using ChopShop.Admin.Services.Interfaces;
 using ChopShop.Admin.Web.Models.DTO;
@@ -7,8 +8,6 @@ using ChopShop.Admin.Web.Models.ViewModel;
 using ChopShop.Configuration;
 using ChopShop.Model;
 using ChopShop.Model.DTO;
-using System.Configuration;
-using Telerik.Web.Mvc;
 
 namespace ChopShop.Admin.Web.Controllers
 {
@@ -119,7 +118,7 @@ namespace ChopShop.Admin.Web.Controllers
 
         [HttpPost]
         [TransactionFilter(TransactionFilterType.ReadCommitted)]
-        public JsonResult AddPrice(EditPrice price)
+        public JsonResult _AddPrice(EditPrice price)
         {
             var priceEntity = price.ToEntity();
             if (!productService.TryAddPrice(priceEntity))
@@ -127,6 +126,26 @@ namespace ChopShop.Admin.Web.Controllers
                 return Json(false);
             }
             return Json(true);
+        }
+
+        [HttpPost]
+        [TransactionFilter(TransactionFilterType.ReadCommitted)]
+        public JsonResult _Delete(Guid id)
+        {
+            var IsDeleted = productService.TryDelete(id);
+            return Json(IsDeleted);
+        }
+
+        [HttpPost]
+        [TransactionFilter(TransactionFilterType.ReadUncommitted)]
+        public RedirectToRouteResult Delete(Guid id, int page = 0, int perPage = 25, string orderBy = null, string asc = "true")
+        {
+            var IsDeleted = productService.TryDelete(id);
+            if (IsDeleted)
+            {
+                return RedirectToAction("List", new {page = page, perPage = perPage, orderBy = orderBy, asc = asc});
+            }
+            throw new FileNotFoundException();
         }
 
     }

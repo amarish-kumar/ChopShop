@@ -1,0 +1,15 @@
+﻿@model System.Guid
+
+@using (Html.BeginForm("Delete", "Product")) { 
+<input type="submit" value="Delete" />
+<input type="hidden" name="id" value="@Model" />
+    
+    
+var queryStrings = HttpContext.Current.Request.QueryString;
+if(queryStrings != null){
+    foreach(string queryString in queryStrings){
+    @Html.Raw(string.Format(@"<input type=""hidden"" name=""{0}"" value=""{1}"" />", queryString, queryStrings[queryString]));
+    }
+}
+   
+}

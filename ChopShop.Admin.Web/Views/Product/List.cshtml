@@ -17,6 +17,7 @@
             <th>@(Html.HeaderLink<ProductListItem>(x => x.Quantity, new Dictionary<string, object>{ {"id","nameHeader"} }))</th>
             <th>@(MvcExtensions.GetDisplayName<ProductListItem>(x=>x.Categories))</th>
             <th>@(MvcExtensions.GetDisplayName<ProductListItem>(x=>x.Prices))</th>
+            <th></th>
         </tr>
     </thead>
     <tbody id="listBody">
@@ -28,6 +29,7 @@
             <td>@listItem.Quantity</td>
             <td>@DisplayHelper.ProductCategoriesForList(listItem.Categories)</td>
             <td>@DisplayHelper.ProductPriceForList(listItem.Prices)</td>
+            <td>@Html.ActionLink("View", "Edit", new {id=listItem.Id }) &nbsp; @{Html.RenderPartial("_DeleteProductPartial", listItem.Id);}</td>
         </tr>
         }
     </tbody>
