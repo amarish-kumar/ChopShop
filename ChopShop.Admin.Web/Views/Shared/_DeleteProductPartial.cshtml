@@ -1,6 +1,6 @@
 ﻿@model System.Guid
 
-@using (Html.BeginForm("Delete", "Product")) { 
+@using (Html.BeginForm("DeleteConfirmation", "Product", FormMethod.Get)) { 
 <input type="submit" value="Delete" />
 <input type="hidden" name="id" value="@Model" />
     

@@ -1,4 +1,6 @@
-﻿s@model ChopShop.Admin.Web.Models.ViewModel.EditProduct
+﻿@model ChopShop.Admin.Web.Models.ViewModel.EditProduct
+@using ChopShop.Admin.Web.Helpers
+@using ChopShop.Admin.Web.Models.ViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -8,25 +10,34 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <fieldset>
-    <legend>EditProduct</legend>
+    <legend>Delete Product</legend>
 
-    <div class="display-label">Name</div>
+    <div class="display-label">@(MvcExtensions.GetDisplayName<EditProduct>(x=>x.Name))</div>
     <div class="display-field">@Model.Name</div>
 
-    <div class="display-label">Description</div>
+    <div class="display-label">@(MvcExtensions.GetDisplayName<EditProduct>(x=>x.Description))</div>
     <div class="display-field">@Model.Description</div>
 
-    <div class="display-label">Sku</div>
+    <div class="display-label">@(MvcExtensions.GetDisplayName<EditProduct>(x=>x.Sku))</div>
     <div class="display-field">@Model.Sku</div>
 
-    <div class="display-label">Quantity</div>
+    <div class="display-label">@(MvcExtensions.GetDisplayName<EditProduct>(x=>x.Quantity))</div>
     <div class="display-field">@Model.Quantity</div>
 </fieldset>
-@using (Html.BeginForm()) {
-    <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+@using (Html.BeginForm("DeleteConfirmation", "Product", FormMethod.Get)) { 
+<input type="submit" value="Delete" />
+<input type="hidden" name="id" value="@Model.Id" />
+    
+    
+var queryStrings = HttpContext.Current.Request.QueryString;
+if(queryStrings != null){
+    foreach(string queryString in queryStrings){
+    @Html.Raw(string.Format(@"<input type=""hidden"" name=""{0}"" value=""{1}"" />", queryString, queryStrings[queryString]));
+    }
 }
+   
+}
+
+<a href="javascript:history.back();">Back to List</a>
 
 
