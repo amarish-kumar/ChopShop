@@ -1,5 +1,6 @@
 ﻿@model System.Guid
 
+<div style="float:right;">
 @using (Html.BeginForm("DeleteConfirmation", "Product", FormMethod.Get)) { 
 <input type="submit" value="Delete" />
 <input type="hidden" name="id" value="@Model" />
@@ -13,3 +14,4 @@ if(queryStrings != null){
 }
    
 }
+</div>

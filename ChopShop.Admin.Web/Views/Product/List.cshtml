@@ -29,7 +29,7 @@
             <td>@listItem.Quantity</td>
             <td>@DisplayHelper.ProductCategoriesForList(listItem.Categories)</td>
             <td>@DisplayHelper.ProductPriceForList(listItem.Prices)</td>
-            <td>@Html.ActionLink("View", "Edit", new {id=listItem.Id }) &nbsp; @{Html.RenderPartial("_DeleteProductPartial", listItem.Id);}</td>
+            <td>@Html.ActionLink("View", "Edit", new { id = listItem.Id}, new{@class = "button" }) &nbsp; @{Html.RenderPartial("_DeleteProductPartial", listItem.Id);}</td>
         </tr>
         }
     </tbody>

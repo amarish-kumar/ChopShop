@@ -24,7 +24,7 @@
     <div class="display-label">@(MvcExtensions.GetDisplayName<EditProduct>(x=>x.Quantity))</div>
     <div class="display-field">@Model.Quantity</div>
 </fieldset>
-@using (Html.BeginForm("DeleteConfirmation", "Product", FormMethod.Get)) { 
+@using (Html.BeginForm("Delete", "Product", FormMethod.Post)) { 
 <input type="submit" value="Delete" />
 <input type="hidden" name="id" value="@Model.Id" />
     
