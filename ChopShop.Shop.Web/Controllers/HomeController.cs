@@ -10,14 +10,8 @@ namespace ChopShop.Shop.Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to Chop Shop!";
-
             return View();
         }
 
-        public ActionResult About()
-        {
-            return View();
-        }
     }
 }

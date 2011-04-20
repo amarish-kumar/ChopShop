@@ -1,345 +1,160 @@
-﻿/*----------------------------------------------------------
-The base color for this template is #5c87b2. If you'd like
-to use a different color start by replacing all instances of
-#5c87b2 with your new color.
-----------------------------------------------------------*/
 body
 {
-    background-color: #5c87b2;
-    font-size: 75%;
-    font-family: Verdana, Tahoma, Arial, "Helvetica Neue", Helvetica, Sans-Serif;
-    margin: 0;
-    padding: 0;
-    color: #696969;
+	font-family: Droid Sans-Mono, Verdana;
+	margin: auto;
+	width: 750px;
 }
 
-a:link
+header, footer, nav, section
 {
-    color: #034af3;
-    text-decoration: underline;
-}
-a:visited
-{
-    color: #505abc;
-}
-a:hover
-{
-    color: #1d60ff;
-    text-decoration: none;
-}
-a:active
-{
-    color: #12eb87;
-}
-
-p, ul
-{
-    margin-bottom: 20px;
-    line-height: 1.6em;
-}
-
-/* HEADINGS   
-----------------------------------------------------------*/
-h1, h2, h3, h4, h5, h6
-{
-    font-size: 1.5em;
-    color: #000;
+	display: block;
 }
 
 h1
 {
-    font-size: 2em;
-    padding-bottom: 0;
-    margin-bottom: 0;
-}
-h2
-{
-    padding: 0 0 10px 0;
-}
-h3
-{
-    font-size: 1.2em;
-}
-h4
-{
-    font-size: 1.1em;
-}
-h5, h6
-{
-    font-size: 1em;
+	font-size: 3em;
 }
 
-/* this rule styles <h2> tags that are the 
-first child of the left and right table columns */
-.rightColumn > h1, .rightColumn > h2, .leftColumn > h1, .leftColumn > h2
+#content
 {
-    margin-top: 0;
+	overflow: auto;
+	clear: both;
+	margin-top: 5px;
 }
 
-/* PRIMARY LAYOUT ELEMENTS   
-----------------------------------------------------------*/
-
-/* you can specify a greater or lesser percentage for the 
-page width. Or, you can specify an exact pixel width. */
-.page
+#topNav
 {
-    width: 90%;
-    margin-left: auto;
-    margin-right: auto;
+	width: 100%;
+	overflow: hidden;
+	padding-bottom: 5px;
+	border-bottom: 4px solid #000;
+	position: relative;
 }
 
-#header
+#topNavLinks ul
 {
-    position: relative;
-    margin-bottom: 0px;
-    color: #000;
-    padding: 0;
+	clear: left;
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	
+	text-align: center;
+}
+#topNavLinks ul li, #footerNav ul li
+{
+	display: block;
+	float: left;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+
+	font-size: 2em;
+	color: #778899;
+	overflow: hidden;
 }
 
-#header h1
+
+
+#footerNav li
 {
-    font-weight: bold;
-    padding: 5px 0;
-    margin: 0;
-    color: #fff;
-    border: none;
-    line-height: 2em;
-    font-size: 32px !important;
+	font-size: 1em;
 }
 
-#main
+#topNavLinks li:hover, #footerNav li:hover
 {
-    padding: 30px 30px 15px 30px;
-    background-color: #fff;
-    margin-bottom: 30px;
-    _height: 1px; /* only IE6 applies CSS properties starting with an underscore */
+	color: Black;
+	cursor: pointer;
 }
 
-#footer
+.nextArrow
 {
-    color: #999;
-    padding: 10px 0;
-    text-align: center;
-    line-height: normal;
-    margin: 0;
-    font-size: .9em;
+	background: url('/Content/images/black/next.png') no-repeat transparent;
 }
 
-/* TAB MENU   
-----------------------------------------------------------*/
-ul#menu
+.backArrow
 {
-    border-bottom: 1px #5C87B2 solid;
-    padding: 0 0 2px;
-    position: relative;
-    margin: 0;
-    text-align: right;
+	background: url('/Content/images/black/back.png') no-repeat transparent;
 }
 
-ul#menu li
+.nextArrow, .backArrow
 {
-    display: inline;
-    list-style: none;
+	width: 48px;
+	height: 48px;
+	text-indent: -9999px;
 }
 
-ul#menu li#greeting
+.backArrow:hover
 {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    color: #fff;
+	background: url('/Content/images/black-no-border/back.png') no-repeat transparent;
 }
 
-ul#menu li a
+.nextArrow:hover
 {
-    padding: 10px 20px;
-    font-weight: bold;
-    text-decoration: none;
-    line-height: 2.8em;
-    background-color: #e8eef4;
-    color: #034af3;
+	background: url('/Content/images/black-no-border/next.png') no-repeat transparent;
 }
 
-ul#menu li a:hover
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+
+fieldset
 {
-    background-color: #fff;
-    text-decoration: none;
+	border: 1px solid #ddd;
+	padding: 0 1.4em 1.4em 1.4em;
+	margin: 0 0 1.5em 0;
 }
 
-ul#menu li a:active
+legend
 {
-    background-color: #a6e2a6;
-    text-decoration: none;
+	font-size: 1.2em;
+	font-weight: bold;
 }
 
-ul#menu li.selected a
+textarea
 {
-    background-color: #fff;
-    color: #000;
+	min-height: 75px;
 }
 
-/* FORM LAYOUT ELEMENTS   
-----------------------------------------------------------*/
-
-fieldset 
+.editor-label
 {
-    border:1px solid #ddd;
-    padding:0 1.4em 1.4em 1.4em;
-    margin:0 0 1.5em 0;
+	margin: 1em 0 0 0;
 }
 
-legend 
+.editor-field
 {
-    font-size:1.2em;
-    font-weight: bold;
+	margin: 0.5em 0 0 0;
 }
 
-textarea 
-{
-    min-height: 75px;
-}
-
-input[type="text"] 
-{
-    width: 200px;
-    border: 1px solid #CCC;
-}
-
-input[type="password"] 
-{
-    width: 200px;
-    border: 1px solid #CCC;
-}
-
-/* TABLE
-----------------------------------------------------------*/
-
-table 
-{
-  border: solid 1px #e8eef4;
-  border-collapse: collapse;
-}
-
-table td 
-{
-  padding: 5px;   
-  border: solid 1px #e8eef4;
-}
-
-table th
-{
-  padding: 6px 5px;
-  text-align: left;
-  background-color: #e8eef4; 
-  border: solid 1px #e8eef4;   
-}
-
-/* MISC  
-----------------------------------------------------------*/
-.clear
-{
-    clear: both;
-}
-
-.error
-{
-    color:Red;
-}
-
-#menucontainer
-{
-    margin-top:40px;
-}
-
-div#title
-{
-    display:block;
-    float:left;
-    text-align:left;
-}
-
-#logindisplay
-{
-    font-size:1.1em;
-    display:block;
-    text-align:right;
-    margin:10px;
-    color:White;
-}
-
-#logindisplay a:link
-{
-    color: white;
-    text-decoration: underline;
-}
-
-#logindisplay a:visited
-{
-    color: white;
-    text-decoration: underline;
-}
-
-#logindisplay a:hover
-{
-    color: white;
-    text-decoration: none;
-}
 
 /* Styles for validation helpers
 -----------------------------------------------------------*/
 .field-validation-error
 {
-    color: #ff0000;
+	color: #ff0000;
 }
 
 .field-validation-valid
 {
-    display: none;
+	display: none;
 }
 
 .input-validation-error
 {
-    border: 1px solid #ff0000;
-    background-color: #ffeeee;
+	border: 1px solid #ff0000;
+	background-color: #ffeeee;
 }
 
 .validation-summary-errors
 {
-    font-weight: bold;
-    color: #ff0000;
+	font-weight: bold;
+	color: #ff0000;
 }
 
 .validation-summary-valid
 {
-    display: none;
+	display: none;
 }
 
-/* Styles for editor and display helpers
-----------------------------------------------------------*/
-.display-label,
-.editor-label
-{
-    margin: 1em 0 0 0;
-}
 
-.display-field,
-.editor-field
-{
-    margin:0.5em 0 0 0;
-}
 
-.text-box
-{
-    width: 30em;
-}
-
-.text-box.multi-line
-{
-    height: 6.5em;
-}
-
-.tri-state
-{
-    width: 6em;
-}
