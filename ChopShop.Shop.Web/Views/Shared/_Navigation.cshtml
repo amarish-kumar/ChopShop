@@ -1,33 +1,20 @@
-﻿<div id="topNav">    
-    <div id="topNavLinks">
-        <ul>
+﻿<div id="topNav">
+    <div>
+        <ul id="topNavLinks">
             <li id="1">Category 1</li>
             <li id="2">Category 2</li>
             <li id="3">Category 3</li>
             <li id="4">Category 4</li>
         </ul>
     </div>
-    <a class="nextArrow" title="Next" style="float: right;" onclick="alert('Next');">Next</a>
-    <a class="backArrow" title="Back" style="float: right;" onclick="alert('Back');">Back</a> 
-    
-
- @*   <img id="topNavNextCategory" src="/Content/images/black/next.png" style="float:right;" />
+  @*  <a class="nextArrow" title="Next" style="float: right;" onclick="alert('Next');">Next</a>
+    <a class="backArrow" title="Back" style="float: right;" onclick="alert('Back');">Back</a>*@
+    @*   <img id="topNavNextCategory" src="/Content/images/black/next.png" style="float:right;" />
     <img id="topNavPreviousCategory" src="/Content/images/black/back.png" style="float:right;" />    *@
 </div>
-
 <script type="text/javascript">
     $(function () {
-        var $listitems = $('#topNavLinks li');
-        var count = $listitems.length;
-        var maxlength = 650;
-        var currentlength = 0;
-        $listitems.each(function (i) {
-            currentlength = currentlength + $(this).width();
-            if (currentlength > maxlength) {
-                $(this).hide();
-            }
-        })
+        $('#topNavLinks').jcarousel();
 
-    
     });
 </script>
