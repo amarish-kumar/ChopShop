@@ -20,7 +20,8 @@
 
 .jcarousel-clip-horizontal
 {
-	width:700px;
+	width:630px;
+	left:55px;
 }
 
 .jcarousel-item
@@ -54,7 +55,7 @@
 .jcarousel-next-horizontal
 {
 	position: absolute;
-	top: 43px;
+	top: 13px;
 	right: 5px;
 	width: 48px;
 	height: 48px;
@@ -67,6 +68,7 @@
 	left: 5px;
 	right: auto;
 	background-image: url('/Content/images/black/back.png')
+}
 
 .jcarousel-next-horizontal:hover, .jcarousel-next-horizontal:focus
 {
@@ -81,13 +83,12 @@
 .jcarousel-next-disabled-horizontal, .jcarousel-next-disabled-horizontal:hover, .jcarousel-next-disabled-horizontal:focus, .jcarousel-next-disabled-horizontal:active
 {
 	cursor: default;
-	/*background-position: -96px 0;*/
 }
 
 .jcarousel-prev-horizontal
 {
 	position: absolute;
-	top: 43px;
+	top: 13px;
 	left: 5px;
 	width: 48px;
 	height: 48px;
@@ -115,7 +116,6 @@
 .jcarousel-prev-disabled-horizontal, .jcarousel-prev-disabled-horizontal:hover, .jcarousel-prev-disabled-horizontal:focus, .jcarousel-prev-disabled-horizontal:active
 {
 	cursor: default;
-	/*background-position: -96px 0;*/
 }
 
 
@@ -126,4 +126,10 @@
 {
 	font-size: 3em;
 	color: #778899;
+}
+
+.jcarousel-item-horizontal:hover
+{
+	color: #000;
+	background-color:#778899;
 }

@@ -4,6 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Castle.Windsor;
+using ChopShop.Admin.Web.Configuration;
+using ChopShop.Configuration;
+using ChopShop.Configuration.Admin;
 
 namespace ChopShop.Shop.Web
 {
@@ -12,6 +16,8 @@ namespace ChopShop.Shop.Web
 
     public class MvcApplication : System.Web.HttpApplication
     {
+        private static IWindsorContainer container;
+
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
@@ -35,6 +41,25 @@ namespace ChopShop.Shop.Web
 
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            RegisterContainer();
+            RegisterFilterProviders();
         }
+
+        private static void RegisterFilterProviders()
+        {
+            var oldProvider = FilterProviders.Providers.Single(x => x is FilterAttributeFilterProvider);
+            FilterProviders.Providers.Remove(oldProvider);
+
+            var newProvider = new WindsorFilterAttributeProvider(container);
+            FilterProviders.Providers.Add(newProvider);
+        }
+
+        private static void RegisterContainer()
+        {
+            container = new WindsorContainer().Install(new AdminServicesInstaller(), new ControllersInstaller());
+            var controllerFactory = new WindsorControllerFactory(container.Kernel);
+            ControllerBuilder.Current.SetControllerFactory(controllerFactory);
+        }
+
     }
 }
