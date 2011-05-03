@@ -69,7 +69,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configuration\ControllersInstaller.cs" />
+    <Compile Include="Configuration\CustomFilters\ShoppingBasketAttribute.cs" />
     <Compile Include="Configuration\RouteMapper.cs" />
+    <Compile Include="Controllers\BasketController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,7 +208,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Configuration\CustomFilters\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
@@ -225,10 +226,6 @@
     <Content Include="Views\Shared\_Navigation.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChopShop.Admin.Services\ChopShop.Admin.Services.csproj">
-      <Project>{03F6FA8C-C4FC-47A9-B20E-1D0D04CBEDF9}</Project>
-      <Name>ChopShop.Admin.Services</Name>
-    </ProjectReference>
     <ProjectReference Include="..\ChopShop.Configuration\ChopShop.Configuration.csproj">
       <Project>{A14C356B-1236-4BF1-8563-E9E956BC69DA}</Project>
       <Name>ChopShop.Configuration</Name>
@@ -236,6 +233,10 @@
     <ProjectReference Include="..\ChopShop.Model\ChopShop.Model.csproj">
       <Project>{80F5C731-8520-47DB-BD06-2B45ABE03382}</Project>
       <Name>ChopShop.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ChopShop.Shop.Services\ChopShop.Shop.Services.csproj">
+      <Project>{AD90D415-54C3-402F-A98A-6D38C73DDE7C}</Project>
+      <Name>ChopShop.Shop.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

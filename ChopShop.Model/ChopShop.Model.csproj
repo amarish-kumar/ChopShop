@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="Address.cs" />
     <Compile Include="AdminUser.cs" />
+    <Compile Include="Basket.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="Customer.cs" />
