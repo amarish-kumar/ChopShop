@@ -13,25 +13,35 @@ namespace ChopShop.Model
 
         public void Add(Guid productId, int quantity)
         {
-            if (quantity > 0)
+            if (quantity <= 0) return;
+            var basketItem = new BasketItem(productId, quantity);
+            if (BasketItems == null)
             {
-                var basketItem = new BasketItem(productId, quantity);
-                if (BasketItems == null)
-                {
-                    BasketItems = new List<BasketItem>();
-                }
+                BasketItems = new List<BasketItem> {basketItem};
+                return;
+            }
 
-                BasketItems.Add(basketItem);
+            if (BasketItems.Any(x => x.ProductId == productId))
+            {
+                var item = BasketItems.FirstOrDefault(x => x.ProductId == productId);
+                var newQuantity = item.Quantity + quantity;
+                UpdateQuantity(productId, newQuantity);
+            }
+            else
+            {
+                BasketItems.Add(basketItem); 
             }
         }
 
         public void Remove(Guid productId)
         {
-           BasketItems.RemoveAll(x => x.ProductId == productId);
+            if (BasketItems == null) return;
+            BasketItems.RemoveAll(x => x.ProductId == productId);
         }
 
         public void UpdateQuantity(Guid productId, int quantity)
         {
+            if (BasketItems == null) return;
             Remove(productId);
             Add(productId, quantity);
         }

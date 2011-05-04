@@ -38,6 +38,21 @@ namespace ChopShop.Shop.Web.Tests
         }
 
         [Test]
+        public void Add_should_increment_quantity_when_productId_is_already_in_collection()
+        {
+            var productId = Guid.NewGuid();
+            var quantity = 1;
+
+            var basket = new Basket();
+            basket.Add(productId, quantity);
+            basket.Add(productId, quantity);
+
+            Assert.That(basket.BasketItems, Is.Not.Null);
+            Assert.That(basket.BasketItems.Count(), Is.EqualTo(1));
+            Assert.That(basket.BasketItems[0].Quantity, Is.EqualTo(2));
+        }
+
+        [Test]
         public void Remove_should_remove_item_from_collection_when_invoked()
         {
             var productId = Guid.NewGuid();

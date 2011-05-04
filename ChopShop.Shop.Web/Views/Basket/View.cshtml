@@ -1,0 +1,31 @@
+﻿@model ChopShop.Shop.Web.Models.ShoppingBasket
+@{
+    ViewBag.Title = "View";
+}
+<h2>
+    View</h2>
+<fieldset>
+    <legend>ShoppingBasket</legend>
+    @if (Model != null)
+    { 
+        <div class="display-label">
+            CustomerId</div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.CustomerId)
+        </div>
+        <div class="display-label">
+            Basket Items</div>
+        <div class="display-field">
+            <ul>
+                @foreach (var item in Model.BasketItems)
+                { 
+                    <li>@item.ProductId - @item.Quantity</li>
+                }
+            </ul>
+        </div>
+    }
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

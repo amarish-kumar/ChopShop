@@ -85,6 +85,10 @@
       <Project>{BE107658-633C-49AE-B8E5-68B2C77963BB}</Project>
       <Name>ChopShop.NHibernate</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ChopShop.Shop.Services\ChopShop.Shop.Services.csproj">
+      <Project>{AD90D415-54C3-402F-A98A-6D38C73DDE7C}</Project>
+      <Name>ChopShop.Shop.Services</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

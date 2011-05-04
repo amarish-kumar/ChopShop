@@ -8,6 +8,8 @@ using Castle.Windsor;
 using ChopShop.Admin.Web.Configuration;
 using ChopShop.Configuration;
 using ChopShop.Configuration.Admin;
+using ChopShop.Configuration.Shop;
+using ChopShop.Shop.Web.Configuration;
 
 namespace ChopShop.Shop.Web
 {
@@ -43,6 +45,13 @@ namespace ChopShop.Shop.Web
             RegisterRoutes(RouteTable.Routes);
             RegisterContainer();
             RegisterFilterProviders();
+            RegisterModelMappings();
+        }
+
+        private static void RegisterModelMappings()
+        {
+            var mapper = new ModelMapper();
+            mapper.Map();
         }
 
         private static void RegisterFilterProviders()
@@ -56,7 +65,7 @@ namespace ChopShop.Shop.Web
 
         private static void RegisterContainer()
         {
-            container = new WindsorContainer().Install(new AdminServicesInstaller(), new ControllersInstaller());
+            container = new WindsorContainer().Install(new ShopServicesInstaller(), new ControllersInstaller());
             var controllerFactory = new WindsorControllerFactory(container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
         }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Web.Mvc;
+using AutoMapper;
 using ChopShop.Configuration;
 using ChopShop.Model;
 using ChopShop.Shop.Services.Interfaces;
 using ChopShop.Shop.Web.Configuration.CustomFilters;
+using ChopShop.Shop.Web.Models;
 
 namespace ChopShop.Shop.Web.Controllers
 {
@@ -23,7 +25,8 @@ namespace ChopShop.Shop.Web.Controllers
         {
             basket.Add(productId, quantity);
             basketService.Save(basket);
-            return Json(basket);
+            var shoppingBasket = Mapper.Map<Basket, ShoppingBasket>(basket);
+            return Json(shoppingBasket);
         }
 
         [HttpPost]
@@ -32,6 +35,13 @@ namespace ChopShop.Shop.Web.Controllers
             basket.Remove(productId);
             basketService.Save(basket);
             return Json(basket);
+        }
+
+        [HttpGet]
+        public ActionResult View (Basket basket)
+        {
+            var shoppingBasket = Mapper.Map<Basket, ShoppingBasket>(basket);
+            return View(shoppingBasket);
         }
 
     }
