@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using ChopShop.Configuration;
@@ -14,10 +16,12 @@ namespace ChopShop.Shop.Web.Controllers
     public class BasketController : Controller
     {
         private readonly IBasketService basketService;
+        private readonly IProductService productService;
 
-        public BasketController(IBasketService basketService)
+        public BasketController(IBasketService basketService, IProductService productService)
         {
             this.basketService = basketService;
+            this.productService = productService;
         }
 
         [HttpPost]
@@ -34,15 +38,39 @@ namespace ChopShop.Shop.Web.Controllers
         {
             basket.Remove(productId);
             basketService.Save(basket);
-            return Json(basket);
+            var shoppingBasket = Mapper.Map<Basket, ShoppingBasket>(basket);
+            return Json(shoppingBasket);
         }
 
         [HttpGet]
         public ActionResult View (Basket basket)
         {
             var shoppingBasket = Mapper.Map<Basket, ShoppingBasket>(basket);
+            var productIds = GetProductIdsFromBasket(shoppingBasket);
+            var products = productService.GetProductsById(productIds);
+            MapProductsToBasket(shoppingBasket, products);
             return View(shoppingBasket);
         }
 
+        private void MapProductsToBasket(ShoppingBasket shoppingBasket, List<Product> products)
+        {
+            foreach (var item in shoppingBasket.BasketItems)
+            {
+                var product = products.FirstOrDefault(x => x.Id == item.ProductId);
+                item.Name = product.Name;
+                item.Price = product.Prices.FirstOrDefault().Value;
+                item.Currency = product.Prices.FirstOrDefault().Currency.ToString();
+            }
+        }
+
+        private List<Guid> GetProductIdsFromBasket(ShoppingBasket shoppingBasket)
+        {
+            if(shoppingBasket != null && shoppingBasket.BasketItems.Any())
+            {
+                var ids = shoppingBasket.BasketItems.Select(item => item.ProductId).ToList();
+                return ids;
+            }
+            return null;
+        }
     }
 }

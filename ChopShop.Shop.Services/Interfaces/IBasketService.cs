@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using ChopShop.Model;
+﻿using ChopShop.Model;
 
 namespace ChopShop.Shop.Services.Interfaces
 {

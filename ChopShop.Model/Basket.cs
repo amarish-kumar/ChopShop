@@ -5,7 +5,6 @@ using System.Text;
 
 namespace ChopShop.Model
 {
-    [Serializable]
     public class Basket : Entity
     {
         public virtual List<BasketItem> BasketItems { get; set; }
@@ -47,7 +46,6 @@ namespace ChopShop.Model
         }
     }
 
-    [Serializable]
     public class BasketItem : Entity
     {
         public virtual Guid ProductId { get; private set; }

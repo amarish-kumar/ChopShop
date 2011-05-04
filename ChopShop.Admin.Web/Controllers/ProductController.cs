@@ -33,12 +33,16 @@ namespace ChopShop.Admin.Web.Controllers
 
         private int GetTotalPages(int totalItems, int perPage)
         {
-            if (totalItems % perPage == 0)
+            if (perPage > 0)
             {
-                return totalItems/perPage;
-            }
+                if (totalItems%perPage == 0)
+                {
+                    return totalItems/perPage;
+                }
 
-            return Convert.ToInt32(Math.Floor((double) (totalItems/perPage)) + 1);
+                return Convert.ToInt32(Math.Floor((double) (totalItems/perPage)) + 1);
+            }
+            return 1;
         }
 
         //[HttpGet]
