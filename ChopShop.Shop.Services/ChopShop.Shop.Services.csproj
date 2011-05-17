@@ -48,15 +48,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DbBasketService.cs" />
+    <Compile Include="Interfaces\IBasketSerializer.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\Repository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
-    <Compile Include="SessionBasketService.cs" />
+    <Compile Include="BasketService.cs" />
     <Compile Include="Interfaces\IBasketService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionStateBasketSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChopShop.Model\ChopShop.Model.csproj">

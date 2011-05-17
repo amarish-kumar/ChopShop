@@ -57,6 +57,7 @@ namespace ChopShop.Shop.Web.Controllers
             foreach (var item in shoppingBasket.BasketItems)
             {
                 var product = products.FirstOrDefault(x => x.Id == item.ProductId);
+                if (product == null) continue;
                 item.Name = product.Name;
                 item.Price = product.Prices.FirstOrDefault().Value;
                 item.Currency = product.Prices.FirstOrDefault().Currency.ToString();

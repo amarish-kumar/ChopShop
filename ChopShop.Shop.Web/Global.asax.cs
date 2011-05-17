@@ -46,6 +46,7 @@ namespace ChopShop.Shop.Web
             RegisterContainer();
             RegisterFilterProviders();
             RegisterModelMappings();
+            RegisterNHProfiler();
         }
 
         private static void RegisterModelMappings()
@@ -68,6 +69,11 @@ namespace ChopShop.Shop.Web
             container = new WindsorContainer().Install(new ShopServicesInstaller(), new ControllersInstaller());
             var controllerFactory = new WindsorControllerFactory(container.Kernel);
             ControllerBuilder.Current.SetControllerFactory(controllerFactory);
+        }
+
+        private static void RegisterNHProfiler()
+        {
+            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
         }
 
     }

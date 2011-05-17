@@ -95,27 +95,34 @@ namespace DatabaseLoader
                     session.Save(category);
                 }
 
+                var price = new Price();
+                price.Value = 10;
+                price.Currency = Currency.GBP;
+
                 // Create Products
                 var bluepedal = new Product
                                     {
                                         Name = "Blue Pedal",
                                         Description = "This pedal is blue",
                                         Quantity = 10,
-                                        Sku = "BluePedal0001"
+                                        Sku = "BluePedal0001",
+                                        Prices = new List<Price> {price}
                                     };
                 var redpedal = new Product
                                    {
                                        Name = "Red Pedal",
                                        Description = "This pedal is red",
                                        Quantity = 3,
-                                       Sku = "RedPedal0002"
+                                       Sku = "RedPedal0002",
+                                       Prices = new List<Price> { price }
                                    };
                 var bigEngine = new Product
                                     {
                                         Name = "3.0 L V12",
                                         Description = "This is a fast one",
                                         Sku = "Eng00v12",
-                                        Quantity = 2
+                                        Quantity = 2,
+                                        Prices = new List<Price> { price }
                                     };
 
                 var products = new List<Product> { bluepedal, redpedal, bigEngine };
@@ -146,7 +153,8 @@ namespace DatabaseLoader
             var products = new List<Product>();
             for (int i = 1; i <= 50; i++)
             {
-                products.Add(new Product{Name = string.Format("Product {0}", i), Description = string.Format("Description for Product {0}", i), Quantity = i + 10, Sku = string.Format("0000{0}", i)});
+                var price = new Price{Value = 10 + i, Currency = Currency.GBP};
+                products.Add(new Product { Name = string.Format("Product {0}", i), Description = string.Format("Description for Product {0}", i), Quantity = i + 10, Sku = string.Format("0000{0}", i), Prices = new List<Price> { price } });
             }
             return products;
         }

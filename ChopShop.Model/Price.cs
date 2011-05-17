@@ -13,8 +13,9 @@ namespace ChopShop.Model
         public virtual DateTime? EndDate { get; set; }
     }
 
+    [Flags]
     public enum Currency
     {
-        GBP = 0, USD = 1, EUR = 2
+        GBP = 1, USD = 2, EUR = 4
     }
 }

@@ -50,6 +50,7 @@ namespace ChopShop.Model
     {
         public virtual Guid ProductId { get; private set; }
         public virtual int Quantity { get; private set; }
+        public virtual Guid BasketId { get; set; }
 
         public BasketItem(Guid productId, int quantity)
         {

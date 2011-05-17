@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="ChopShop.Model"
+                   namespace="ChopShop.Model"
+                   schema="dbo">
+  <class name="Basket" table="Basket">
+    <id name="Id" column="Id">
+      <generator class="guid.comb" />
+    </id>
+    <set name="BasketItems" table="Basket_BasketItems">
+      <key column="BasketId" />
+      <many-to-many column="BasketItemId" class="BasketItem" />
+    </set>
+  </class>
+</hibernate-mapping>
