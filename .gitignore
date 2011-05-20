@@ -25,3 +25,4 @@ desktop.ini
 ~$*
 !/packages/*/lib/**/*.dll
 !/packages/*/lib/*.dll
+*.sln.docstates
